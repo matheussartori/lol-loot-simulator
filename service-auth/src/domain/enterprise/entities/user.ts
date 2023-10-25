@@ -4,6 +4,8 @@ import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 export interface UserAttributes {
   username: string
   password: string
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export class User extends Entity<UserAttributes> {
@@ -15,8 +17,23 @@ export class User extends Entity<UserAttributes> {
     return this.attributes.password
   }
 
+  get createdAt() {
+    return this.attributes.createdAt
+  }
+
+  get updatedAt() {
+    return this.attributes.updatedAt
+  }
+
   static create(attributes: UserAttributes, id?: UniqueEntityID) {
-    const user = new User(attributes, id)
+    const user = new User(
+      {
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        ...attributes,
+      },
+      id,
+    )
 
     return user
   }
