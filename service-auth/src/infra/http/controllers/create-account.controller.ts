@@ -1,4 +1,4 @@
-import { CreateUserUseCase } from '@/domain/application/use-cases/create-user'
+import { CreateAccountUseCase } from '@/domain/application/use-cases/create-account'
 import { Public } from '@/infra/auth/public'
 import {
   BadRequestException,
@@ -13,25 +13,25 @@ import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import { UserAlreadyExistsError } from '@/domain/application/use-cases/errors/user-already-exists-error'
 
-const createUserBodySchema = z.object({
+const createAccountBodySchema = z.object({
   username: z.string(),
   password: z.string(),
 })
 
-type CreateUserBodySchema = z.infer<typeof createUserBodySchema>
+type CreateAccountBodySchema = z.infer<typeof createAccountBodySchema>
 
 @Controller('/users')
 @Public()
-export class CreateUserController {
-  constructor(private createUser: CreateUserUseCase) {}
+export class CreateAccountController {
+  constructor(private createAccount: CreateAccountUseCase) {}
 
   @Post()
   @HttpCode(201)
-  @UsePipes(new ZodValidationPipe(createUserBodySchema))
-  async handle(@Body() body: CreateUserBodySchema) {
+  @UsePipes(new ZodValidationPipe(createAccountBodySchema))
+  async handle(@Body() body: CreateAccountBodySchema) {
     const { username, password } = body
 
-    const result = await this.createUser.execute({
+    const result = await this.createAccount.execute({
       username,
       password,
     })

@@ -1,5 +1,5 @@
 import { FakeHasher } from 'test/cryptography/fake-hasher'
-import { CreateUserUseCase } from './create-user'
+import { CreateAccountUseCase } from './create-account'
 import { InMemoryUserRepository } from 'test/repositories/in-memory-user-repository'
 import { makeUser } from 'test/factories/make-user'
 import { UserAlreadyExistsError } from './errors/user-already-exists-error'
@@ -7,13 +7,13 @@ import { UserAlreadyExistsError } from './errors/user-already-exists-error'
 let inMemoryUserRepository: InMemoryUserRepository
 let fakeHasher: FakeHasher
 
-let sut: CreateUserUseCase
+let sut: CreateAccountUseCase
 
 describe('create user use case', () => {
   beforeEach(() => {
     inMemoryUserRepository = new InMemoryUserRepository()
     fakeHasher = new FakeHasher()
-    sut = new CreateUserUseCase(inMemoryUserRepository, fakeHasher)
+    sut = new CreateAccountUseCase(inMemoryUserRepository, fakeHasher)
   })
 
   it('should not be able to create a user with an existing username', async () => {

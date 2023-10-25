@@ -4,19 +4,19 @@ import { HashComparer } from '../cryptography/hash-comparer'
 import { Encrypter } from '../cryptography/encrypter'
 import { WrongCredentialsError } from './errors/wrong-credentials-error'
 
-interface AuthenticateUserParams {
+interface AuthenticateParams {
   username: string
   password: string
 }
 
-type AuthenticateUserResult = Either<
+type AuthenticateResult = Either<
   WrongCredentialsError,
   {
     accessToken: string
   }
 >
 
-export class AuthenticateUserUseCase {
+export class AuthenticateUseCase {
   constructor(
     private userRepository: UserRepository,
     private hashComparer: HashComparer,
@@ -26,7 +26,7 @@ export class AuthenticateUserUseCase {
   async execute({
     username,
     password,
-  }: AuthenticateUserParams): Promise<AuthenticateUserResult> {
+  }: AuthenticateParams): Promise<AuthenticateResult> {
     const user = await this.userRepository.findByUsername(username)
 
     if (!user) {

@@ -1,5 +1,5 @@
 import { InMemoryUserRepository } from 'test/repositories/in-memory-user-repository'
-import { AuthenticateUserUseCase } from './authenticate-user'
+import { AuthenticateUseCase } from './authenticate'
 import { FakeHasher } from 'test/cryptography/fake-hasher'
 import { FakeEncrypter } from 'test/cryptography/fake-encrypter'
 import { WrongCredentialsError } from './errors/wrong-credentials-error'
@@ -9,7 +9,7 @@ let inMemoryUserRepository: InMemoryUserRepository
 let fakeHasher: FakeHasher
 let encrypter: FakeEncrypter
 
-let sut: AuthenticateUserUseCase
+let sut: AuthenticateUseCase
 
 describe('authenticate user use case', () => {
   beforeEach(() => {
@@ -17,11 +17,7 @@ describe('authenticate user use case', () => {
     fakeHasher = new FakeHasher()
     encrypter = new FakeEncrypter()
 
-    sut = new AuthenticateUserUseCase(
-      inMemoryUserRepository,
-      fakeHasher,
-      encrypter,
-    )
+    sut = new AuthenticateUseCase(inMemoryUserRepository, fakeHasher, encrypter)
   })
 
   it('should not be able to authenticate an user with a non-existing username', async () => {
