@@ -12,3 +12,26 @@
 <img alt="License status badge" src="https://img.shields.io/github/license/matheussartori/lol-loot-simulator?color=%2361dafb&style=flat-square" />
 
 </p>
+
+<p align="center">
+  <a href="#services">Services</a><br>
+</p>
+
+## Services
+
+This application is composed with multiple services. They were splitted into microservices not just to make it easier to maintain and to scale, but also because of learning purposes.
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code><a href="./service-auth">service-auth</a></code></td>
+      <td>User registration and authentication.</td>
+    </tr>
+  </tbody>
+</table>
