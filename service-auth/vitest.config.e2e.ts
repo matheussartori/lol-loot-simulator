@@ -6,16 +6,21 @@ export default defineConfig({
     include: ['**/*.e2e-spec.ts'],
     globals: true,
     alias: {
-      '@src': './src',
+      '@': './src',
       '@test': './test',
     },
     root: './',
+    setupFiles: ['./test/setup-e2e.ts'],
   },
   resolve: {
     alias: {
-      '@src': './src',
+      '@': './src',
       '@test': './test',
     },
   },
-  plugins: [swc.vite()],
+  plugins: [
+    swc.vite({
+      module: { type: 'es6' },
+    }),
+  ],
 })
