@@ -110,6 +110,7 @@ services:
     build: ./service-catalog/.
     networks:
       - default
+      - messaging
     container_name: service-catalog-api
     ports:
       - 3336:3333
@@ -121,7 +122,7 @@ services:
       - catalog-database
     command: sh -c "/wait; npm ci; npx prisma generate; npx prisma migrate deploy; npm run start:dev"
     environment:
-      - WAIT_HOSTS=catalog-database:5432
+      - WAIT_HOSTS=catalog-database:5432,kafka:9092
       - WAIT_TIMEOUT=1000
       - WAIT_SLEEP_INTERVAL=5
       - WAIT_HOST_CONNECT_TIMEOUT=300
