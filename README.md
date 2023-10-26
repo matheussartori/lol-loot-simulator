@@ -45,5 +45,9 @@ This application is composed with multiple services. They were splitted into mic
       <td><code><a href="./service-loot">service-loot</a></code></td>
       <td>Loot storage, capsules opening.</td>
     </tr>
+    <tr>
+      <td><code><a href="./service-store">service-store</a></code></td>
+      <td>Store to buy champions and other items./</td>
+    </tr>
   </tbody>
 </table>
