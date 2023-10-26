@@ -9,18 +9,21 @@ datasource db {
 
 model Champions {
   id          String    @id @default(uuid())
+  championId  String    @map("champion_id")
   userId      String    @map("user_id")
   releasedAt  DateTime  @map("released_at")
   purchasedAt DateTime? @default(now()) @map("purchased_at")
 
   skins Skins[]
 
+  @@index([championId], name: "champions_champion_id")
   @@index([userId], name: "champions_user_id")
   @@map("champions")
 }
 
 model Skins {
   id          String    @id @default(uuid())
+  skinId      String    @map("skin_id")
   userId      String    @map("user_id")
   championId  String    @map("champion_id")
   releasedAt  DateTime  @map("released_at")
@@ -29,18 +32,22 @@ model Skins {
   champion Champions @relation(fields: [championId], references: [id])
   chromas  Chromas[]
 
+  @@index([skinId], name: "skins_skin_id")
   @@index([userId], name: "skins_user_id")
   @@map("skins")
 }
 
 model Chromas {
   id          String    @id @default(uuid())
-  userId      String
+  chromaId    String    @map("chroma_id")
+  userId      String    @map("user_id")
   skinId      String    @map("skin_id")
   releasedAt  DateTime  @map("released_at")
   purchasedAt DateTime? @default(now()) @map("purchased_at")
 
   skin Skins @relation(fields: [skinId], references: [id])
 
+  @@index([chromaId], name: "chromas_chroma_id")
+  @@index([userId], name: "chromas_user_id")
   @@map("chromas")
 }

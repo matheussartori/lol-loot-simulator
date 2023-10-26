@@ -2,6 +2,7 @@ import { Entity } from '@/core/entities/entity'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 export interface ChromaAttributes {
+  chromaId: UniqueEntityID
   userId: UniqueEntityID
   skinId: UniqueEntityID
   releasedAt: Date
