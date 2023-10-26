@@ -20,4 +20,20 @@ export class Champion extends Entity<ChampionAttributes> {
 
     return champion
   }
+
+  get championId() {
+    return this.attributes.championId
+  }
+
+  get userId() {
+    return this.attributes.userId
+  }
+
+  get releasedAt() {
+    return this.attributes.releasedAt
+  }
+
+  get purchasedAt() {
+    return this.attributes.purchasedAt
+  }
 }
