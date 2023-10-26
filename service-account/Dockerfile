@@ -1,5 +1,5 @@
 FROM node:20-alpine
-WORKDIR /usr/src/service-auth
+WORKDIR /usr/src/service-account
 COPY . .
 EXPOSE 3333
 ENV WAIT_VERSION 2.12.1

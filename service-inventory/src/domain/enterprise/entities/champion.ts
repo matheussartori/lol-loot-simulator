@@ -12,8 +12,8 @@ export class Champion extends Entity<ChampionAttributes> {
   static create(attributes: ChampionAttributes, id?: UniqueEntityID) {
     const champion = new Champion(
       {
-        purchasedAt: new Date(),
         ...attributes,
+        purchasedAt: new Date(),
       },
       id,
     )

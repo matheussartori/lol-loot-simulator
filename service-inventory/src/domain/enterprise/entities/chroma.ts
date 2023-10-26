@@ -13,8 +13,8 @@ export class Chroma extends Entity<ChromaAttributes> {
   static create(attributes: ChromaAttributes, id?: UniqueEntityID) {
     const chroma = new Chroma(
       {
-        purchasedAt: new Date(),
         ...attributes,
+        purchasedAt: new Date(),
       },
       id,
     )

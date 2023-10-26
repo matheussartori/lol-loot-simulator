@@ -8,6 +8,8 @@ export class PrismaUserMapper {
       {
         username: raw.username,
         password: raw.password,
+        riotPoints: raw.riotPoints,
+        blueEssence: raw.blueEssence,
         createdAt: raw.createdAt ?? undefined,
         updatedAt: raw.updatedAt ?? undefined,
       },
@@ -20,6 +22,8 @@ export class PrismaUserMapper {
       id: user.id.toString(),
       username: user.username,
       password: user.password,
+      riotPoints: user.riotPoints ?? 0,
+      blueEssence: user.blueEssence ?? 0,
       createdAt: user.createdAt ?? null,
       updatedAt: user.updatedAt ?? null,
     }

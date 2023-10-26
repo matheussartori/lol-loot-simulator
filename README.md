@@ -30,8 +30,8 @@ This application is composed with multiple services. They were splitted into mic
   </thead>
   <tbody>
     <tr>
-      <td><code><a href="./service-auth">service-auth</a></code></td>
-      <td>User registration and authentication.</td>
+      <td><code><a href="./service-account/">service-account</a></code></td>
+      <td>User registration, authentication and account data.</td>
     </tr>
     <tr>
       <td><code><a href="./service-inventory">service-inventory</a></code></td>

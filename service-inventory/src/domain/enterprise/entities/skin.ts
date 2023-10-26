@@ -13,8 +13,8 @@ export class Skin extends Entity<SkinAttributes> {
   static create(attributes: SkinAttributes, id?: UniqueEntityID) {
     const skin = new Skin(
       {
-        purchasedAt: new Date(),
         ...attributes,
+        purchasedAt: new Date(),
       },
       id,
     )
