@@ -1,14 +1,14 @@
 import { InMemoryChampionRepository } from 'test/repositories/in-memory-champion-repository'
-import { FetchChampions } from './fetch-champions'
+import { FetchChampionsUseCase } from './fetch-champions'
 
 let inMemoryChampionRepository: InMemoryChampionRepository
 
-let sut: FetchChampions
+let sut: FetchChampionsUseCase
 
 describe('fetch champions use case', () => {
   beforeEach(() => {
     inMemoryChampionRepository = new InMemoryChampionRepository()
-    sut = new FetchChampions(inMemoryChampionRepository)
+    sut = new FetchChampionsUseCase(inMemoryChampionRepository)
   })
 
   it('should return an empty array if no champions are found', async () => {

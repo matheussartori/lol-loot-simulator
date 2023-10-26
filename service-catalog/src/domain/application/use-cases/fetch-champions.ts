@@ -9,7 +9,7 @@ type FetchChampionsResult = Either<
   }
 >
 
-export class FetchChampions {
+export class FetchChampionsUseCase {
   constructor(private championRepository: ChampionRepository) {}
   async execute(): Promise<FetchChampionsResult> {
     const champions = await this.championRepository.findMany()

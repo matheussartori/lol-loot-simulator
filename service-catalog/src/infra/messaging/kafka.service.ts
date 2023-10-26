@@ -13,6 +13,12 @@ export class KafkaService
         clientId: 'loot',
         brokers: [config.get('KAFKA_BROKERS')],
       },
+      consumer: {
+        groupId: 'catalog-consumer',
+      },
+      subscribe: {
+        fromBeginning: true,
+      },
     })
   }
 
