@@ -1,0 +1,6 @@
+{
+  "extends": "@matheussartori/eslint-config-skope-it/node",
+  "rules": {
+    "no-useless-constructor": "off"
+  }
+}
