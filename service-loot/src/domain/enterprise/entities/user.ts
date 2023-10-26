@@ -2,29 +2,25 @@ import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
 export interface UserAttributes {
-  username: string
-  password: string
-  riotPoints: number
-  blueEssence: number
+  userId: UniqueEntityID
+  orangeEssence: number
+  mythicEssence: number
+  keys: number
   createdAt?: Date
   updatedAt?: Date
 }
 
 export class User extends Entity<UserAttributes> {
-  get username() {
-    return this.attributes.username
+  get orangeEssence() {
+    return this.attributes.orangeEssence
   }
 
-  get password() {
-    return this.attributes.password
+  get mythicEssence() {
+    return this.attributes.mythicEssence
   }
 
-  get riotPoints() {
-    return this.attributes.riotPoints
-  }
-
-  get blueEssence() {
-    return this.attributes.blueEssence
+  get keys() {
+    return this.attributes.keys
   }
 
   get createdAt() {
@@ -41,8 +37,9 @@ export class User extends Entity<UserAttributes> {
         ...attributes,
         createdAt: new Date(),
         updatedAt: new Date(),
-        riotPoints: 0,
-        blueEssence: 0,
+        orangeEssence: 0,
+        mythicEssence: 0,
+        keys: 0,
       },
       id,
     )

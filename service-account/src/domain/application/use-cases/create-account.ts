@@ -38,6 +38,8 @@ export class CreateAccountUseCase {
     const user = User.create({
       username,
       password: hashedPassword,
+      riotPoints: 0,
+      blueEssence: 0,
     })
 
     await this.userRepository.create(user)

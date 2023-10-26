@@ -22,8 +22,8 @@ export class PrismaUserMapper {
       id: user.id.toString(),
       username: user.username,
       password: user.password,
-      riotPoints: user.riotPoints ?? 0,
-      blueEssence: user.blueEssence ?? 0,
+      riotPoints: user.riotPoints,
+      blueEssence: user.blueEssence,
       createdAt: user.createdAt ?? null,
       updatedAt: user.updatedAt ?? null,
     }
