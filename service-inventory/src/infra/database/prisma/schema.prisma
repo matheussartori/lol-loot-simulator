@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Champions {
+  id          String    @id @default(uuid())
+  userId      String    @map("user_id")
+  releasedAt  DateTime  @map("released_at")
+  purchasedAt DateTime? @default(now()) @map("purchased_at")
+
+  skins Skins[]
+
+  @@index([userId], name: "champions_user_id")
+  @@map("champions")
+}
+
+model Skins {
+  id          String    @id @default(uuid())
+  userId      String    @map("user_id")
+  championId  String    @map("champion_id")
+  releasedAt  DateTime  @map("released_at")
+  purchasedAt DateTime? @default(now()) @map("purchased_at")
+
+  champion Champions @relation(fields: [championId], references: [id])
+  chromas  Chromas[]
+
+  @@index([userId], name: "skins_user_id")
+  @@map("skins")
+}
+
+model Chromas {
+  id          String    @id @default(uuid())
+  userId      String
+  skinId      String    @map("skin_id")
+  releasedAt  DateTime  @map("released_at")
+  purchasedAt DateTime? @default(now()) @map("purchased_at")
+
+  skin Skins @relation(fields: [skinId], references: [id])
+
+  @@map("chromas")
+}
