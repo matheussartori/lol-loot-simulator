@@ -34,6 +34,10 @@ This application is composed with multiple services. They were splitted into mic
       <td>User registration, authentication and account data.</td>
     </tr>
     <tr>
+      <td><code><a href="./service-catalog/">service-catalog</a></code></td>
+      <td>Catalog of champions, skins, chromas, etc.</td>
+    </tr>
+    <tr>
       <td><code><a href="./service-inventory">service-inventory</a></code></td>
       <td>User inventories.</td>
     </tr>
