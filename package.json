@@ -1,15 +1,17 @@
 {
   "name": "lol-loot-simulator",
   "version": "1.0.0",
-  "description": "<h3 align=\"center\">   League of Legends Loot Simulator </h3>",
-  "main": "index.js",
+  "description": "League of Legends Loot Simulator",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "docker:up": "docker compose up -d",
+    "docker:logs": "docker compose logs -f",
+    "docker:down": "docker compose down --volumes",
+    "docker:rebuild": "npm run docker:down; npm run docker:up",
+    "docker:restart": "docker compose restart"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^18.1.0",
     "@commitlint/config-conventional": "^18.1.0",

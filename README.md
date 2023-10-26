@@ -41,9 +41,5 @@ This application is composed with multiple services. They were splitted into mic
       <td><code><a href="./service-loot">service-loot</a></code></td>
       <td>Loot storage, capsules opening.</td>
     </tr>
-    <tr>
-      <td><code><a href="./service-kafka">service-kafka</a></code></td>
-      <td>Kafka and zookeeper.</td>
-    </tr>
   </tbody>
 </table>
