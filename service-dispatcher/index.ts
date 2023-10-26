@@ -1,7 +1,6 @@
 import { Kafka } from "kafkajs";
 
 async function run() {
-  console.log('hello')
   const kafka = new Kafka({
     clientId: 'dispatcher',
     brokers: ['kafka:9092']
@@ -18,7 +17,7 @@ async function run() {
           key: 'Alistar',
           value: JSON.stringify({
             name: 'Alistar',
-            releasedAt: new Date('February 21, 2009')
+            releasedAt: new Date('February 21, 2009'),
           })
         }
       ]
