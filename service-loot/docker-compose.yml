@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  database:
+    image: postgres:16-alpine
+    restart: always
+    container_name: service-loot-db
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: auth
+  app:
+    build: .
+    container_name: service-loot-api
+    ports:
+      - 3335:3333
+    volumes:
+      - .:/usr/src/service-loot
+    links:
+      - database
+    depends_on:
+      - database
+    command: sh -c "/wait; npm ci; npx prisma migrate deploy; npm run start:dev"
+    environment:
+      - WAIT_HOSTS=database:5432
+      - WAIT_TIMEOUT=1000
+      - WAIT_SLEEP_INTERVAL=2
+      - WAIT_HOST_CONNECT_TIMEOUT=30
