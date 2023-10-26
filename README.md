@@ -33,5 +33,9 @@ This application is composed with multiple services. They were splitted into mic
       <td><code><a href="./service-auth">service-auth</a></code></td>
       <td>User registration and authentication.</td>
     </tr>
+    <tr>
+      <td><code><a href="./service-inventory">service-inventory</a></code></td>
+      <td>User inventories.</td>
+    </tr>
   </tbody>
 </table>
