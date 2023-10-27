@@ -126,7 +126,6 @@ services:
       - WAIT_TIMEOUT=1000
       - WAIT_SLEEP_INTERVAL=5
       - WAIT_HOST_CONNECT_TIMEOUT=300
-      # dispatcher
   dispatcher:
     build: ./service-dispatcher/.
     networks:

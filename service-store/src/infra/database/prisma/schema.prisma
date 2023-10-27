@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Champion {
+  id               String   @id @default(uuid())
+  championId       String   @unique @map("champion_id")
+  name             String
+  blueEssencePrice Int      @map("blue_essence_price")
+  riotPointsPrice  Int      @map("riot_points_price")
+  releasedAt       DateTime @map("released_at")
+}
