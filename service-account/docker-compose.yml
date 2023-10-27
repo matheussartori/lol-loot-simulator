@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  account-database:
+    image: postgres:16-alpine
+    networks:
+      - default
+    restart: always
+    container_name: service-account-db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: account
+  account-api:
+    build: .
+    networks:
+      - default
+    container_name: service-account-api
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/usr/src/service-account
+    links:
+      - account-database
+    depends_on:
+      - account-database
+    command: sh -c "/wait; npm ci; npx prisma generate; npx prisma migrate deploy; npm run start:dev"
+    environment:
+      - WAIT_HOSTS=account-database:5432
+      - WAIT_TIMEOUT=1000
+      - WAIT_SLEEP_INTERVAL=5
+      - WAIT_HOST_CONNECT_TIMEOUT=300

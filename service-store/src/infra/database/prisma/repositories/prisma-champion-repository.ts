@@ -2,7 +2,9 @@ import { ChampionRepository } from '@/domain/application/repositories/champion-r
 import { Champion } from '@/domain/enterprise/entities/champion'
 import { PrismaService } from '../prisma.service'
 import { PrismaChampionMapper } from '../mappers/prisma-champion-mapper'
+import { Injectable } from '@nestjs/common'
 
+@Injectable()
 export class PrismaChampionRepository implements ChampionRepository {
   constructor(private prisma: PrismaService) {}
 

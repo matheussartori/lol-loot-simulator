@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  dispatcher:
+    build: .
+    networks:
+      - messaging
+    container_name: service-dispatcher
+    volumes:
+      - .:/usr/src/service-dispatcher
+    command: npm run start:dev

@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  inventory-database:
+    image: postgres:16-alpine
+    networks:
+      - default
+    restart: always
+    container_name: service-inventory-db
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: auth
+  inventory-api:
+    build: .
+    networks:
+      - default
+    container_name: service-inventory-api
+    ports:
+      - 3334:3333
+    volumes:
+      - .:/usr/src/service-inventory
+    links:
+      - inventory-database
+    depends_on:
+      - inventory-database
+    command: sh -c "/wait; npm ci; npx prisma generate; npx prisma migrate deploy; npm run start:dev"
+    environment:
+      - WAIT_HOSTS=inventory-database:5432
+      - WAIT_TIMEOUT=1000
+      - WAIT_SLEEP_INTERVAL=5
+      - WAIT_HOST_CONNECT_TIMEOUT=300
