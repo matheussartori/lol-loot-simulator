@@ -22,6 +22,12 @@ export class PrismaChampionRepository implements ChampionRepository {
     return PrismaChampionMapper.toDomain(champion)
   }
 
+  async findMany(): Promise<Champion[]> {
+    const champions = await this.prisma.champion.findMany()
+
+    return champions.map(PrismaChampionMapper.toDomain)
+  }
+
   async create(champion: Champion): Promise<void> {
     const data = PrismaChampionMapper.toPrisma(champion)
 

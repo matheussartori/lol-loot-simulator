@@ -16,6 +16,10 @@ export class InMemoryChampionRepository implements ChampionRepository {
     return champion
   }
 
+  async findMany(): Promise<Champion[]> {
+    return this.items
+  }
+
   async create(champion: Champion): Promise<void> {
     this.items.push(champion)
   }
