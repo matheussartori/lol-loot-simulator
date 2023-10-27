@@ -14,4 +14,6 @@ model Champion {
   blueEssencePrice Int      @map("blue_essence_price")
   riotPointsPrice  Int      @map("riot_points_price")
   releasedAt       DateTime @map("released_at")
+
+  @@map("champions")
 }

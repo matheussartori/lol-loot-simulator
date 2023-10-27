@@ -126,6 +126,38 @@ services:
       - WAIT_TIMEOUT=1000
       - WAIT_SLEEP_INTERVAL=5
       - WAIT_HOST_CONNECT_TIMEOUT=300
+  store-database:
+    image: postgres:16-alpine
+    networks:
+      - default
+    restart: always
+    container_name: service-store-db
+    ports:
+      - 5436:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: store
+  store-api:
+    build: ./service-store/.
+    networks:
+      - default
+      - messaging
+    container_name: service-store-api
+    ports:
+      - 3337:3333
+    volumes:
+      - ./service-store/.:/usr/src/service-store
+    links:
+      - store-database
+    depends_on:
+      - store-database
+    command: sh -c "/wait; npm ci; npx prisma generate; npx prisma migrate deploy; npm run start:dev"
+    environment:
+      - WAIT_HOSTS=store-database:5432,kafka:9092
+      - WAIT_TIMEOUT=1000
+      - WAIT_SLEEP_INTERVAL=5
+      - WAIT_HOST_CONNECT_TIMEOUT=300
   dispatcher:
     build: ./service-dispatcher/.
     networks:

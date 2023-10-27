@@ -2,6 +2,7 @@ import { InMemoryChampionRepository } from 'test/repositories/in-memory-champion
 import { CreateChampionUseCase } from './create-champion'
 import { makeChampion } from 'test/factories/make-champion'
 import { ChampionAlreadyExistsError } from './errors/champion-already-exists-error'
+import { Champion } from '@/domain/enterprise/entities/champion'
 
 let inMemoryChampionsRepository: InMemoryChampionRepository
 
@@ -35,6 +36,10 @@ describe('create champion use case', () => {
       releasedAt: new Date(),
     })
 
-    expect(result.isRight())
+    expect(result.isRight()).toBe(true)
+
+    if (result.isRight()) {
+      expect(result.value.champion).toBeInstanceOf(Champion)
+    }
   })
 })

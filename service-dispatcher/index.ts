@@ -17,6 +17,8 @@ async function run() {
           key: 'Alistar',
           value: JSON.stringify({
             name: 'Alistar',
+            blueEssencePrice: 1350,
+            riotPointsPrice: 585,
             releasedAt: new Date('February 21, 2009'),
           })
         }

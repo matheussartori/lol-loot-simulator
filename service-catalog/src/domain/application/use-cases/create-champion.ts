@@ -8,7 +8,12 @@ interface CreateChampionParams {
   releasedAt: Date
 }
 
-type CreateChampionResult = Either<ChampionAlreadyExistsError, null>
+type CreateChampionResult = Either<
+  ChampionAlreadyExistsError,
+  {
+    champion: Champion
+  }
+>
 
 export class CreateChampionUseCase {
   constructor(private championRepository: ChampionRepository) {}
@@ -29,6 +34,8 @@ export class CreateChampionUseCase {
 
     await this.championRepository.create(champion)
 
-    return right(null)
+    return right({
+      champion,
+    })
   }
 }
