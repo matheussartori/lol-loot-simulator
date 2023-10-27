@@ -19,18 +19,32 @@ model Champion {
 }
 
 model Transaction {
-  id         String     @id @default(uuid())
-  itemId     String     @map("item_id")
-  userId     String     @map("user_id")
-  type       String
-  status     StatusEnum
+  id         String              @id @default(uuid())
+  itemId     String              @map("item_id")
+  userId     String              @map("user_id")
+  type       TransactionType
+  status     TransactionStatus
+  currency   TransactionCurrency
   amount     Int
-  createdAt  DateTime?  @default(now()) @map("created_at")
-  finishedAt DateTime?
+  createdAt  DateTime?           @default(now()) @map("created_at")
+  finishedAt DateTime?           @map("finished_at")
+
+  @@map("transactions")
 }
 
-enum StatusEnum {
+enum TransactionType {
+  CHAMPION
+  SKIN
+  CHROMA
+}
+
+enum TransactionStatus {
   PENDING
   COMPLETED
   FAILED
+}
+
+enum TransactionCurrency {
+  BLUE_ESSENCE
+  RIOT_POINTS
 }

@@ -1,5 +1,11 @@
 -- CreateEnum
-CREATE TYPE "StatusEnum" AS ENUM ('PENDING', 'COMPLETED', 'FAILED');
+CREATE TYPE "TransactionType" AS ENUM ('CHAMPION', 'SKIN', 'CHROMA');
+
+-- CreateEnum
+CREATE TYPE "TransactionStatus" AS ENUM ('PENDING', 'COMPLETED', 'FAILED');
+
+-- CreateEnum
+CREATE TYPE "TransactionCurrency" AS ENUM ('BLUE_ESSENCE', 'RIOT_POINTS');
 
 -- CreateTable
 CREATE TABLE "champions" (
@@ -14,17 +20,18 @@ CREATE TABLE "champions" (
 );
 
 -- CreateTable
-CREATE TABLE "Transaction" (
+CREATE TABLE "transactions" (
     "id" TEXT NOT NULL,
     "item_id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "status" "StatusEnum" NOT NULL,
+    "type" "TransactionType" NOT NULL,
+    "status" "TransactionStatus" NOT NULL,
+    "currency" "TransactionCurrency" NOT NULL,
     "amount" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "finishedAt" TIMESTAMP(3),
+    "finished_at" TIMESTAMP(3),
 
-    CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "transactions_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

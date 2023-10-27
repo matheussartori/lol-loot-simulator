@@ -1,14 +1,16 @@
 import { Entity } from '@/core/entities/entity'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Optional } from '@/core/types/optional'
 
 export interface TransactionAttributes {
   itemId: UniqueEntityID
   userId: UniqueEntityID
-  type: string
-  status: 'pending' | 'completed' | 'failed'
+  type: 'CHAMPION' | 'SKIN' | 'CHROMA'
+  status: 'PENDING' | 'COMPLETED' | 'FAILED'
+  currency: 'BLUE_ESSENCE' | 'RIOT_POINTS'
   amount: number
   createdAt?: Date
-  finishedAt?: Date
+  finishedAt: Date | null
 }
 
 export class Transaction extends Entity<TransactionAttributes> {
@@ -28,6 +30,10 @@ export class Transaction extends Entity<TransactionAttributes> {
     return this.attributes.status
   }
 
+  get currency() {
+    return this.attributes.currency
+  }
+
   get amount() {
     return this.attributes.amount
   }
@@ -40,11 +46,19 @@ export class Transaction extends Entity<TransactionAttributes> {
     return this.attributes.finishedAt
   }
 
-  static create(attributes: TransactionAttributes, id?: UniqueEntityID) {
+  static create(
+    attributes: Optional<
+      TransactionAttributes,
+      'status' | 'createdAt' | 'finishedAt'
+    >,
+    id?: UniqueEntityID,
+  ) {
     const transaction = new Transaction(
       {
         ...attributes,
         createdAt: new Date(),
+        status: 'PENDING',
+        finishedAt: null,
       },
       id,
     )
