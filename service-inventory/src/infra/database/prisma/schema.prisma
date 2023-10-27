@@ -7,21 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Champions {
-  id          String    @id @default(uuid())
-  championId  String    @map("champion_id")
-  userId      String    @map("user_id")
-  releasedAt  DateTime  @map("released_at")
-  purchasedAt DateTime? @default(now()) @map("purchased_at")
+model Champion {
+  id          String   @id @default(uuid())
+  championId  String   @map("champion_id")
+  userId      String   @map("user_id")
+  releasedAt  DateTime @map("released_at")
+  purchasedAt DateTime @default(now()) @map("purchased_at")
 
-  skins Skins[]
+  skins Skin[]
 
   @@index([championId], name: "champions_champion_id")
   @@index([userId], name: "champions_user_id")
   @@map("champions")
 }
 
-model Skins {
+model Skin {
   id          String    @id @default(uuid())
   skinId      String    @map("skin_id")
   userId      String    @map("user_id")
@@ -29,15 +29,15 @@ model Skins {
   releasedAt  DateTime  @map("released_at")
   purchasedAt DateTime? @default(now()) @map("purchased_at")
 
-  champion Champions @relation(fields: [championId], references: [id])
-  chromas  Chromas[]
+  champion Champion @relation(fields: [championId], references: [id])
+  chromas  Chroma[]
 
   @@index([skinId], name: "skins_skin_id")
   @@index([userId], name: "skins_user_id")
   @@map("skins")
 }
 
-model Chromas {
+model Chroma {
   id          String    @id @default(uuid())
   chromaId    String    @map("chroma_id")
   userId      String    @map("user_id")
@@ -45,7 +45,7 @@ model Chromas {
   releasedAt  DateTime  @map("released_at")
   purchasedAt DateTime? @default(now()) @map("purchased_at")
 
-  skin Skins @relation(fields: [skinId], references: [id])
+  skin Skin @relation(fields: [skinId], references: [id])
 
   @@index([chromaId], name: "chromas_chroma_id")
   @@index([userId], name: "chromas_user_id")

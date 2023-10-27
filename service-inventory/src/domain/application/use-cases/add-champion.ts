@@ -8,7 +8,7 @@ interface AddChampionParams {
   championId: string
   userId: string
   releasedAt: Date
-  purchasedAt?: Date
+  purchasedAt: Date
 }
 
 type AddChampionResult = Either<ChampionAlreadyOwnedError, null>

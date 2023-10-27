@@ -5,7 +5,7 @@ export interface ChampionAttributes {
   championId: UniqueEntityID
   userId: UniqueEntityID
   releasedAt: Date
-  purchasedAt?: Date
+  purchasedAt: Date
 }
 
 export class Champion extends Entity<ChampionAttributes> {
