@@ -4,6 +4,9 @@ import {
   ChampionAttributes,
 } from '@/domain/enterprise/entities/champion'
 import { faker } from '@faker-js/faker'
+import { PrismaChampionMapper } from '@/infra/database/prisma/mappers/prisma-champion-mapper'
+import { PrismaService } from '@/infra/database/prisma/prisma.service'
+import { Injectable } from '@nestjs/common'
 
 export function makeChampion(
   override: Partial<ChampionAttributes> = {},
@@ -22,4 +25,21 @@ export function makeChampion(
   )
 
   return user
+}
+
+@Injectable()
+export class ChampionFactory {
+  constructor(private prisma: PrismaService) {}
+
+  async makePrismaChampion(
+    data: Partial<ChampionAttributes> = {},
+  ): Promise<Champion> {
+    const champion = makeChampion(data)
+
+    await this.prisma.champion.create({
+      data: PrismaChampionMapper.toPrisma(champion),
+    })
+
+    return champion
+  }
 }
