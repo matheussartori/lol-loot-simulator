@@ -2,6 +2,7 @@ import { CreateChampionUseCase } from '@/domain/application/use-cases/create-cha
 import { Controller } from '@nestjs/common'
 import { MessagePattern, Payload } from '@nestjs/microservices'
 import { KafkaService } from '../kafka.service'
+import { ChampionPresenter } from '../presenters/champion-presenter'
 
 interface ChampionCreatedMessage {
   name: string
@@ -26,7 +27,7 @@ export class ChampionCreatedController {
 
     if (result.isRight()) {
       this.kafka.emit('champion.added', {
-        champion: result.value.champion,
+        champion: ChampionPresenter.toMessaging(result.value.champion),
         blueEssencePrice: message.blueEssencePrice,
         riotPointsPrice: message.riotPointsPrice,
       })
