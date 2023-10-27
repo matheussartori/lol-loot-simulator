@@ -6,5 +6,6 @@ export abstract class ChampionRepository {
     championId: string,
   ): Promise<Champion | null>
 
+  abstract findManyByUserId(userId: string): Promise<Champion[]>
   abstract create(champion: Champion): Promise<void>
 }

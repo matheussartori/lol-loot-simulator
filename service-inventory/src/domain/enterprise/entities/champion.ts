@@ -9,18 +9,6 @@ export interface ChampionAttributes {
 }
 
 export class Champion extends Entity<ChampionAttributes> {
-  static create(attributes: ChampionAttributes, id?: UniqueEntityID) {
-    const champion = new Champion(
-      {
-        ...attributes,
-        purchasedAt: new Date(),
-      },
-      id,
-    )
-
-    return champion
-  }
-
   get championId() {
     return this.attributes.championId
   }
@@ -35,5 +23,17 @@ export class Champion extends Entity<ChampionAttributes> {
 
   get purchasedAt() {
     return this.attributes.purchasedAt
+  }
+
+  static create(attributes: ChampionAttributes, id?: UniqueEntityID) {
+    const champion = new Champion(
+      {
+        ...attributes,
+        purchasedAt: new Date(),
+      },
+      id,
+    )
+
+    return champion
   }
 }

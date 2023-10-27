@@ -21,6 +21,14 @@ export class InMemoryChampionRepository implements ChampionRepository {
     return champion
   }
 
+  async findManyByUserId(userId: string): Promise<Champion[]> {
+    const champions = this.items.filter(
+      (item) => item.userId.toString() === userId,
+    )
+
+    return champions
+  }
+
   async create(champion: Champion): Promise<void> {
     this.items.push(champion)
   }
