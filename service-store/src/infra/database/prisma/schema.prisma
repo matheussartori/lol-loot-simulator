@@ -17,3 +17,20 @@ model Champion {
 
   @@map("champions")
 }
+
+model Transaction {
+  id         String     @id @default(uuid())
+  itemId     String     @map("item_id")
+  userId     String     @map("user_id")
+  type       String
+  status     StatusEnum
+  amount     Int
+  createdAt  DateTime?  @default(now()) @map("created_at")
+  finishedAt DateTime?
+}
+
+enum StatusEnum {
+  PENDING
+  COMPLETED
+  FAILED
+}
