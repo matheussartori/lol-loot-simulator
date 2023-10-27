@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config'
 import { EnvModule } from './env/env.module'
 import { envSchema } from './env/env'
 import { MessagingModule } from './messaging/messaging.module'
+import { AuthModule } from './auth/auth.module'
+import { HttpModule } from './http/http.module'
 
 @Module({
   imports: [
@@ -10,8 +12,10 @@ import { MessagingModule } from './messaging/messaging.module'
       validate: (env) => envSchema.parse(env),
       isGlobal: true,
     }),
-    EnvModule,
+    AuthModule,
+    HttpModule,
     MessagingModule,
+    EnvModule,
   ],
 })
 export class AppModule {}

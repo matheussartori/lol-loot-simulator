@@ -1,4 +1,4 @@
-import { User } from '@prisma/client'
+import { User } from '@/domain/enterprise/entities/user'
 
 export class UserPresenter {
   static toHTTP(user: User) {
