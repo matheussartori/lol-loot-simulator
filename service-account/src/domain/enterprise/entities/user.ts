@@ -35,6 +35,18 @@ export class User extends Entity<UserAttributes> {
     return this.attributes.updatedAt
   }
 
+  addBlueEssence(amount: number) {
+    if (amount > 0) {
+      this.attributes.blueEssence += amount
+    }
+  }
+
+  addRiotPoints(amount: number) {
+    if (amount > 0) {
+      this.attributes.riotPoints += amount
+    }
+  }
+
   static create(attributes: UserAttributes, id?: UniqueEntityID) {
     const user = new User(
       {
