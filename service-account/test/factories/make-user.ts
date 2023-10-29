@@ -10,6 +10,8 @@ export function makeUser(
     {
       username: faker.internet.userName(),
       password: faker.internet.password(),
+      blueEssence: 0,
+      riotPoints: 0,
       ...override,
     },
     id,
