@@ -7,7 +7,8 @@
     "docker:logs": "docker compose logs -f",
     "docker:down": "docker compose down --volumes",
     "docker:rebuild": "npm run docker:down; npm run docker:up",
-    "docker:restart": "docker compose restart"
+    "docker:restart": "docker compose restart",
+    "test:all": "cd service-account; npm run test; cd ../service-catalog; npm run test; cd ../service-inventory; npm run test; cd ../service-loot; npm run test; cd ../service-store; npm run test"
   },
   "keywords": [],
   "author": "",
