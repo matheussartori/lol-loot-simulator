@@ -5,10 +5,13 @@ import { KafkaService } from '../kafka.service'
 import { ChampionPresenter } from '../presenters/champion-presenter'
 
 interface ChampionCreatedMessage {
-  name: string
-  blueEssencePrice: number
-  riotPointsPrice: number
-  releasedAt: Date
+  key: string
+  value: {
+    name: string
+    blueEssencePrice: number
+    riotPointsPrice: number
+    releasedAt: Date
+  }
 }
 
 @Controller()
@@ -21,15 +24,15 @@ export class ChampionCreatedController {
   @MessagePattern('champion.created')
   async handle(@Payload() message: ChampionCreatedMessage) {
     const result = await this.createChampion.execute({
-      name: message.name,
-      releasedAt: message.releasedAt,
+      name: message.value.name,
+      releasedAt: message.value.releasedAt,
     })
 
     if (result.isRight()) {
       this.kafka.emit('champion.added', {
         champion: ChampionPresenter.toMessaging(result.value.champion),
-        blueEssencePrice: message.blueEssencePrice,
-        riotPointsPrice: message.riotPointsPrice,
+        blueEssencePrice: message.value.blueEssencePrice,
+        riotPointsPrice: message.value.riotPointsPrice,
       })
     }
   }

@@ -47,6 +47,14 @@ export class User extends Entity<UserAttributes> {
     }
   }
 
+  removeBlueEssence(amount: number) {
+    this.attributes.blueEssence -= amount
+  }
+
+  removeRiotPoints(amount: number) {
+    this.attributes.riotPoints -= amount
+  }
+
   static create(attributes: UserAttributes, id?: UniqueEntityID) {
     const user = new User(
       {

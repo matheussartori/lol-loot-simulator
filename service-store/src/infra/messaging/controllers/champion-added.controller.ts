@@ -3,13 +3,16 @@ import { Controller } from '@nestjs/common'
 import { MessagePattern, Payload } from '@nestjs/microservices'
 
 interface ChampionAddedMessage {
-  champion: {
-    id: string
-    name: string
-    releasedAt: Date
+  key: string
+  value: {
+    champion: {
+      id: string
+      name: string
+      releasedAt: Date
+    }
+    blueEssencePrice: number
+    riotPointsPrice: number
   }
-  blueEssencePrice: number
-  riotPointsPrice: number
 }
 
 @Controller()
@@ -19,11 +22,11 @@ export class ChampionAddedController {
   @MessagePattern('champion.added')
   async handle(@Payload() message: ChampionAddedMessage) {
     await this.addChampion.execute({
-      championId: message.champion.id,
-      name: message.champion.name,
-      releasedAt: message.champion.releasedAt,
-      blueEssencePrice: message.blueEssencePrice,
-      riotPointsPrice: message.riotPointsPrice,
+      championId: message.value.champion.id,
+      name: message.value.champion.name,
+      releasedAt: message.value.champion.releasedAt,
+      blueEssencePrice: message.value.blueEssencePrice,
+      riotPointsPrice: message.value.riotPointsPrice,
     })
   }
 }
