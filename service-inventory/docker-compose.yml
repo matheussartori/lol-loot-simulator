@@ -16,6 +16,7 @@ services:
     build: .
     networks:
       - default
+      - messaging
     container_name: service-inventory-api
     ports:
       - 3334:3333

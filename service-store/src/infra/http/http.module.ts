@@ -6,9 +6,11 @@ import { NestFetchChampionsUseCase } from '../use-cases/nest-fetch-champions'
 import { PurchaseChampionUseCase } from '@/domain/application/use-cases/purchase-champion'
 import { NestPurchaseChampionUseCase } from '../use-cases/nest-purchase-champion'
 import { PurchaseChampionController } from './controllers/purchase-champion.controller'
+import { MessagingModule } from '../messaging/messaging.module'
+import { EnvModule } from '../env/env.module'
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, MessagingModule, EnvModule],
   controllers: [FetchChampionsController, PurchaseChampionController],
   providers: [
     {
