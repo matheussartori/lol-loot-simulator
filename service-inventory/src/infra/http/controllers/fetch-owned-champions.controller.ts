@@ -2,6 +2,7 @@ import { FetchOwnedChampionsUseCase } from '@/domain/application/use-cases/fetch
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { UserPayload } from '@/infra/auth/jwt.stategy'
 import { Controller, Get, BadRequestException } from '@nestjs/common'
+import { ChampionPresenter } from '../presenters/champion-presenter'
 
 @Controller('/champions')
 export class FetchOwnedChampionsController {
@@ -20,7 +21,7 @@ export class FetchOwnedChampionsController {
     const champions = result.value.champions
 
     return {
-      champions,
+      champions: champions.map(ChampionPresenter.toHTTP),
     }
   }
 }

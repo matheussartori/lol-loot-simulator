@@ -1,3 +1,4 @@
+import { Optional } from '@/core/types/optional'
 import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
@@ -31,15 +32,13 @@ export class User extends Entity<UserAttributes> {
     return this.attributes.updatedAt
   }
 
-  static create(attributes: UserAttributes, id?: UniqueEntityID) {
+  static create(
+    attributes: Optional<UserAttributes, 'createdAt' | 'updatedAt'>,
+    id?: UniqueEntityID,
+  ) {
     const user = new User(
       {
         ...attributes,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        orangeEssence: 0,
-        mythicEssence: 0,
-        keys: 0,
       },
       id,
     )

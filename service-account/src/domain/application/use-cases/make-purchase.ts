@@ -40,10 +40,6 @@ export class MakePurchaseUseCase {
 
     switch (currency) {
       case 'BLUE_ESSENCE':
-        console.log({
-          balance: user.blueEssence,
-          amount,
-        })
         if (user.blueEssence >= amount) {
           user.removeBlueEssence(amount)
         } else {

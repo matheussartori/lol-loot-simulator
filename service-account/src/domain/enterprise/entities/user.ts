@@ -1,3 +1,4 @@
+import { Optional } from '@/core/types/optional'
 import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
@@ -55,14 +56,15 @@ export class User extends Entity<UserAttributes> {
     this.attributes.riotPoints -= amount
   }
 
-  static create(attributes: UserAttributes, id?: UniqueEntityID) {
+  static create(
+    attributes: Optional<UserAttributes, 'createdAt' | 'updatedAt'>,
+    id?: UniqueEntityID,
+  ) {
     const user = new User(
       {
         ...attributes,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        riotPoints: 0,
-        blueEssence: 0,
+        createdAt: attributes.createdAt ?? new Date(),
+        updatedAt: attributes.updatedAt ?? new Date(),
       },
       id,
     )
