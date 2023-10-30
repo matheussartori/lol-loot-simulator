@@ -56,7 +56,7 @@ export class MakePurchaseUseCase {
 
     await this.userRepository.save(user)
 
-    this.kafka.emit('inventory.item.added', {
+    this.kafka.emit('purchase.completed', {
       key: transactionId,
       value: {
         userId: user.id.toString(),
