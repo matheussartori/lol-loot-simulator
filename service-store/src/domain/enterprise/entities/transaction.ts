@@ -55,10 +55,10 @@ export class Transaction extends Entity<TransactionAttributes> {
   ) {
     const transaction = new Transaction(
       {
-        ...attributes,
-        createdAt: new Date(),
         status: 'PENDING',
+        createdAt: new Date(),
         finishedAt: null,
+        ...attributes,
       },
       id,
     )
