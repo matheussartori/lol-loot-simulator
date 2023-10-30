@@ -10,11 +10,11 @@ export class KafkaService
   constructor(config: EnvService) {
     super({
       client: {
-        clientId: 'loot',
+        clientId: 'inventory',
         brokers: [config.get('KAFKA_BROKERS')],
       },
       consumer: {
-        groupId: 'catalog-consumer',
+        groupId: 'inventory-consumer',
       },
       subscribe: {
         fromBeginning: true,

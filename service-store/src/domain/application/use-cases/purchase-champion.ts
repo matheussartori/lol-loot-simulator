@@ -51,8 +51,6 @@ export class PurchaseChampionUseCase {
         userId,
         itemId: championId,
         type: 'CHAMPION',
-        currency,
-        amount: transaction.amount,
         transactionId: transaction.id.toString(),
       },
     })
