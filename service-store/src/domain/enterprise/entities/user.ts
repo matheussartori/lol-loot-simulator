@@ -3,19 +3,24 @@ import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
 export interface UserAttributes {
-  username: string
-  password: string
+  userId: UniqueEntityID
+  riotPoints: number
+  blueEssence: number
   createdAt?: Date
   updatedAt?: Date
 }
 
 export class User extends Entity<UserAttributes> {
-  get username() {
-    return this.attributes.username
+  get userId() {
+    return this.attributes.userId
   }
 
-  get password() {
-    return this.attributes.password
+  get riotPoints() {
+    return this.attributes.riotPoints
+  }
+
+  get blueEssence() {
+    return this.attributes.blueEssence
   }
 
   get createdAt() {
@@ -24,6 +29,26 @@ export class User extends Entity<UserAttributes> {
 
   get updatedAt() {
     return this.attributes.updatedAt
+  }
+
+  addBlueEssence(amount: number) {
+    if (amount > 0) {
+      this.attributes.blueEssence += amount
+    }
+  }
+
+  addRiotPoints(amount: number) {
+    if (amount > 0) {
+      this.attributes.riotPoints += amount
+    }
+  }
+
+  removeBlueEssence(amount: number) {
+    this.attributes.blueEssence -= amount
+  }
+
+  removeRiotPoints(amount: number) {
+    this.attributes.riotPoints -= amount
   }
 
   static create(
