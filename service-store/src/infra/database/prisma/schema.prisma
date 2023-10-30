@@ -40,8 +40,12 @@ enum TransactionType {
 
 enum TransactionStatus {
   PENDING
+  VALIDATED_INVENTORY
+  VALIDATED_BALANCE
+  FAILED_OWNED
+  FAILED_BALANCE
   COMPLETED
-  FAILED
+  REFUNDED
 }
 
 enum TransactionCurrency {
