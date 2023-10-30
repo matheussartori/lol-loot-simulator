@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  logger-database:
+    image: mongo:latest
+    networks:
+      - default
+    restart: always
+    container_name: service-logger-db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: docker
+      MONGO_INITDB_ROOT_PASSWORD: docker
+  logger-api:
+    build: .
+    networks:
+      - messaging
+      - default
+    container_name: service-logger-api
+    ports:
+      - 3338:3333
+    volumes:
+      - .:/usr/src/service-logger
+    links:
+      - logger-database
+    depends_on:
+      - logger-database
+    command: sh -c "/wait; npm ci; npx prisma generate; npm run start:dev"
+    environment:
+      - WAIT_HOSTS=logger-database:27017,kafka:9092
+      - WAIT_TIMEOUT=1000
+      - WAIT_SLEEP_INTERVAL=5
+      - WAIT_HOST_CONNECT_TIMEOUT=300
