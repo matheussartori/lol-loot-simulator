@@ -7,9 +7,10 @@ import { NestCreateAccountUseCase } from '../use-cases/nest-create-account'
 import { AuthenticateUseCase } from '@/domain/application/use-cases/authenticate'
 import { NestAuthenticateUseCase } from '../use-cases/nest-authenticate'
 import { AuthenticateController } from './controllers/authenticate.controller'
+import { MessagingModule } from '../messaging/messaging.module'
 
 @Module({
-  imports: [DatabaseModule, CryptographyModule],
+  imports: [DatabaseModule, MessagingModule, CryptographyModule],
   controllers: [CreateAccountController, AuthenticateController],
   providers: [
     {

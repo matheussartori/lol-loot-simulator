@@ -3,6 +3,7 @@ import { HashGenerator } from '../cryptography/hash-generator'
 import { UserRepository } from '../repositories/user-repository'
 import { UserAlreadyExistsError } from './errors/user-already-exists-error'
 import { User } from '@/domain/enterprise/entities/user'
+import { KafkaService } from '@/infra/messaging/kafka.service'
 
 interface CreateAccountParams {
   username: string
@@ -20,6 +21,7 @@ export class CreateAccountUseCase {
   constructor(
     private userRepository: UserRepository,
     private hashGenerator: HashGenerator,
+    private kafka: KafkaService,
   ) {}
 
   async execute({
@@ -38,11 +40,16 @@ export class CreateAccountUseCase {
     const user = User.create({
       username,
       password: hashedPassword,
-      riotPoints: 0,
-      blueEssence: 0,
     })
 
     await this.userRepository.create(user)
+
+    this.kafka.emit('user.created', {
+      key: user.id.toString(),
+      value: {
+        userId: user.id.toString(),
+      },
+    })
 
     return right({
       user,

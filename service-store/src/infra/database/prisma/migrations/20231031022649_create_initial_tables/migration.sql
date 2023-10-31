@@ -34,5 +34,20 @@ CREATE TABLE "transactions" (
     CONSTRAINT "transactions_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "users" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "riotPoints" INTEGER NOT NULL,
+    "blueEssence" INTEGER NOT NULL,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "champions_champion_id_key" ON "champions"("champion_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_userId_key" ON "users"("userId");

@@ -6,7 +6,14 @@ export interface TransactionAttributes {
   itemId: UniqueEntityID
   userId: UniqueEntityID
   type: 'CHAMPION' | 'SKIN' | 'CHROMA'
-  status: 'PENDING' | 'COMPLETED' | 'FAILED'
+  status:
+    | 'PENDING'
+    | 'VALIDATED_INVENTORY'
+    | 'VALIDATED_BALANCE'
+    | 'FAILED_OWNED'
+    | 'FAILED_BALANCE'
+    | 'COMPLETED'
+    | 'REFUNDED'
   currency: 'BLUE_ESSENCE' | 'RIOT_POINTS'
   amount: number
   createdAt?: Date

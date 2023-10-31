@@ -4,6 +4,8 @@ import { ChampionRepository } from '@/domain/application/repositories/champion-r
 import { PrismaChampionRepository } from './prisma/repositories/prisma-champion-repository'
 import { TransactionRepository } from '@/domain/application/repositories/transaction-repository'
 import { PrismaTransactionRepository } from './prisma/repositories/prisma-transaction-repository'
+import { UserRepository } from '@/domain/application/repositories/user-repository'
+import { PrismaUserRepository } from './prisma/repositories/prisma-user-repository'
 
 @Module({
   providers: [
@@ -16,7 +18,16 @@ import { PrismaTransactionRepository } from './prisma/repositories/prisma-transa
       provide: TransactionRepository,
       useClass: PrismaTransactionRepository,
     },
+    {
+      provide: UserRepository,
+      useClass: PrismaUserRepository,
+    },
   ],
-  exports: [PrismaService, ChampionRepository, TransactionRepository],
+  exports: [
+    PrismaService,
+    ChampionRepository,
+    TransactionRepository,
+    UserRepository,
+  ],
 })
 export class DatabaseModule {}

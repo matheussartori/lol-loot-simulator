@@ -6,10 +6,11 @@ export class PrismaUserMapper {
   static toDomain(raw: PrismaUser): User {
     return User.create(
       {
-        username: raw.username,
-        password: raw.password,
-        createdAt: raw.createdAt ?? undefined,
-        updatedAt: raw.updatedAt ?? undefined,
+        userId: new UniqueEntityID(raw.userId),
+        blueEssence: raw.blueEssence,
+        riotPoints: raw.riotPoints,
+        createdAt: raw.createdAt ?? new Date(),
+        updatedAt: raw.updatedAt ?? new Date(),
       },
       new UniqueEntityID(raw.id),
     )
@@ -18,10 +19,11 @@ export class PrismaUserMapper {
   static toPrisma(user: User): PrismaUser {
     return {
       id: user.id.toString(),
-      username: user.username,
-      password: user.password,
-      createdAt: user.createdAt ?? null,
-      updatedAt: user.updatedAt ?? null,
+      userId: user.userId.toString(),
+      blueEssence: user.blueEssence,
+      riotPoints: user.riotPoints,
+      createdAt: user.createdAt ?? new Date(),
+      updatedAt: user.updatedAt ?? new Date(),
     }
   }
 }

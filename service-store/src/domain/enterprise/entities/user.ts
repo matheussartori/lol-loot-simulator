@@ -52,7 +52,10 @@ export class User extends Entity<UserAttributes> {
   }
 
   static create(
-    attributes: Optional<UserAttributes, 'createdAt' | 'updatedAt'>,
+    attributes: Optional<
+      UserAttributes,
+      'createdAt' | 'updatedAt' | 'blueEssence' | 'riotPoints'
+    >,
     id?: UniqueEntityID,
   ) {
     const user = new User(
@@ -60,6 +63,8 @@ export class User extends Entity<UserAttributes> {
         ...attributes,
         createdAt: attributes.createdAt ?? new Date(),
         updatedAt: attributes.updatedAt ?? new Date(),
+        blueEssence: attributes.blueEssence ?? 0,
+        riotPoints: attributes.riotPoints ?? 0,
       },
       id,
     )
