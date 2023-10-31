@@ -5,7 +5,6 @@ include:
   - service-dispatcher/docker-compose.yml
   - service-inventory/docker-compose.yml
   - service-loot/docker-compose.yml
-  - service-logger/docker-compose.yml
   - service-store/docker-compose.yml
 services:
   zookeeper:
