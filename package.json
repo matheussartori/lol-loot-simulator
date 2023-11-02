@@ -9,7 +9,8 @@
     "docker:rebuild": "npm run docker:down; npm run docker:up",
     "docker:restart": "docker compose restart",
     "test:all": "cd service-account; npm run test; cd ../service-catalog; npm run test; cd ../service-inventory; npm run test; cd ../service-loot; npm run test; cd ../service-store; npm run test",
-    "upgrade:all": "cd service-account; npm upgrade; cd ../service-catalog; npm upgrade; cd ../service-inventory; npm upgrade; cd ../service-loot; npm upgrade; cd ../service-store; npm upgrade"
+    "upgrade:all": "cd service-account; npm upgrade; cd ../service-catalog; npm upgrade; cd ../service-inventory; npm upgrade; cd ../service-loot; npm upgrade; cd ../service-store; npm upgrade",
+    "build:all": "cd service-account; npm run build; cd ../service-catalog; npm run build; cd ../service-inventory; npm run build; cd ../service-loot; npm run build; cd ../service-store; npm run build"
   },
   "keywords": [],
   "author": "",

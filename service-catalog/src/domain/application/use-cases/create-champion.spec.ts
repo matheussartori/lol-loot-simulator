@@ -3,15 +3,22 @@ import { CreateChampionUseCase } from './create-champion'
 import { makeChampion } from 'test/factories/make-champion'
 import { ChampionAlreadyExistsError } from './errors/champion-already-exists-error'
 import { Champion } from '@/domain/enterprise/entities/champion'
+import { FakeMessageEmitter } from 'test/messaging/fake-message-emitter'
 
 let inMemoryChampionsRepository: InMemoryChampionRepository
+let fakeMessageEmitter: FakeMessageEmitter
 
 let sut: CreateChampionUseCase
 
 describe('create champion use case', () => {
   beforeEach(() => {
     inMemoryChampionsRepository = new InMemoryChampionRepository()
-    sut = new CreateChampionUseCase(inMemoryChampionsRepository)
+    fakeMessageEmitter = new FakeMessageEmitter()
+
+    sut = new CreateChampionUseCase(
+      inMemoryChampionsRepository,
+      fakeMessageEmitter,
+    )
   })
 
   it('should not create a champion if it already exists', async () => {
@@ -21,6 +28,8 @@ describe('create champion use case', () => {
 
     const result = await sut.execute({
       name: champion.name,
+      blueEssencePrice: 50,
+      riotPointsPrice: 50,
       releasedAt: new Date(),
     })
 
@@ -33,6 +42,8 @@ describe('create champion use case', () => {
 
     const result = await sut.execute({
       name: champion.name,
+      blueEssencePrice: 50,
+      riotPointsPrice: 50,
       releasedAt: new Date(),
     })
 

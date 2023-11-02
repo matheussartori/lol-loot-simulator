@@ -1,8 +1,6 @@
 import { CreateChampionUseCase } from '@/domain/application/use-cases/create-champion'
 import { Controller } from '@nestjs/common'
 import { MessagePattern, Payload } from '@nestjs/microservices'
-import { KafkaService } from '../kafka.service'
-import { ChampionPresenter } from '../presenters/champion-presenter'
 
 interface ChampionCreatedMessage {
   name: string
@@ -13,24 +11,15 @@ interface ChampionCreatedMessage {
 
 @Controller()
 export class ChampionCreatedController {
-  constructor(
-    private createChampion: CreateChampionUseCase,
-    private kafka: KafkaService,
-  ) {}
+  constructor(private createChampion: CreateChampionUseCase) {}
 
   @MessagePattern('champion.created')
   async handle(@Payload() message: ChampionCreatedMessage) {
-    const result = await this.createChampion.execute({
+    await this.createChampion.execute({
       name: message.name,
+      blueEssencePrice: message.blueEssencePrice,
+      riotPointsPrice: message.riotPointsPrice,
       releasedAt: message.releasedAt,
     })
-
-    if (result.isRight()) {
-      this.kafka.emit('champion.added', {
-        champion: ChampionPresenter.toMessaging(result.value.champion),
-        blueEssencePrice: message.blueEssencePrice,
-        riotPointsPrice: message.riotPointsPrice,
-      })
-    }
   }
 }
