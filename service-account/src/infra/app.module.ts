@@ -4,7 +4,6 @@ import { envSchema } from './env/env'
 import { AuthModule } from './auth/auth.module'
 import { EnvModule } from './env/env.module'
 import { HttpModule } from './http/http.module'
-import { MessagingModule } from './messaging/messaging.module'
 
 @Module({
   imports: [
@@ -14,7 +13,6 @@ import { MessagingModule } from './messaging/messaging.module'
     }),
     AuthModule,
     HttpModule,
-    MessagingModule,
     EnvModule,
   ],
 })

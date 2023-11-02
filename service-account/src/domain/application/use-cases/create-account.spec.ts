@@ -3,35 +3,23 @@ import { CreateAccountUseCase } from './create-account'
 import { InMemoryUserRepository } from 'test/repositories/in-memory-user-repository'
 import { makeUser } from 'test/factories/make-user'
 import { UserAlreadyExistsError } from './errors/user-already-exists-error'
-import { KafkaService } from '@/infra/messaging/kafka.service'
-import { Test } from '@nestjs/testing'
+import { FakeMessageEmitter } from '../../../../test/messaging/fake-message-emitter'
 
 let inMemoryUserRepository: InMemoryUserRepository
 let fakeHasher: FakeHasher
-let fakeMessagingService: KafkaService
+let fakeMessagingEmitter: FakeMessageEmitter
 
 let sut: CreateAccountUseCase
 
 describe('create user use case', () => {
-  beforeEach(async () => {
-    const module = await Test.createTestingModule({
-      providers: [
-        {
-          provide: KafkaService,
-          useValue: {
-            emit: vi.fn(),
-          },
-        },
-      ],
-    }).compile()
-
+  beforeEach(() => {
     inMemoryUserRepository = new InMemoryUserRepository()
     fakeHasher = new FakeHasher()
-    fakeMessagingService = module.get(KafkaService)
+    fakeMessagingEmitter = new FakeMessageEmitter()
     sut = new CreateAccountUseCase(
       inMemoryUserRepository,
       fakeHasher,
-      fakeMessagingService,
+      fakeMessagingEmitter,
     )
   })
 
