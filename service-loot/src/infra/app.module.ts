@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { envSchema } from './env/env'
 import { EnvModule } from './env/env.module'
-import { MessagingModule } from './messaging/messaging.module'
 
 @Module({
   imports: [
@@ -11,7 +10,6 @@ import { MessagingModule } from './messaging/messaging.module'
       isGlobal: true,
     }),
     EnvModule,
-    MessagingModule,
   ],
   controllers: [],
   providers: [],
