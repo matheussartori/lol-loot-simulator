@@ -1,6 +1,6 @@
 import { Either, left, right } from '@/core/either'
 import { ChampionRepository } from '../repositories/champion-repository'
-import { KafkaService } from '@/infra/messaging/kafka.service'
+import { MessageEmitter } from '@/domain/messaging/message-emitter'
 
 interface ValidateOwnedChampionUseCaseParams {
   userId: string
@@ -13,7 +13,7 @@ type ValidateOwnedChampionUseCaseResult = Either<null, null>
 export class ValidateOwnedChampionUseCase {
   constructor(
     private championRepository: ChampionRepository,
-    private kafka: KafkaService,
+    private messageEmitter: MessageEmitter,
   ) {}
 
   async execute({
@@ -28,7 +28,7 @@ export class ValidateOwnedChampionUseCase {
       )
 
     if (userHasOwnedItem) {
-      this.kafka.emit('purchase.failed.owned', {
+      this.messageEmitter.emit('purchase.failed.owned', {
         key: transactionId,
         value: {
           userId,
@@ -40,7 +40,7 @@ export class ValidateOwnedChampionUseCase {
       return left(null)
     }
 
-    this.kafka.emit('purchase.validated.inventory', {
+    this.messageEmitter.emit('purchase.validated.inventory', {
       key: transactionId,
       value: {
         userId,

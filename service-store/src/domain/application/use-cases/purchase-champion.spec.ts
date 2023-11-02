@@ -7,20 +7,20 @@ import { FakeMessageEmitter } from 'test/messaging/fake-message-emitter'
 
 let inMemoryChampionRepository: InMemoryChampionRepository
 let inMemoryTransactionRepository: InMemoryTransactionRepository
-let fakeMessagingService: FakeMessageEmitter
+let fakeMessagingEmitter: FakeMessageEmitter
 
 let sut: PurchaseChampionUseCase
 
 describe('purchase champion use case', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     inMemoryChampionRepository = new InMemoryChampionRepository()
     inMemoryTransactionRepository = new InMemoryTransactionRepository()
-    fakeMessagingService = new FakeMessageEmitter()
+    fakeMessagingEmitter = new FakeMessageEmitter()
 
     sut = new PurchaseChampionUseCase(
       inMemoryChampionRepository,
       inMemoryTransactionRepository,
-      fakeMessagingService,
+      fakeMessagingEmitter,
     )
   })
 

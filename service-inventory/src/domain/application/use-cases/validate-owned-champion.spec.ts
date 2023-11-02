@@ -1,32 +1,20 @@
-import { KafkaService } from '@/infra/messaging/kafka.service'
-import { Test } from '@nestjs/testing'
 import { InMemoryChampionRepository } from 'test/repositories/in-memory-champion-repository'
 import { ValidateOwnedChampionUseCase } from './validate-owned-champion'
 import { makeChampion } from 'test/factories/make-champion'
+import { FakeMessageEmitter } from 'test/messaging/fake-message-emitter'
 
 let inMemoryChampionRepository: InMemoryChampionRepository
-let fakeMessagingService: KafkaService
+let fakeMessagingEmitter: FakeMessageEmitter
 
 let sut: ValidateOwnedChampionUseCase
 
 describe('validate owned champion use case', () => {
-  beforeEach(async () => {
-    const module = await Test.createTestingModule({
-      providers: [
-        {
-          provide: KafkaService,
-          useValue: {
-            emit: vi.fn(),
-          },
-        },
-      ],
-    }).compile()
-
+  beforeEach(() => {
     inMemoryChampionRepository = new InMemoryChampionRepository()
-    fakeMessagingService = module.get(KafkaService)
+    fakeMessagingEmitter = new FakeMessageEmitter()
     sut = new ValidateOwnedChampionUseCase(
       inMemoryChampionRepository,
-      fakeMessagingService,
+      fakeMessagingEmitter,
     )
   })
 
