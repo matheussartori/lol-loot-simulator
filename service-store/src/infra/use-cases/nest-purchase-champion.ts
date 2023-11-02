@@ -2,15 +2,15 @@ import { ChampionRepository } from '@/domain/application/repositories/champion-r
 import { TransactionRepository } from '@/domain/application/repositories/transaction-repository'
 import { PurchaseChampionUseCase } from '@/domain/application/use-cases/purchase-champion'
 import { Injectable } from '@nestjs/common'
-import { KafkaService } from '../messaging/kafka.service'
+import { MessageEmitter } from '@/domain/messaging/message-emitter'
 
 @Injectable()
 export class NestPurchaseChampionUseCase extends PurchaseChampionUseCase {
   constructor(
     championRepository: ChampionRepository,
     transactionRepository: TransactionRepository,
-    kafka: KafkaService,
+    messageEmitter: MessageEmitter,
   ) {
-    super(championRepository, transactionRepository, kafka)
+    super(championRepository, transactionRepository, messageEmitter)
   }
 }

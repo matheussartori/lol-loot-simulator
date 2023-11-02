@@ -4,7 +4,7 @@ import { Transaction } from '@/domain/enterprise/entities/transaction'
 import { ChampionRepository } from '../repositories/champion-repository'
 import { ItemNotFoundError } from './errors/item-not-found-error'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
-import { KafkaService } from '@/infra/messaging/kafka.service'
+import { MessageEmitter } from '@/domain/messaging/message-emitter'
 
 interface PurchaseChampionParams {
   userId: string
@@ -18,7 +18,7 @@ export class PurchaseChampionUseCase {
   constructor(
     private championRepository: ChampionRepository,
     private transactionRepository: TransactionRepository,
-    private kafka: KafkaService,
+    private messageEmitter: MessageEmitter,
   ) {}
 
   async execute({
@@ -45,8 +45,8 @@ export class PurchaseChampionUseCase {
 
     await this.transactionRepository.create(transaction)
 
-    this.kafka.emit('purchase.created', {
-      key: transaction.id,
+    this.messageEmitter.emit('purchase.created', {
+      key: transaction.id.toString(),
       value: {
         userId,
         itemId: championId,
