@@ -4,7 +4,7 @@
 
 ### 1
 - The store service validates if the champion exists.
-  - If the champion does not exists, return a http error.
+  - If the champion does not exist, return a http error.
 - If the champion exists, creates a transaction with the status `PENDING`.
 - Creates the message on the topic `purchase.created`.
 

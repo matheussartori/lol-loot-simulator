@@ -12,6 +12,8 @@ import { MessageEmitter } from '@/domain/messaging/message-emitter'
 import { PurchaseDeductBalanceUseCase } from '@/domain/application/use-cases/purchase-deduct-balance'
 import { NestPurchaseDeductBalanceUseCase } from '@/infra/use-cases/nest-purchase-deduct-balance'
 import { PurchaseDeductBalanceController } from '@/infra/messaging/kafka/controllers/purchase-deduct-balance.controller'
+import { PurchaseFailedOwnedUseCase } from '@/domain/application/use-cases/purchase-failed-owned'
+import { NestPurchaseFailedOwnedUseCase } from '@/infra/use-cases/nest-purchase-failed-owned'
 
 @Module({
   imports: [DatabaseModule],
@@ -37,6 +39,10 @@ import { PurchaseDeductBalanceController } from '@/infra/messaging/kafka/control
     {
       provide: PurchaseDeductBalanceUseCase,
       useClass: NestPurchaseDeductBalanceUseCase,
+    },
+    {
+      provide: PurchaseFailedOwnedUseCase,
+      useClass: NestPurchaseFailedOwnedUseCase,
     },
   ],
   exports: [MessageEmitter],
