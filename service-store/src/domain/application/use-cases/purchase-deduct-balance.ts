@@ -52,6 +52,7 @@ export class PurchaseDeductBalanceUseCase {
     if (isBalanceDeducted) {
       transaction.status = 'VALIDATED_BALANCE'
       await this.transactionRepository.save(transaction)
+      await this.userRepository.save(user)
 
       this.messageEmitter.emit('purchase.validated.balance', {
         key: transactionId,

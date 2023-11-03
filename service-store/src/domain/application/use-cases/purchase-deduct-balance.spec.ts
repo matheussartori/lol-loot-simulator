@@ -76,6 +76,7 @@ describe('purchase deduct balance use case', () => {
       type: transaction.type,
     })
 
+    expect(user.blueEssence).toBe(0)
     expect(result.isLeft()).toBe(true)
     expect(result.value).toBeInstanceOf(InsufficientBalanceError)
     expect(emitSpy).toHaveBeenCalledTimes(0)
@@ -101,6 +102,7 @@ describe('purchase deduct balance use case', () => {
       type: transaction.type,
     })
 
+    expect(user.riotPoints).toBe(0)
     expect(result.isLeft()).toBe(true)
     expect(result.value).toBeInstanceOf(InsufficientBalanceError)
     expect(emitSpy).toHaveBeenCalledTimes(0)
@@ -109,7 +111,7 @@ describe('purchase deduct balance use case', () => {
   it('should be able to deduct the balance if the user have enough blue essence', async () => {
     const emitSpy = vi.spyOn(fakeMessageEmitter, 'emit')
     const user = makeUser({
-      blueEssence: 1000,
+      blueEssence: 1350,
     })
     await inMemoryUserRepository.create(user)
     const transaction = makeTransaction({
@@ -126,6 +128,7 @@ describe('purchase deduct balance use case', () => {
       type: transaction.type,
     })
 
+    expect(user.blueEssence).toBe(350)
     expect(result.isRight()).toBe(true)
     expect(emitSpy).toHaveBeenCalledWith(
       'purchase.validated.balance',
@@ -137,7 +140,7 @@ describe('purchase deduct balance use case', () => {
   it('should be able to deduct the balance if the user have enough riot points', async () => {
     const emitSpy = vi.spyOn(fakeMessageEmitter, 'emit')
     const user = makeUser({
-      riotPoints: 1000,
+      riotPoints: 1350,
     })
     await inMemoryUserRepository.create(user)
     const transaction = makeTransaction({
@@ -154,6 +157,7 @@ describe('purchase deduct balance use case', () => {
       type: transaction.type,
     })
 
+    expect(user.riotPoints).toBe(350)
     expect(result.isRight()).toBe(true)
     expect(emitSpy).toHaveBeenCalledWith(
       'purchase.validated.balance',
