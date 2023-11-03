@@ -15,6 +15,7 @@
 
 <p align="center">
   <a href="#services">Services</a><br>
+  <a href="#http-routes">HTTP Routes</a><br>
 </p>
 
 ## Services
@@ -51,3 +52,11 @@ This application is composed with multiple services. They were splitted into mic
     </tr>
   </tbody>
 </table>
+
+## HTTP Routes
+
+The HTTP routes are available in some formats, and here they are:
+
+### Insomnia collection
+
+You can find the Insomnia collection with all the HTTP routes inside <a href="./docs/http-requests/insomnia.json">this file</a>. You just have to import it to your Insomnia.
