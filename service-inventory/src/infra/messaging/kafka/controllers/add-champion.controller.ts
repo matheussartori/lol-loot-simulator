@@ -13,7 +13,7 @@ interface AddChampionMessage {
 export class AddChampionController {
   constructor(private addChampion: AddChampionUseCase) {}
 
-  @MessagePattern('purchase.completed')
+  @MessagePattern('purchase.validated.balance')
   async handle(@Payload() message: AddChampionMessage) {
     if (message.type !== 'CHAMPION') {
       return
@@ -24,6 +24,7 @@ export class AddChampionController {
       purchasedAt: new Date(),
       releasedAt: new Date(),
       userId: message.userId,
+      transactionId: message.transactionId,
     })
   }
 }
