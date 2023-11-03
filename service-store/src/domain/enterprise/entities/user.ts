@@ -1,6 +1,7 @@
 import { Optional } from '@/core/types/optional'
 import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
+import { Transaction } from '@/domain/enterprise/entities/transaction'
 
 export interface UserAttributes {
   userId: UniqueEntityID
@@ -31,24 +32,23 @@ export class User extends Entity<UserAttributes> {
     return this.attributes.updatedAt
   }
 
-  addBlueEssence(amount: number) {
-    if (amount > 0) {
-      this.attributes.blueEssence += amount
+  applyTransaction(transaction: Transaction): boolean {
+    switch (transaction.currency) {
+      case 'BLUE_ESSENCE':
+        if (this.attributes.blueEssence >= transaction.amount) {
+          this.attributes.blueEssence -= transaction.amount
+          return true
+        } else {
+          return false
+        }
+      case 'RIOT_POINTS':
+        if (this.attributes.riotPoints >= transaction.amount) {
+          this.attributes.riotPoints -= transaction.amount
+          return true
+        } else {
+          return false
+        }
     }
-  }
-
-  addRiotPoints(amount: number) {
-    if (amount > 0) {
-      this.attributes.riotPoints += amount
-    }
-  }
-
-  removeBlueEssence(amount: number) {
-    this.attributes.blueEssence -= amount
-  }
-
-  removeRiotPoints(amount: number) {
-    this.attributes.riotPoints -= amount
   }
 
   static create(

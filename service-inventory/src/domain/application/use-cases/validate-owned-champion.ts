@@ -46,6 +46,7 @@ export class ValidateOwnedChampionUseCase {
         userId,
         itemId: championId,
         type: 'CHAMPION',
+        transactionId,
       },
     })
 

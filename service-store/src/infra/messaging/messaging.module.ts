@@ -9,10 +9,17 @@ import { CreateUserController } from './kafka/controllers/create-user.controller
 import { CreateUserUseCase } from '@/domain/application/use-cases/create-user'
 import { NestCreateUserUseCase } from '../use-cases/nest-create-user'
 import { MessageEmitter } from '@/domain/messaging/message-emitter'
+import { PurchaseDeductBalanceUseCase } from '@/domain/application/use-cases/purchase-deduct-balance'
+import { NestPurchaseDeductBalanceUseCase } from '@/infra/use-cases/nest-purchase-deduct-balance'
+import { PurchaseDeductBalanceController } from '@/infra/messaging/kafka/controllers/purchase-deduct-balance.controller'
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [ChampionAddedController, CreateUserController],
+  controllers: [
+    ChampionAddedController,
+    CreateUserController,
+    PurchaseDeductBalanceController,
+  ],
   providers: [
     EnvService,
     {
@@ -26,6 +33,10 @@ import { MessageEmitter } from '@/domain/messaging/message-emitter'
     {
       provide: CreateUserUseCase,
       useClass: NestCreateUserUseCase,
+    },
+    {
+      provide: PurchaseDeductBalanceUseCase,
+      useClass: NestPurchaseDeductBalanceUseCase,
     },
   ],
   exports: [MessageEmitter],

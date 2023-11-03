@@ -37,6 +37,10 @@ export class Transaction extends Entity<TransactionAttributes> {
     return this.attributes.status
   }
 
+  set status(status) {
+    this.attributes.status = status
+  }
+
   get currency() {
     return this.attributes.currency
   }
