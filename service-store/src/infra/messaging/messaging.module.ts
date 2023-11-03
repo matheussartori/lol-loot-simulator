@@ -14,6 +14,9 @@ import { NestPurchaseDeductBalanceUseCase } from '@/infra/use-cases/nest-purchas
 import { PurchaseDeductBalanceController } from '@/infra/messaging/kafka/controllers/purchase-deduct-balance.controller'
 import { PurchaseFailedOwnedUseCase } from '@/domain/application/use-cases/purchase-failed-owned'
 import { NestPurchaseFailedOwnedUseCase } from '@/infra/use-cases/nest-purchase-failed-owned'
+import { PurchaseRefundUseCase } from '@/domain/application/use-cases/purchase-refund'
+import { NestPurchaseRefundUseCase } from '@/infra/use-cases/nest-purchase-refund'
+import { PurchaseRefundController } from '@/infra/messaging/kafka/controllers/purchase-refund.controller'
 
 @Module({
   imports: [DatabaseModule],
@@ -21,6 +24,7 @@ import { NestPurchaseFailedOwnedUseCase } from '@/infra/use-cases/nest-purchase-
     ChampionAddedController,
     CreateUserController,
     PurchaseDeductBalanceController,
+    PurchaseRefundController,
   ],
   providers: [
     EnvService,
@@ -43,6 +47,10 @@ import { NestPurchaseFailedOwnedUseCase } from '@/infra/use-cases/nest-purchase-
     {
       provide: PurchaseFailedOwnedUseCase,
       useClass: NestPurchaseFailedOwnedUseCase,
+    },
+    {
+      provide: PurchaseRefundUseCase,
+      useClass: NestPurchaseRefundUseCase,
     },
   ],
   exports: [MessageEmitter],

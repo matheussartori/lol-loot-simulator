@@ -51,6 +51,17 @@ export class User extends Entity<UserAttributes> {
     }
   }
 
+  refundTransaction(transaction: Transaction) {
+    switch (transaction.currency) {
+      case 'BLUE_ESSENCE':
+        this.attributes.blueEssence += transaction.amount
+        break
+      case 'RIOT_POINTS':
+        this.attributes.riotPoints += transaction.amount
+        break
+    }
+  }
+
   static create(
     attributes: Optional<
       UserAttributes,
