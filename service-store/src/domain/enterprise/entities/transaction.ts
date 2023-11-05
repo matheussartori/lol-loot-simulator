@@ -58,6 +58,11 @@ export class Transaction extends Entity<TransactionAttributes> {
     return this.attributes.finishedAt
   }
 
+  setAsCompleted() {
+    this.attributes.status = 'COMPLETED'
+    this.attributes.finishedAt = new Date()
+  }
+
   static create(
     attributes: Optional<
       TransactionAttributes,

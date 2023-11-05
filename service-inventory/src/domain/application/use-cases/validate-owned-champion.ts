@@ -31,9 +31,7 @@ export class ValidateOwnedChampionUseCase {
       this.messageEmitter.emit('purchase.failed.owned', {
         key: transactionId,
         value: {
-          userId,
-          itemId: championId,
-          type: 'CHAMPION',
+          transactionId,
         },
       })
 
