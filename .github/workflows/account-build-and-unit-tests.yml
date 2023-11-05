@@ -1,4 +1,4 @@
-name: [ACCOUNT] Build and unit tests
+name: Account - Build and unit tests
 
 on:
   push:
