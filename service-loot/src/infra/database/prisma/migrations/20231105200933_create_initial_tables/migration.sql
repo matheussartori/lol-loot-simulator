@@ -1,4 +1,7 @@
 -- CreateEnum
+CREATE TYPE "CapsuleType" AS ENUM ('CHEST', 'RANDOM_SKIN', 'RANDOM_SKIN_FRAGMENT', 'RANDOM_CHAMPION', 'RANDOM_CHAMPION_FRAGMENT');
+
+-- CreateEnum
 CREATE TYPE "ItemType" AS ENUM ('CHAMPION', 'SKIN', 'CHROMA');
 
 -- CreateEnum
@@ -21,7 +24,7 @@ CREATE TABLE "users" (
 CREATE TABLE "capsules" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
+    "type" "CapsuleType" NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
@@ -54,9 +57,6 @@ CREATE TABLE "rewards" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_user_id_key" ON "users"("user_id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "capsules_slug_key" ON "capsules"("slug");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "items_item_id_key" ON "items"("item_id");

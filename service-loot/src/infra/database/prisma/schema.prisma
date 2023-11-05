@@ -20,11 +20,11 @@ model User {
 }
 
 model Capsule {
-  id        String    @id @default(uuid())
+  id        String      @id @default(uuid())
   name      String
-  slug      String    @unique
-  createdAt DateTime? @default(now()) @map("created_at")
-  updatedAt DateTime? @default(now()) @map("updated_at")
+  type      CapsuleType
+  createdAt DateTime?   @default(now()) @map("created_at")
+  updatedAt DateTime?   @default(now()) @map("updated_at")
 
   rewards Reward[]
 
@@ -56,6 +56,14 @@ model Reward {
   item    Item    @relation(fields: [itemId], references: [id])
 
   @@map("rewards")
+}
+
+enum CapsuleType {
+  CHEST
+  RANDOM_SKIN
+  RANDOM_SKIN_FRAGMENT
+  RANDOM_CHAMPION
+  RANDOM_CHAMPION_FRAGMENT
 }
 
 enum ItemType {
