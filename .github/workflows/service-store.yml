@@ -1,4 +1,4 @@
-name: Store - Build and unit tests
+name: Store
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-unit-tests:
-    name: Store - Build and unit tests
+    name: Build and unit tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

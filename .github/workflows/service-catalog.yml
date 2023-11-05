@@ -1,4 +1,4 @@
-name: Inventory - Build and unit tests
+name: Catalog
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-unit-tests:
-    name: Inventory - Build and unit tests
+    name: Build and unit tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,12 +23,12 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./service-inventory
+        working-directory: ./service-catalog
 
       - name: Build the application
         run: npm run build
-        working-directory: ./service-inventory
+        working-directory: ./service-catalog
 
       - name: Run the unit and integration tests
         run: npm run test
-        working-directory: ./service-inventory
+        working-directory: ./service-catalog
