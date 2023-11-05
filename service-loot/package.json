@@ -23,8 +23,9 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.0.0",
-    "@nestjs/microservices": "^10.2.7",
+    "@nestjs/microservices": "^10.2.8",
     "@nestjs/platform-express": "^10.0.0",
+    "@prisma/client": "^5.5.2",
     "kafkajs": "^2.2.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
@@ -32,6 +33,7 @@
     "zod-validation-error": "^2.0.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.2.0",
     "@matheussartori/eslint-config-skope-it": "^1.0.0",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
@@ -44,6 +46,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "@vitest/coverage-v8": "^0.34.6",
     "eslint": "^8.52.0",
+    "prisma": "^5.5.2",
     "source-map-support": "^0.5.21",
     "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
@@ -51,5 +54,8 @@
     "typescript": "^5.1.3",
     "unplugin-swc": "^1.4.3",
     "vitest": "^0.34.6"
+  },
+  "prisma": {
+    "schema": "src/infra/database/prisma/schema.prisma"
   }
 }

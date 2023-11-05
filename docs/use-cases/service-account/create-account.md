@@ -9,3 +9,7 @@
 ### 2
 - The store service listen to the topic `user.created`.
 - If the user is not yet created, saves the user in the database.
+
+### 3
+- The loot service listen to the topic `user.created`.
+- If the user is not yet created, saves the user in the database.

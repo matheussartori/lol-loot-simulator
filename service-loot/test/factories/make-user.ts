@@ -9,8 +9,9 @@ export function makeUser(
   const user = User.create(
     {
       userId: new UniqueEntityID(faker.string.uuid()),
-      blueEssence: faker.number.int({ min: 450, max: 6300 }),
-      riotPoints: faker.number.int({ min: 260, max: 975 }),
+      orangeEssence: faker.number.int({ min: 0, max: 3000 }),
+      mythicEssence: faker.number.int({ min: 0, max: 210 }),
+      keys: faker.number.int({ min: 0, max: 10 }),
       createdAt: faker.date.past(),
       updatedAt: faker.date.recent(),
       ...override,

@@ -12,6 +12,10 @@ export interface UserAttributes {
 }
 
 export class User extends Entity<UserAttributes> {
+  get userId() {
+    return this.attributes.userId
+  }
+
   get orangeEssence() {
     return this.attributes.orangeEssence
   }
@@ -33,12 +37,20 @@ export class User extends Entity<UserAttributes> {
   }
 
   static create(
-    attributes: Optional<UserAttributes, 'createdAt' | 'updatedAt'>,
+    attributes: Optional<
+      UserAttributes,
+      'createdAt' | 'updatedAt' | 'mythicEssence' | 'orangeEssence' | 'keys'
+    >,
     id?: UniqueEntityID,
   ) {
     const user = new User(
       {
         ...attributes,
+        createdAt: attributes.createdAt ?? new Date(),
+        updatedAt: attributes.updatedAt ?? new Date(),
+        mythicEssence: attributes.mythicEssence ?? 0,
+        orangeEssence: attributes.orangeEssence ?? 0,
+        keys: attributes.keys ?? 0,
       },
       id,
     )

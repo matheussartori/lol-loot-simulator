@@ -1,21 +1,20 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { ClientKafka } from '@nestjs/microservices'
-import { MessageEmitter } from '@/domain/messaging/message-emitter'
-import { EnvService } from '@/infra/env/env.service'
+import { EnvService } from '../../env/env.service'
 
 @Injectable()
 export class KafkaService
   extends ClientKafka
-  implements OnModuleInit, OnModuleDestroy, MessageEmitter
+  implements OnModuleInit, OnModuleDestroy
 {
   constructor(config: EnvService) {
     super({
       client: {
-        clientId: 'account',
+        clientId: 'loot',
         brokers: [config.get('KAFKA_BROKERS')],
       },
       consumer: {
-        groupId: 'account-consumer',
+        groupId: 'loot-consumer',
       },
       subscribe: {
         fromBeginning: true,
