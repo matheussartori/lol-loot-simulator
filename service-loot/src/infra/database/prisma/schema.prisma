@@ -18,3 +18,57 @@ model User {
 
   @@map("users")
 }
+
+model Capsule {
+  id        String    @id @default(uuid())
+  name      String
+  slug      String    @unique
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @default(now()) @map("updated_at")
+
+  rewards Reward[]
+
+  @@map("capsules")
+}
+
+model Item {
+  id        String    @id @default(uuid())
+  itemId    String    @unique @map("item_id")
+  name      String
+  type      ItemType
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @default(now()) @map("updated_at")
+
+  rewards Reward[]
+
+  @@map("items")
+}
+
+model Reward {
+  id         String     @id @default(uuid())
+  capsuleId  String     @map("capsule_id")
+  itemId     String     @map("item_id")
+  rarityTier RarityTier @map("rarity_tier")
+  createdAt  DateTime?  @default(now()) @map("created_at")
+  updatedAt  DateTime?  @default(now()) @map("updated_at")
+
+  capsule Capsule @relation(fields: [capsuleId], references: [id])
+  item    Item    @relation(fields: [itemId], references: [id])
+
+  @@map("rewards")
+}
+
+enum ItemType {
+  CHAMPION
+  SKIN
+  CHROMA
+}
+
+enum RarityTier {
+  STANDARD
+  EPIC
+  LEGENDARY
+  MYTHIC
+  ULTIMATE
+  EXCLUSIVE
+}
