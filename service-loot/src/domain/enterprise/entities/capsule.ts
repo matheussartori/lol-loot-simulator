@@ -4,12 +4,7 @@ import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
 export interface CapsuleAttributes {
   name: string
-  type:
-    | 'CHEST'
-    | 'RANDOM_SKIN'
-    | 'RANDOM_SKIN_FRAGMENT'
-    | 'RANDOM_CHAMPION'
-    | 'RANDOM_CHAMPION_FRAGMENT'
+  type: 'HEXTECH_CHEST' | 'CHAMPION_CAPSULE'
   createdAt: Date
   updatedAt: Date
 }
