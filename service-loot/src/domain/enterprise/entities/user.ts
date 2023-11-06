@@ -7,8 +7,8 @@ export interface UserAttributes {
   orangeEssence: number
   mythicEssence: number
   keys: number
-  createdAt?: Date
-  updatedAt?: Date
+  createdAt: Date
+  updatedAt: Date
 }
 
 export class User extends Entity<UserAttributes> {

@@ -16,6 +16,8 @@ model User {
   createdAt     DateTime? @default(now()) @map("created_at")
   updatedAt     DateTime? @default(now()) @map("updated_at")
 
+  userItems UserItem[]
+
   @@index([userId])
   @@map("users")
 }
@@ -38,23 +40,23 @@ model UserCapsule {
   userId      String    @map("user_id")
   capsuleId   String    @map("capsule_id")
   openedAt    DateTime? @map("opened_at")
-  rewardSetId String?    @map("reward_set_id")
+  rewardSetId String?   @map("reward_set_id")
   createdAt   DateTime? @default(now()) @map("created_at")
 
-  rewardSet RewardSet? @relation(fields: [rewardSetId], references: [id])
+  belongsToUserItems UserItem[]
 
   @@index([userId])
   @@map("user_capsules")
 }
 
 model Item {
-  id        String    @id @default(uuid())
-  itemId    String    @unique @map("item_id")
-  name      String
-  type      ItemType
+  id         String     @id @default(uuid())
+  itemId     String     @unique @map("item_id")
+  name       String
+  type       ItemType
   rarityTier RarityTier @map("rarity_tier")
-  createdAt DateTime? @default(now()) @map("created_at")
-  updatedAt DateTime? @default(now()) @map("updated_at")
+  createdAt  DateTime?  @default(now()) @map("created_at")
+  updatedAt  DateTime?  @default(now()) @map("updated_at")
 
   capsuleItems CapsuleItem[]
 
@@ -63,11 +65,11 @@ model Item {
 }
 
 model CapsuleItem {
-  id         String     @id @default(uuid())
-  capsuleId  String     @map("capsule_id")
-  itemId     String     @map("item_id")
-  createdAt  DateTime?  @default(now()) @map("created_at")
-  updatedAt  DateTime?  @default(now()) @map("updated_at")
+  id        String    @id @default(uuid())
+  capsuleId String    @map("capsule_id")
+  itemId    String    @map("item_id")
+  createdAt DateTime? @default(now()) @map("created_at")
+  updatedAt DateTime? @default(now()) @map("updated_at")
 
   capsule Capsule @relation(fields: [capsuleId], references: [id])
   item    Item    @relation(fields: [itemId], references: [id])
@@ -75,25 +77,18 @@ model CapsuleItem {
   @@map("capsule_items")
 }
 
-model RewardSet {
-  id        String    @id @default(uuid())
-  createdAt DateTime? @default(now()) @map("created_at")
+model UserItem {
+  id            String       @id @default(uuid())
+  userId        String
+  itemId        String
+  type          UserItemType
+  userCapsuleId String?      @map("user_capsule_id")
+  createdAt     DateTime?    @default(now()) @map("created_at")
 
-  rewards     Reward[]
-  userCapsule UserCapsule[]
+  userCapsule UserCapsule? @relation(fields: [userCapsuleId], references: [id])
+  user        User         @relation(fields: [userId], references: [userId])
 
-  @@map("reward_set")
-}
-
-model Reward {
-  id          String    @id @default(uuid())
-  rewardSetId String    @map("reward_set_id")
-  itemId      String    @map("item_id")
-  createdAt   DateTime? @default(now()) @map("created_at")
-
-  rewardSet RewardSet @relation(fields: [rewardSetId], references: [id])
-
-  @@map("rewards")
+  @@map("user_items")
 }
 
 enum CapsuleType {
@@ -114,4 +109,8 @@ enum RarityTier {
   MYTHIC
   ULTIMATE
   EXCLUSIVE
+}
+
+enum UserItemType {
+  CHAMPION_FRAGMENT
 }

@@ -2,19 +2,23 @@ import { Optional } from '@/core/types/optional'
 import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
+export type ItemType = 'CHAMPION' | 'SKIN' | 'CHROMA'
+
+export type RarityTier =
+  | 'STANDARD'
+  | 'EPIC'
+  | 'LEGENDARY'
+  | 'MYTHIC'
+  | 'ULTIMATE'
+  | 'EXCLUSIVE'
+
 export interface ItemAttributes {
   itemId: UniqueEntityID
   name: string
-  type: 'CHAMPION' | 'SKIN' | 'CHROMA'
-  rarityTier:
-    | 'STANDARD'
-    | 'EPIC'
-    | 'LEGENDARY'
-    | 'MYTHIC'
-    | 'ULTIMATE'
-    | 'EXCLUSIVE'
-  createdAt?: Date
-  updatedAt?: Date
+  type: ItemType
+  rarityTier: RarityTier
+  createdAt: Date
+  updatedAt: Date
 }
 
 export class Item extends Entity<ItemAttributes> {
@@ -40,6 +44,24 @@ export class Item extends Entity<ItemAttributes> {
 
   get updatedAt() {
     return this.attributes.updatedAt
+  }
+
+  rollRarityTier() {
+    const random = Math.random() * 100
+
+    if (random <= 65) {
+      return 'STANDARD'
+    } else if (random <= 65 + 15) {
+      return 'EPIC'
+    } else if (random <= 65 + 15 + 7) {
+      return 'LEGENDARY'
+    } else if (random <= 65 + 15 + 7 + 12.966) {
+      return 'ULTIMATE'
+    } else if (random <= 65 + 15 + 7 + 12.966 + 0.004) {
+      return 'EXCLUSIVE'
+    } else {
+      return 'MYTHIC'
+    }
   }
 
   static create(
