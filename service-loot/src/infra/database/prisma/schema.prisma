@@ -16,6 +16,7 @@ model User {
   createdAt     DateTime? @default(now()) @map("created_at")
   updatedAt     DateTime? @default(now()) @map("updated_at")
 
+  @@index([userId])
   @@map("users")
 }
 
@@ -26,9 +27,21 @@ model Capsule {
   createdAt DateTime?   @default(now()) @map("created_at")
   updatedAt DateTime?   @default(now()) @map("updated_at")
 
-  rewards Reward[]
+  rewards CapsuleItem[]
 
+  @@index([type])
   @@map("capsules")
+}
+
+model UserCapsule {
+  id         String       @id @default(uuid())
+  userId     String       @map("user_id")
+  capsuleId  String       @map("capsule_id")
+  openedAt   DateTime?    @map("opened_at")
+  createdAt  DateTime?    @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("user_capsules")
 }
 
 model Item {
@@ -39,12 +52,13 @@ model Item {
   createdAt DateTime? @default(now()) @map("created_at")
   updatedAt DateTime? @default(now()) @map("updated_at")
 
-  rewards Reward[]
+  capsuleItems CapsuleItem[]
 
+  @@index([type])
   @@map("items")
 }
 
-model Reward {
+model CapsuleItem {
   id         String     @id @default(uuid())
   capsuleId  String     @map("capsule_id")
   itemId     String     @map("item_id")
@@ -55,7 +69,7 @@ model Reward {
   capsule Capsule @relation(fields: [capsuleId], references: [id])
   item    Item    @relation(fields: [itemId], references: [id])
 
-  @@map("rewards")
+  @@map("capsule_items")
 }
 
 enum CapsuleType {

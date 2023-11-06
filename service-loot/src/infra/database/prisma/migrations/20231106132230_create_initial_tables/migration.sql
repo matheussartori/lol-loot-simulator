@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "CapsuleType" AS ENUM ('CHEST', 'RANDOM_SKIN', 'RANDOM_SKIN_FRAGMENT', 'RANDOM_CHAMPION', 'RANDOM_CHAMPION_FRAGMENT');
+CREATE TYPE "CapsuleType" AS ENUM ('HEXTECH_CHEST', 'CHAMPION_CAPSULE');
 
 -- CreateEnum
 CREATE TYPE "ItemType" AS ENUM ('CHAMPION', 'SKIN', 'CHROMA');
@@ -32,6 +32,17 @@ CREATE TABLE "capsules" (
 );
 
 -- CreateTable
+CREATE TABLE "user_capsules" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "capsule_id" TEXT NOT NULL,
+    "opened_at" TIMESTAMP(3),
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "user_capsules_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "items" (
     "id" TEXT NOT NULL,
     "item_id" TEXT NOT NULL,
@@ -44,7 +55,7 @@ CREATE TABLE "items" (
 );
 
 -- CreateTable
-CREATE TABLE "rewards" (
+CREATE TABLE "capsule_items" (
     "id" TEXT NOT NULL,
     "capsule_id" TEXT NOT NULL,
     "item_id" TEXT NOT NULL,
@@ -52,17 +63,29 @@ CREATE TABLE "rewards" (
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "rewards_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "capsule_items_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_user_id_key" ON "users"("user_id");
 
 -- CreateIndex
+CREATE INDEX "users_user_id_idx" ON "users"("user_id");
+
+-- CreateIndex
+CREATE INDEX "capsules_type_idx" ON "capsules"("type");
+
+-- CreateIndex
+CREATE INDEX "user_capsules_user_id_idx" ON "user_capsules"("user_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "items_item_id_key" ON "items"("item_id");
 
--- AddForeignKey
-ALTER TABLE "rewards" ADD CONSTRAINT "rewards_capsule_id_fkey" FOREIGN KEY ("capsule_id") REFERENCES "capsules"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- CreateIndex
+CREATE INDEX "items_type_idx" ON "items"("type");
 
 -- AddForeignKey
-ALTER TABLE "rewards" ADD CONSTRAINT "rewards_item_id_fkey" FOREIGN KEY ("item_id") REFERENCES "items"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "capsule_items" ADD CONSTRAINT "capsule_items_capsule_id_fkey" FOREIGN KEY ("capsule_id") REFERENCES "capsules"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "capsule_items" ADD CONSTRAINT "capsule_items_item_id_fkey" FOREIGN KEY ("item_id") REFERENCES "items"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
