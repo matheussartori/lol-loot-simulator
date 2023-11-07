@@ -4,6 +4,9 @@ import {
   Capsule,
   CapsuleAttributes,
 } from '@/domain/enterprise/entities/capsule'
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from '@/infra/database/prisma/prisma.service'
+import { PrismaCapsuleMapper } from '@/infra/database/prisma/mappers/prisma-capsule-mapper'
 
 export function makeCapsule(
   override: Partial<CapsuleAttributes> = {},
@@ -21,4 +24,21 @@ export function makeCapsule(
   )
 
   return capsule
+}
+
+@Injectable()
+export class CapsuleFactory {
+  constructor(private prisma: PrismaService) {}
+
+  async makePrismaCapsule(
+    data: Partial<CapsuleAttributes> = {},
+  ): Promise<Capsule> {
+    const capsule = makeCapsule(data)
+
+    await this.prisma.capsule.create({
+      data: PrismaCapsuleMapper.toPrisma(capsule),
+    })
+
+    return capsule
+  }
 }

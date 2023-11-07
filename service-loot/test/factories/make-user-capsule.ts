@@ -4,6 +4,9 @@ import {
   UserCapsule,
   UserCapsuleAttributes,
 } from '@/domain/enterprise/entities/user-capsule'
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from '@/infra/database/prisma/prisma.service'
+import { PrismaUserCapsuleMapper } from '@/infra/database/prisma/mappers/prisma-user-capsule-mapper'
 
 export function makeUserCapsule(
   override: Partial<UserCapsuleAttributes> = {},
@@ -21,4 +24,21 @@ export function makeUserCapsule(
   )
 
   return userCapsule
+}
+
+@Injectable()
+export class UserCapsuleFactory {
+  constructor(private prisma: PrismaService) {}
+
+  async makePrismaUserCapsule(
+    data: Partial<UserCapsuleAttributes> = {},
+  ): Promise<UserCapsule> {
+    const userCapsule = makeUserCapsule(data)
+
+    await this.prisma.userCapsule.create({
+      data: PrismaUserCapsuleMapper.toPrisma(userCapsule),
+    })
+
+    return userCapsule
+  }
 }
