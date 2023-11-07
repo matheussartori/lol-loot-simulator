@@ -18,6 +18,14 @@ export class Capsule extends Entity<CapsuleAttributes> {
     return this.attributes.type
   }
 
+  get createdAt() {
+    return this.attributes.createdAt
+  }
+
+  get updatedAt() {
+    return this.attributes.updatedAt
+  }
+
   static create(
     attributes: Optional<CapsuleAttributes, 'createdAt' | 'updatedAt'>,
     id?: UniqueEntityID,

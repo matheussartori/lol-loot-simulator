@@ -8,7 +8,7 @@ export interface UserItemAttributes {
   userId: UniqueEntityID
   itemId: UniqueEntityID
   type: UserItemType
-  userCapsuleId?: UniqueEntityID
+  userCapsuleId: UniqueEntityID | null
   createdAt: Date
 }
 
