@@ -50,6 +50,10 @@ This application is composed with multiple services. They were splitted into mic
       <td><code><a href="./service-store">service-store</a></code></td>
       <td>Buy champions and other items.</td>
     </tr>
+    <tr>
+      <td><code><a href="./service-web">service-web</a></code></td>
+      <td>Front-end application.</td>
+    </tr>
   </tbody>
 </table>
 
