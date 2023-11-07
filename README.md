@@ -48,7 +48,7 @@ This application is composed with multiple services. They were splitted into mic
     </tr>
     <tr>
       <td><code><a href="./service-store">service-store</a></code></td>
-      <td>Store to buy champions and other items./</td>
+      <td>Buy champions and other items.</td>
     </tr>
   </tbody>
 </table>
