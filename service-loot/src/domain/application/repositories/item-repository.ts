@@ -1,5 +1,4 @@
-import { Item, RarityTier } from '@/domain/enterprise/entities/item'
-import { ItemType } from '@prisma/client'
+import { Item, ItemType, RarityTier } from '@/domain/enterprise/entities/item'
 
 export abstract class ItemRepository {
   abstract findById(itemId: string): Promise<Item | null>

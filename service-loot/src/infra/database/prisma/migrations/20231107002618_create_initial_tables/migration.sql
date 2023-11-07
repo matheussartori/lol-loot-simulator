@@ -40,7 +40,6 @@ CREATE TABLE "user_capsules" (
     "user_id" TEXT NOT NULL,
     "capsule_id" TEXT NOT NULL,
     "opened_at" TIMESTAMP(3),
-    "reward_set_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "user_capsules_pkey" PRIMARY KEY ("id")

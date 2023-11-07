@@ -15,4 +15,8 @@ export class InMemoryCapsuleRepository implements CapsuleRepository {
 
     return capsule
   }
+
+  async create(capsule: Capsule): Promise<void> {
+    this.items.push(capsule)
+  }
 }

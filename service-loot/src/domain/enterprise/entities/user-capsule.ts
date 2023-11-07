@@ -6,7 +6,6 @@ export interface UserCapsuleAttributes {
   userId: UniqueEntityID
   capsuleId: UniqueEntityID
   openedAt: Date | null
-  rewardSetId: UniqueEntityID
   createdAt: Date
 }
 
@@ -21,10 +20,6 @@ export class UserCapsule extends Entity<UserCapsuleAttributes> {
 
   get openedAt() {
     return this.attributes.openedAt
-  }
-
-  get rewardSetId() {
-    return this.attributes.rewardSetId
   }
 
   get createdAt() {
