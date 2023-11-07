@@ -2,7 +2,7 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Capsule } from '@/domain/enterprise/entities/capsule'
 import { Capsule as PrismaCapsule } from '@prisma/client'
 
-export class PrismaUserCapsuleMapper {
+export class PrismaCapsuleMapper {
   static toDomain(raw: PrismaCapsule): Capsule {
     return Capsule.create(
       {
