@@ -19,4 +19,12 @@ export class InMemoryUserCapsuleRepository implements UserCapsuleRepository {
   async create(userCapsule: UserCapsule): Promise<void> {
     this.items.push(userCapsule)
   }
+
+  async save(userCapsule: UserCapsule): Promise<void> {
+    const userCapsuleIndex = this.items.findIndex(
+      (item) => item.id.toString() === userCapsule.id.toString(),
+    )
+
+    this.items[userCapsuleIndex] = userCapsule
+  }
 }

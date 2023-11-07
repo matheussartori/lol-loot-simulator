@@ -26,6 +26,10 @@ export class UserCapsule extends Entity<UserCapsuleAttributes> {
     return this.attributes.createdAt
   }
 
+  setAsOpened() {
+    this.attributes.openedAt = new Date()
+  }
+
   static create(
     attributes: Optional<UserCapsuleAttributes, 'createdAt' | 'openedAt'>,
     id?: UniqueEntityID,

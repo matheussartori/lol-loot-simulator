@@ -7,6 +7,7 @@ import { WrongCapsuleTypeError } from './errors/wrong-capsule-type-error'
 import { ItemRepository } from '../repositories/item-repository'
 import { UserItem } from '@/domain/enterprise/entities/user-item'
 import { UserItemRepository } from '../repositories/user-item-repository'
+import { CapsuleAlreadyOpenedError } from './errors/capsule-already-opened'
 
 interface OpenChampionCapsuleUseCaseParams {
   userCapsuleId: string
@@ -14,7 +15,10 @@ interface OpenChampionCapsuleUseCaseParams {
 }
 
 type OpenChampionCapsuleUseCaseResult = Either<
-  ForbiddenCapsuleError | CapsuleNotFoundError | WrongCapsuleTypeError,
+  | ForbiddenCapsuleError
+  | CapsuleAlreadyOpenedError
+  | CapsuleNotFoundError
+  | WrongCapsuleTypeError,
   {
     earnedItems: UserItem[]
   }
@@ -40,6 +44,10 @@ export class OpenChampionCapsuleUseCase {
 
     if (userCapsule.userId.toString() !== userId) {
       return left(new ForbiddenCapsuleError())
+    }
+
+    if (userCapsule.openedAt) {
+      return left(new CapsuleAlreadyOpenedError())
     }
 
     const capsule = await this.capsuleRepository.findById(
@@ -81,6 +89,9 @@ export class OpenChampionCapsuleUseCase {
       await this.userItemRepository.create(userItem)
       earnedItems.push(userItem)
     }
+
+    userCapsule.setAsOpened()
+    await this.userCapsuleRepository.save(userCapsule)
 
     return right({
       earnedItems,

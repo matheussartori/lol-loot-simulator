@@ -29,4 +29,15 @@ export class PrismaUserCapsuleRepository implements UserCapsuleRepository {
       data,
     })
   }
+
+  async save(userCapsule: UserCapsule): Promise<void> {
+    const data = PrismaUserCapsuleMapper.toPrisma(userCapsule)
+
+    await this.prisma.userCapsule.update({
+      where: {
+        id: userCapsule.id.toString(),
+      },
+      data,
+    })
+  }
 }

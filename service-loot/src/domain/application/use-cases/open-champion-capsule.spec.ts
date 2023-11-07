@@ -9,6 +9,8 @@ import { ForbiddenCapsuleError } from './errors/forbidden-capsule-error'
 import { makeCapsule } from 'test/factories/make-capsule'
 import { WrongCapsuleTypeError } from './errors/wrong-capsule-type-error'
 import { makeItem } from 'test/factories/make-item'
+import { CapsuleAlreadyOpenedError } from './errors/capsule-already-opened'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 let inMemoryUserCapsuleRepository: InMemoryUserCapsuleRepository
 let inMemoryCapsuleRepository: InMemoryCapsuleRepository
@@ -53,6 +55,22 @@ describe('open champion capsule use case', () => {
 
     expect(result.isLeft()).toBe(true)
     expect(result.value).toBeInstanceOf(ForbiddenCapsuleError)
+  })
+
+  it('should not open a capsule that has been already opened', async () => {
+    const userCapsule = makeUserCapsule({
+      openedAt: new Date(),
+      userId: new UniqueEntityID('any-user-id'),
+    })
+    inMemoryUserCapsuleRepository.create(userCapsule)
+
+    const result = await sut.execute({
+      userCapsuleId: userCapsule.id.toString(),
+      userId: 'any-user-id',
+    })
+
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(CapsuleAlreadyOpenedError)
   })
 
   it('should not open a capsule if the capsule itself does not exists', async () => {
@@ -131,6 +149,7 @@ describe('open champion capsule use case', () => {
     expect(result.isRight()).toBe(true)
     if (result.isRight()) {
       expect(result.value.earnedItems).toHaveLength(1)
+      expect(inMemoryUserCapsuleRepository.items[0].openedAt).toBeTruthy()
     }
   })
 })

@@ -16,6 +16,7 @@ import { CapsuleNotFoundError } from '@/domain/application/use-cases/errors/caps
 import { ForbiddenCapsuleError } from '@/domain/application/use-cases/errors/forbidden-capsule-error'
 import { WrongCapsuleTypeError } from '@/domain/application/use-cases/errors/wrong-capsule-type-error'
 import { UserItemPresenter } from '../presenters/user-item-presenter'
+import { CapsuleAlreadyOpenedError } from '@/domain/application/use-cases/errors/capsule-already-opened'
 
 const openChampionCapsuleBodySchema = z.object({
   userCapsuleId: z.string().uuid(),
@@ -50,6 +51,7 @@ export class OpenChampionCapsuleController {
         case ForbiddenCapsuleError:
           throw new ForbiddenException(error.message)
         case WrongCapsuleTypeError:
+        case CapsuleAlreadyOpenedError:
           throw new ConflictException(error.message)
         default:
           throw new BadRequestException(error.message)
