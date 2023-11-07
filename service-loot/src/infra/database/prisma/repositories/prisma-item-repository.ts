@@ -1,6 +1,6 @@
 import { ItemRepository } from '@/domain/application/repositories/item-repository'
 import { PrismaService } from '@/infra/database/prisma/prisma.service'
-import { Item } from '@/domain/enterprise/entities/item'
+import { Item, ItemType, RarityTier } from '@/domain/enterprise/entities/item'
 import { PrismaItemMapper } from '@/infra/database/prisma/mappers/prisma-item-mapper'
 import { Injectable } from '@nestjs/common'
 
@@ -28,5 +28,21 @@ export class PrismaItemRepository implements ItemRepository {
     }
 
     return PrismaItemMapper.toDomain(item)
+  }
+
+  async findRandomByTypeAndRarity(
+    type: ItemType,
+    rarityTier: RarityTier,
+    maxQuantity: number,
+  ): Promise<Item[]> {
+    const items = await this.prisma.item.findMany({
+      where: {
+        type,
+        rarityTier,
+      },
+      take: maxQuantity,
+    })
+
+    return items.map(PrismaItemMapper.toDomain)
   }
 }
