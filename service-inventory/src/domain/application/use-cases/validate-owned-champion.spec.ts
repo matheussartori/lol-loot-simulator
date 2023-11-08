@@ -2,6 +2,7 @@ import { InMemoryChampionRepository } from 'test/repositories/in-memory-champion
 import { ValidateOwnedChampionUseCase } from './validate-owned-champion'
 import { makeChampion } from 'test/factories/make-champion'
 import { FakeMessageEmitter } from 'test/messaging/fake-message-emitter'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 let inMemoryChampionRepository: InMemoryChampionRepository
 let fakeMessagingEmitter: FakeMessageEmitter
@@ -27,6 +28,9 @@ describe('validate owned champion use case', () => {
       userId: champion.userId.toString(),
       championId: champion.championId.toString(),
       transactionId: 'any-transaction-id',
+      correlationId: new CorrelationID({
+        name: ValidateOwnedChampionUseCase.name,
+      }),
     })
 
     expect(result.isLeft()).toBe(true)
@@ -37,6 +41,9 @@ describe('validate owned champion use case', () => {
       userId: 'any-user-id',
       championId: 'any-champion-id',
       transactionId: 'any-transaction-id',
+      correlationId: new CorrelationID({
+        name: ValidateOwnedChampionUseCase.name,
+      }),
     })
 
     expect(result.isRight()).toBe(true)

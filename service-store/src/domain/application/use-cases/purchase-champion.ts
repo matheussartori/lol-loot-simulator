@@ -5,6 +5,7 @@ import { ChampionRepository } from '../repositories/champion-repository'
 import { ItemNotFoundError } from './errors/item-not-found-error'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { MessageEmitter } from '@/domain/messaging/message-emitter'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 interface PurchaseChampionParams {
   userId: string
@@ -52,6 +53,11 @@ export class PurchaseChampionUseCase {
         itemId: championId,
         type: 'CHAMPION',
         transactionId: transaction.id.toString(),
+      },
+      headers: {
+        correlationId: new CorrelationID({
+          name: PurchaseChampionUseCase.name,
+        }).toString(),
       },
     })
 

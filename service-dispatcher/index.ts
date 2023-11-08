@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { Kafka } from "kafkajs";
+import {randomUUID} from "crypto";
 
 async function run() {
   const kafka = new Kafka({
@@ -26,7 +27,10 @@ async function run() {
               blueEssencePrice: 1350,
               riotPointsPrice: 585,
               releasedAt: new Date('February 21, 2009'),
-            })
+            }),
+            headers: {
+              correlationId: `ServiceDispatcherRun(${randomUUID()})`
+            }
           }
         ]
       });

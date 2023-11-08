@@ -3,12 +3,14 @@ import { Champion } from '@/domain/enterprise/entities/champion'
 import { ChampionRepository } from '../repositories/champion-repository'
 import { ChampionAlreadyExistsError } from './errors/champion-already-exists-error'
 import { MessageEmitter } from '@/domain/messaging/message-emitter'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 interface CreateChampionParams {
   name: string
   blueEssencePrice: number
   riotPointsPrice: number
   releasedAt: Date
+  correlationId: CorrelationID
 }
 
 type CreateChampionResult = Either<
@@ -29,6 +31,7 @@ export class CreateChampionUseCase {
     blueEssencePrice,
     riotPointsPrice,
     releasedAt,
+    correlationId,
   }: CreateChampionParams): Promise<CreateChampionResult> {
     const championExists = await this.championRepository.findByName(name)
 
@@ -53,6 +56,9 @@ export class CreateChampionUseCase {
         },
         blueEssencePrice,
         riotPointsPrice,
+      },
+      headers: {
+        correlationId: correlationId.toString(),
       },
     })
 

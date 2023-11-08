@@ -1,11 +1,13 @@
 import { Either, left, right } from '@/core/either'
 import { ChampionRepository } from '../repositories/champion-repository'
 import { MessageEmitter } from '@/domain/messaging/message-emitter'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 interface ValidateOwnedChampionUseCaseParams {
   userId: string
   championId: string
   transactionId: string
+  correlationId: CorrelationID
 }
 
 type ValidateOwnedChampionUseCaseResult = Either<null, null>
@@ -20,6 +22,7 @@ export class ValidateOwnedChampionUseCase {
     userId,
     championId,
     transactionId,
+    correlationId,
   }: ValidateOwnedChampionUseCaseParams): Promise<ValidateOwnedChampionUseCaseResult> {
     const userHasOwnedItem =
       await this.championRepository.findByUserIdAndChampionId(
@@ -33,6 +36,9 @@ export class ValidateOwnedChampionUseCase {
         value: {
           transactionId,
         },
+        headers: {
+          correlationId: correlationId.toString(),
+        },
       })
 
       return left(null)
@@ -45,6 +51,9 @@ export class ValidateOwnedChampionUseCase {
         itemId: championId,
         type: 'CHAMPION',
         transactionId,
+      },
+      headers: {
+        correlationId: correlationId.toString(),
       },
     })
 

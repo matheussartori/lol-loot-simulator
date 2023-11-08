@@ -8,6 +8,7 @@ import { makeUser } from '../../../../test/factories/make-user'
 import { makeTransaction } from '../../../../test/factories/make-transaction'
 import { InsufficientBalanceError } from '@/domain/application/use-cases/errors/insufficient-balance-error'
 import { expect } from 'vitest'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 let inMemoryUserRepository: InMemoryUserRepository
 let inMemoryTransactionRepository: InMemoryTransactionRepository
@@ -34,6 +35,9 @@ describe('purchase deduct balance use case', () => {
       userId: 'non-existing-user-id',
       itemId: 'any-item-id',
       type: 'CHAMPION',
+      correlationId: new CorrelationID({
+        name: PurchaseDeductBalanceUseCase.name,
+      }),
     })
 
     expect(result.isLeft()).toBe(true)
@@ -50,6 +54,9 @@ describe('purchase deduct balance use case', () => {
       userId: user.userId.toString(),
       itemId: 'any-item-id',
       type: 'CHAMPION',
+      correlationId: new CorrelationID({
+        name: PurchaseDeductBalanceUseCase.name,
+      }),
     })
 
     expect(result.isLeft()).toBe(true)
@@ -74,6 +81,9 @@ describe('purchase deduct balance use case', () => {
       userId: user.userId.toString(),
       itemId: transaction.itemId.toString(),
       type: transaction.type,
+      correlationId: new CorrelationID({
+        name: PurchaseDeductBalanceUseCase.name,
+      }),
     })
 
     expect(user.blueEssence).toBe(0)
@@ -100,6 +110,9 @@ describe('purchase deduct balance use case', () => {
       userId: user.userId.toString(),
       itemId: transaction.itemId.toString(),
       type: transaction.type,
+      correlationId: new CorrelationID({
+        name: PurchaseDeductBalanceUseCase.name,
+      }),
     })
 
     expect(user.riotPoints).toBe(0)
@@ -126,6 +139,9 @@ describe('purchase deduct balance use case', () => {
       userId: user.userId.toString(),
       itemId: transaction.itemId.toString(),
       type: transaction.type,
+      correlationId: new CorrelationID({
+        name: PurchaseDeductBalanceUseCase.name,
+      }),
     })
 
     expect(user.blueEssence).toBe(350)
@@ -155,6 +171,9 @@ describe('purchase deduct balance use case', () => {
       userId: user.userId.toString(),
       itemId: transaction.itemId.toString(),
       type: transaction.type,
+      correlationId: new CorrelationID({
+        name: PurchaseDeductBalanceUseCase.name,
+      }),
     })
 
     expect(user.riotPoints).toBe(350)

@@ -5,12 +5,14 @@ import { TransactionNotFoundError } from '@/domain/application/use-cases/errors/
 import { UserNotFoundError } from '@/domain/application/use-cases/errors/user-not-found-error'
 import { MessageEmitter } from '@/domain/messaging/message-emitter'
 import { InsufficientBalanceError } from '@/domain/application/use-cases/errors/insufficient-balance-error'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 interface PurchaseDeductBalanceUseCaseParams {
   userId: string
   itemId: string
   type: 'CHAMPION' | 'SKIN' | 'CHROMA'
   transactionId: string
+  correlationId: CorrelationID
 }
 
 type PurchaseDeductBalanceUseCaseResult = Either<
@@ -30,6 +32,7 @@ export class PurchaseDeductBalanceUseCase {
     itemId,
     type,
     transactionId,
+    correlationId,
   }: PurchaseDeductBalanceUseCaseParams): Promise<PurchaseDeductBalanceUseCaseResult> {
     const user = await this.userRepository.findByUserId(userId)
 
@@ -61,6 +64,9 @@ export class PurchaseDeductBalanceUseCase {
           itemId,
           type,
           transactionId,
+        },
+        headers: {
+          correlationId: correlationId.toString(),
         },
       })
 

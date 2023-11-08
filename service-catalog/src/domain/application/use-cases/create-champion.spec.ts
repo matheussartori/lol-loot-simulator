@@ -4,6 +4,7 @@ import { makeChampion } from 'test/factories/make-champion'
 import { ChampionAlreadyExistsError } from './errors/champion-already-exists-error'
 import { Champion } from '@/domain/enterprise/entities/champion'
 import { FakeMessageEmitter } from 'test/messaging/fake-message-emitter'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 let inMemoryChampionsRepository: InMemoryChampionRepository
 let fakeMessageEmitter: FakeMessageEmitter
@@ -31,6 +32,7 @@ describe('create champion use case', () => {
       blueEssencePrice: 50,
       riotPointsPrice: 50,
       releasedAt: new Date(),
+      correlationId: new CorrelationID({ name: CreateChampionUseCase.name }),
     })
 
     expect(result.isLeft())
@@ -45,6 +47,7 @@ describe('create champion use case', () => {
       blueEssencePrice: 50,
       riotPointsPrice: 50,
       releasedAt: new Date(),
+      correlationId: new CorrelationID({ name: CreateChampionUseCase.name }),
     })
 
     expect(result.isRight()).toBe(true)

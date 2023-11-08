@@ -4,6 +4,7 @@ import { ChampionAlreadyOwnedError } from './errors/champion-already-owned-error
 import { Champion } from '@/domain/enterprise/entities/champion'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { MessageEmitter } from '@/domain/messaging/message-emitter'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 interface AddChampionParams {
   championId: string
@@ -11,6 +12,7 @@ interface AddChampionParams {
   releasedAt: Date
   purchasedAt: Date
   transactionId: string
+  correlationId: CorrelationID
 }
 
 type AddChampionResult = Either<ChampionAlreadyOwnedError, null>
@@ -27,6 +29,7 @@ export class AddChampionUseCase {
     releasedAt,
     purchasedAt,
     transactionId,
+    correlationId,
   }: AddChampionParams): Promise<AddChampionResult> {
     const championAlreadyExists =
       await this.championRepository.findByUserIdAndChampionId(
@@ -39,6 +42,9 @@ export class AddChampionUseCase {
         key: transactionId,
         value: {
           transactionId,
+        },
+        headers: {
+          correlationId: correlationId.toString(),
         },
       })
       return left(new ChampionAlreadyOwnedError())
@@ -57,6 +63,9 @@ export class AddChampionUseCase {
       key: transactionId,
       value: {
         transactionId,
+      },
+      headers: {
+        correlationId: correlationId.toString(),
       },
     })
 

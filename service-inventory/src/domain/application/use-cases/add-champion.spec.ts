@@ -3,6 +3,7 @@ import { AddChampionUseCase } from './add-champion'
 import { makeChampion } from 'test/factories/make-champion'
 import { ChampionAlreadyOwnedError } from './errors/champion-already-owned-error'
 import { FakeMessageEmitter } from '../../../../test/messaging/fake-message-emitter'
+import { CorrelationID } from '@/core/entities/correlation-id'
 
 let inMemoryChampionRepository = new InMemoryChampionRepository()
 let fakeMessageEmitter: FakeMessageEmitter
@@ -27,6 +28,9 @@ describe('add champion use case', () => {
       releasedAt: new Date(),
       purchasedAt: new Date(),
       transactionId: 'other-transaction-id',
+      correlationId: new CorrelationID({
+        name: AddChampionUseCase.name,
+      }),
     })
 
     expect(result.isLeft()).toBe(true)
@@ -44,6 +48,9 @@ describe('add champion use case', () => {
       releasedAt: new Date(),
       purchasedAt: new Date(),
       transactionId: 'any-transaction-id',
+      correlationId: new CorrelationID({
+        name: AddChampionUseCase.name,
+      }),
     })
 
     expect(result.isRight()).toBe(true)

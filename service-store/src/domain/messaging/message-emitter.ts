@@ -1,6 +1,7 @@
 interface Message {
   key: string
   value: object
+  headers?: object
 }
 
 export abstract class MessageEmitter {

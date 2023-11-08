@@ -1,7 +1,7 @@
 import { UniqueEntityID } from './unique-entity-id'
 
 export abstract class Entity<Attributes> {
-  private _id: UniqueEntityID
+  private readonly _id: UniqueEntityID
   protected attributes: Attributes
 
   get id() {
