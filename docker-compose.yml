@@ -6,7 +6,6 @@ include:
   - service-inventory/docker-compose.yml
   - service-loot/docker-compose.yml
   - service-store/docker-compose.yml
-  - service-web/docker-compose.yml
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
