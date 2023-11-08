@@ -8,6 +8,7 @@ export class PrismaCapsuleMapper {
       {
         name: raw.name,
         type: raw.type,
+        requiresKey: raw.requiresKey,
         createdAt: raw.createdAt ?? new Date(),
         updatedAt: raw.updatedAt ?? new Date(),
       },
@@ -20,6 +21,7 @@ export class PrismaCapsuleMapper {
       id: capsule.id.toString(),
       name: capsule.name,
       type: capsule.type,
+      requiresKey: capsule.requiresKey,
       createdAt: capsule.createdAt ?? new Date(),
       updatedAt: capsule.updatedAt ?? new Date(),
     }

@@ -26,7 +26,7 @@ services:
       - loot-database
     depends_on:
       - loot-database
-    command: sh -c "/wait; npm ci; npx prisma generate; npx prisma migrate deploy; npm run start:dev"
+    command: sh -c "/wait; npm ci; npx prisma generate; npx prisma migrate deploy; npx prisma db seed; npm run start:dev"
     environment:
       - WAIT_HOSTS=loot-database:5432,kafka:9092
       - WAIT_TIMEOUT=1000

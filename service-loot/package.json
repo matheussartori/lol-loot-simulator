@@ -60,6 +60,7 @@
     "vitest": "^0.34.6"
   },
   "prisma": {
-    "schema": "src/infra/database/prisma/schema.prisma"
+    "schema": "src/infra/database/prisma/schema.prisma",
+    "seed": "ts-node -r tsconfig-paths/register src/infra/database/prisma/seeders/prisma.seeder.ts"
   }
 }

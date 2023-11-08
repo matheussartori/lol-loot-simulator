@@ -23,11 +23,12 @@ model User {
 }
 
 model Capsule {
-  id        String      @id @default(uuid())
-  name      String
-  type      CapsuleType
-  createdAt DateTime?   @default(now()) @map("created_at")
-  updatedAt DateTime?   @default(now()) @map("updated_at")
+  id          String      @id @default(uuid())
+  name        String
+  type        CapsuleType
+  requiresKey Boolean     @map("requires_key")
+  createdAt   DateTime?   @default(now()) @map("created_at")
+  updatedAt   DateTime?   @default(now()) @map("updated_at")
 
   rewards CapsuleItem[]
 
