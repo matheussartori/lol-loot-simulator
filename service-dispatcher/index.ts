@@ -27,6 +27,11 @@ async function run() {
               blueEssencePrice: 1350,
               riotPointsPrice: 585,
               releasedAt: new Date('February 21, 2009'),
+              images: {
+                portrait: '/champions/alistar/default_portrait.webp',
+                splash: '/champions/alistar/default_splash.webp',
+                loading: '/champions/alistar/default_loading.webp'
+              }
             }),
             headers: {
               correlationId: `ServiceDispatcherRun(${randomUUID()})`
