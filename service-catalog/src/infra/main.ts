@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { EnvService } from './env/env.service'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
+import { randomUUID } from 'node:crypto'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -13,7 +14,7 @@ async function bootstrap() {
     transport: Transport.KAFKA,
     options: {
       client: {
-        clientId: 'catalog',
+        clientId: `catalog-consumer-${randomUUID()}`,
         brokers: [configService.get('KAFKA_BROKERS')],
       },
       consumer: {
