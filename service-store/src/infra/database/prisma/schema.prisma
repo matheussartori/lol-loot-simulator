@@ -15,7 +15,23 @@ model Champion {
   riotPointsPrice  Int      @map("riot_points_price")
   releasedAt       DateTime @map("released_at")
 
+  images ChampionImage[]
+
+  @@index([championId])
   @@map("champions")
+}
+
+model ChampionImage {
+  id         String            @id @default(uuid())
+  championId String
+  type       ChampionImageType
+  url        String
+  createdAt  DateTime?         @default(now())
+
+  champion Champion @relation(fields: [championId], references: [championId])
+
+  @@index([championId])
+  @@map("champion_images")
 }
 
 model Transaction {
@@ -62,4 +78,10 @@ enum TransactionStatus {
 enum TransactionCurrency {
   BLUE_ESSENCE
   RIOT_POINTS
+}
+
+enum ChampionImageType {
+  PORTRAIT
+  LOADING
+  SPLASH
 }

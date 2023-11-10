@@ -86,6 +86,7 @@ export class CreateChampionUseCase {
           id: champion.id.toString(),
           name: champion.name,
           releasedAt: champion.releasedAt,
+          images,
         },
         blueEssencePrice,
         riotPointsPrice,

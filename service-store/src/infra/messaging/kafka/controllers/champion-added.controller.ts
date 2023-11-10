@@ -7,6 +7,11 @@ interface ChampionAddedMessage {
     id: string
     name: string
     releasedAt: Date
+    images: {
+      portrait: string
+      splash: string
+      loading: string
+    }
   }
   blueEssencePrice: number
   riotPointsPrice: number
@@ -24,6 +29,7 @@ export class ChampionAddedController {
       releasedAt: message.champion.releasedAt,
       blueEssencePrice: message.blueEssencePrice,
       riotPointsPrice: message.riotPointsPrice,
+      images: message.champion.images,
     })
   }
 }
