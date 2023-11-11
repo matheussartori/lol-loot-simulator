@@ -1,14 +1,19 @@
 import { InMemoryChampionRepository } from 'test/repositories/in-memory-champion-repository'
 import { FetchChampionsUseCase } from './fetch-champions'
 import { makeChampion } from 'test/factories/make-champion'
+import { InMemoryChampionImageRepository } from '../../../../test/repositories/in-memory-champion-image-repository'
 
 let inMemoryChampionRepository: InMemoryChampionRepository
+let inMemoryChampionImageRepository: InMemoryChampionImageRepository
 
 let sut: FetchChampionsUseCase
 
 describe('fetch champions use case', () => {
   beforeEach(() => {
-    inMemoryChampionRepository = new InMemoryChampionRepository()
+    inMemoryChampionImageRepository = new InMemoryChampionImageRepository()
+    inMemoryChampionRepository = new InMemoryChampionRepository(
+      inMemoryChampionImageRepository,
+    )
     sut = new FetchChampionsUseCase(inMemoryChampionRepository)
   })
 

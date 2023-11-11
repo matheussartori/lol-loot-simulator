@@ -11,7 +11,6 @@ export function makeChampion(
 ) {
   const champion = Champion.create(
     {
-      ...override,
       name: faker.word.words(1),
       rarityTier: faker.helpers.arrayElement([
         'STANDARD',
@@ -22,6 +21,7 @@ export function makeChampion(
         'EXCLUSIVE',
       ]),
       releasedAt: faker.date.past(),
+      ...override,
     },
     id,
   )

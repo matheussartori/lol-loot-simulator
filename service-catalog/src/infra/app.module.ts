@@ -5,6 +5,8 @@ import { envSchema } from './env/env'
 import { MessagingModule } from './messaging/messaging.module'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { join } from 'path'
+import { HttpModule } from '@/infra/http/http.module'
+import { AuthModule } from '@/infra/auth/auth.module'
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { join } from 'path'
       isGlobal: true,
     }),
     EnvModule,
+    AuthModule,
+    HttpModule,
     MessagingModule,
   ],
 })

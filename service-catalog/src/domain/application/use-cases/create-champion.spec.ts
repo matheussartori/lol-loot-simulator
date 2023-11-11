@@ -15,8 +15,10 @@ let sut: CreateChampionUseCase
 
 describe('create champion use case', () => {
   beforeEach(() => {
-    inMemoryChampionRepository = new InMemoryChampionRepository()
     inMemoryChampionImageRepository = new InMemoryChampionImageRepository()
+    inMemoryChampionRepository = new InMemoryChampionRepository(
+      inMemoryChampionImageRepository,
+    )
     fakeMessageEmitter = new FakeMessageEmitter()
 
     sut = new CreateChampionUseCase(
@@ -33,8 +35,7 @@ describe('create champion use case', () => {
 
     const result = await sut.execute({
       name: champion.name,
-      blueEssencePrice: 50,
-      riotPointsPrice: 50,
+      rarityTier: 'STANDARD',
       releasedAt: new Date(),
       correlationId: new CorrelationID({ name: CreateChampionUseCase.name }),
       images: {
@@ -53,8 +54,7 @@ describe('create champion use case', () => {
 
     const result = await sut.execute({
       name: champion.name,
-      blueEssencePrice: 50,
-      riotPointsPrice: 50,
+      rarityTier: 'STANDARD',
       releasedAt: new Date(),
       correlationId: new CorrelationID({ name: CreateChampionUseCase.name }),
       images: {

@@ -11,7 +11,7 @@ services:
     environment:
       POSTGRES_USER: docker
       POSTGRES_PASSWORD: docker
-      POSTGRES_DB: auth
+      POSTGRES_DB: loot
   loot-api:
     build: .
     networks:
