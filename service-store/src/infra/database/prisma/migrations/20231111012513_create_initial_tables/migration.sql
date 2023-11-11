@@ -10,6 +10,9 @@ CREATE TYPE "TransactionCurrency" AS ENUM ('BLUE_ESSENCE', 'RIOT_POINTS');
 -- CreateEnum
 CREATE TYPE "ChampionImageType" AS ENUM ('PORTRAIT', 'LOADING', 'SPLASH');
 
+-- CreateEnum
+CREATE TYPE "RarityTier" AS ENUM ('STANDARD', 'EPIC', 'LEGENDARY', 'MYTHIC', 'ULTIMATE', 'EXCLUSIVE');
+
 -- CreateTable
 CREATE TABLE "champions" (
     "id" TEXT NOT NULL,
@@ -17,20 +20,10 @@ CREATE TABLE "champions" (
     "name" TEXT NOT NULL,
     "blue_essence_price" INTEGER NOT NULL,
     "riot_points_price" INTEGER NOT NULL,
+    "rarity_tier" "RarityTier" NOT NULL,
     "released_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "champions_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "champion_images" (
-    "id" TEXT NOT NULL,
-    "championId" TEXT NOT NULL,
-    "type" "ChampionImageType" NOT NULL,
-    "url" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "champion_images_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -64,13 +57,4 @@ CREATE TABLE "users" (
 CREATE UNIQUE INDEX "champions_champion_id_key" ON "champions"("champion_id");
 
 -- CreateIndex
-CREATE INDEX "champions_champion_id_idx" ON "champions"("champion_id");
-
--- CreateIndex
-CREATE INDEX "champion_images_championId_idx" ON "champion_images"("championId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "users_user_id_key" ON "users"("user_id");
-
--- AddForeignKey
-ALTER TABLE "champion_images" ADD CONSTRAINT "champion_images_championId_fkey" FOREIGN KEY ("championId") REFERENCES "champions"("champion_id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,5 +1,5 @@
 import { Either, left, right } from '@/core/either'
-import { Champion } from '@/domain/enterprise/entities/champion'
+import { Champion, RarityTier } from '@/domain/enterprise/entities/champion'
 import { ChampionRepository } from '../repositories/champion-repository'
 import { ChampionAlreadyExistsError } from './errors/champion-already-exists-error'
 import { MessageEmitter } from '@/domain/messaging/message-emitter'
@@ -9,8 +9,7 @@ import { ChampionImageRepository } from '@/domain/application/repositories/champ
 
 interface CreateChampionParams {
   name: string
-  blueEssencePrice: number
-  riotPointsPrice: number
+  rarityTier: RarityTier
   releasedAt: Date
   correlationId: CorrelationID
   images: {
@@ -36,8 +35,7 @@ export class CreateChampionUseCase {
 
   async execute({
     name,
-    blueEssencePrice,
-    riotPointsPrice,
+    rarityTier,
     releasedAt,
     correlationId,
     images,
@@ -50,6 +48,7 @@ export class CreateChampionUseCase {
 
     const champion = Champion.create({
       name,
+      rarityTier,
       releasedAt,
     })
 
@@ -86,10 +85,8 @@ export class CreateChampionUseCase {
           id: champion.id.toString(),
           name: champion.name,
           releasedAt: champion.releasedAt,
-          images,
         },
-        blueEssencePrice,
-        riotPointsPrice,
+        rarityTier,
       },
       headers: {
         correlationId: correlationId.toString(),

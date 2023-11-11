@@ -7,11 +7,11 @@ import {
   Payload,
 } from '@nestjs/microservices'
 import { CorrelationID } from '@/core/entities/correlation-id'
+import { RarityTier } from '@/domain/enterprise/entities/champion'
 
 interface ChampionCreatedMessage {
   name: string
-  blueEssencePrice: number
-  riotPointsPrice: number
+  rarityTier: RarityTier
   releasedAt: Date
   images: {
     portrait: string
@@ -39,8 +39,7 @@ export class ChampionCreatedController {
 
     await this.createChampion.execute({
       name: message.name,
-      blueEssencePrice: message.blueEssencePrice,
-      riotPointsPrice: message.riotPointsPrice,
+      rarityTier: message.rarityTier,
       releasedAt: message.releasedAt,
       correlationId,
       images: message.images,

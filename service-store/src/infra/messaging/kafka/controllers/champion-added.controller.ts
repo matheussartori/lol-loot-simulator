@@ -1,20 +1,15 @@
 import { AddChampionUseCase } from '@/domain/application/use-cases/add-champion'
 import { Controller } from '@nestjs/common'
 import { MessagePattern, Payload } from '@nestjs/microservices'
+import { RarityTier } from '@/domain/enterprise/entities/champion'
 
 interface ChampionAddedMessage {
   champion: {
     id: string
     name: string
     releasedAt: Date
-    images: {
-      portrait: string
-      splash: string
-      loading: string
-    }
   }
-  blueEssencePrice: number
-  riotPointsPrice: number
+  rarityTier: RarityTier
 }
 
 @Controller()
@@ -27,9 +22,7 @@ export class ChampionAddedController {
       championId: message.champion.id,
       name: message.champion.name,
       releasedAt: message.champion.releasedAt,
-      blueEssencePrice: message.blueEssencePrice,
-      riotPointsPrice: message.riotPointsPrice,
-      images: message.champion.images,
+      rarityTier: message.rarityTier,
     })
   }
 }

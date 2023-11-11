@@ -1,10 +1,14 @@
 -- CreateEnum
 CREATE TYPE "ChampionImageType" AS ENUM ('PORTRAIT', 'LOADING', 'SPLASH');
 
+-- CreateEnum
+CREATE TYPE "RarityTier" AS ENUM ('STANDARD', 'EPIC', 'LEGENDARY', 'MYTHIC', 'ULTIMATE', 'EXCLUSIVE');
+
 -- CreateTable
 CREATE TABLE "champions" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "rarityTier" "RarityTier" NOT NULL,
     "released_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "champions_pkey" PRIMARY KEY ("id")

@@ -8,9 +8,10 @@ datasource db {
 }
 
 model Champion {
-  id         String   @id @default(uuid())
-  name       String   @unique
-  releasedAt DateTime @map("released_at")
+  id         String     @id @default(uuid())
+  name       String     @unique
+  rarityTier RarityTier
+  releasedAt DateTime   @map("released_at")
 
   skins  Skin[]
   images ChampionImage[]
@@ -57,4 +58,13 @@ enum ChampionImageType {
   PORTRAIT
   LOADING
   SPLASH
+}
+
+enum RarityTier {
+  STANDARD
+  EPIC
+  LEGENDARY
+  MYTHIC
+  ULTIMATE
+  EXCLUSIVE
 }

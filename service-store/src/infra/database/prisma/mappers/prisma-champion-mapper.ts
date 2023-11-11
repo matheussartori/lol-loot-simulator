@@ -10,6 +10,7 @@ export class PrismaChampionMapper {
         name: raw.name,
         blueEssencePrice: raw.blueEssencePrice,
         riotPointsPrice: raw.riotPointsPrice,
+        rarityTier: raw.rarityTier,
         releasedAt: raw.releasedAt,
       },
       new UniqueEntityID(raw.id),
@@ -23,6 +24,7 @@ export class PrismaChampionMapper {
       name: champion.name,
       blueEssencePrice: champion.blueEssencePrice,
       riotPointsPrice: champion.riotPointsPrice,
+      rarityTier: champion.rarityTier,
       releasedAt: champion.releasedAt,
     }
   }
