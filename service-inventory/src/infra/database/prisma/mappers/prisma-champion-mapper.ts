@@ -6,7 +6,7 @@ export class PrismaChampionMapper {
   static toDomain(raw: PrismaChampion): Champion {
     return Champion.create(
       {
-        championId: new UniqueEntityID(raw.id),
+        championId: new UniqueEntityID(raw.championId),
         userId: new UniqueEntityID(raw.userId),
         releasedAt: raw.releasedAt,
         purchasedAt: raw.purchasedAt,

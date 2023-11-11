@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { Kafka } from "kafkajs";
 import {randomUUID} from "crypto";
+import {champions} from "./data/champions";
 
 async function run() {
   const kafka = new Kafka({
@@ -14,24 +15,14 @@ async function run() {
     await producer.connect();
 
 
-    for (let i = 0; i < 3; i++) {
-      const championName = faker.word.words({ count: { min: 1, max: 2 } })
+    for (const champion of champions) {
 
       const response = await producer.send({
         topic: 'champion.created',
         messages: [
           {
-            key: championName,
-            value: JSON.stringify({
-              name: championName,
-              rarityTier: 'STANDARD',
-              releasedAt: new Date('February 21, 2009'),
-              images: {
-                portrait: '/champions/alistar/default_portrait.webp',
-                splash: '/champions/alistar/default_splash.webp',
-                loading: '/champions/alistar/default_loading.webp'
-              }
-            }),
+            key: champion.name,
+            value: JSON.stringify(champion),
             headers: {
               correlationId: `ServiceDispatcherRun(${randomUUID()})`
             }
