@@ -9,14 +9,22 @@ export function makeChampion(
   override: Partial<ChampionAttributes> = {},
   id?: UniqueEntityID,
 ) {
-  const user = Champion.create(
+  const champion = Champion.create(
     {
-      name: faker.word.words(1),
-      releasedAt: faker.date.past(),
       ...override,
+      name: faker.word.words(1),
+      rarityTier: faker.helpers.arrayElement([
+        'STANDARD',
+        'EPIC',
+        'LEGENDARY',
+        'MYTHIC',
+        'ULTIMATE',
+        'EXCLUSIVE',
+      ]),
+      releasedAt: faker.date.past(),
     },
     id,
   )
 
-  return user
+  return champion
 }

@@ -5,19 +5,23 @@ import { ChampionAlreadyExistsError } from './errors/champion-already-exists-err
 import { Champion } from '@/domain/enterprise/entities/champion'
 import { FakeMessageEmitter } from 'test/messaging/fake-message-emitter'
 import { CorrelationID } from '@/core/entities/correlation-id'
+import { InMemoryChampionImageRepository } from '../../../../test/repositories/in-memory-champion-image-repository'
 
-let inMemoryChampionsRepository: InMemoryChampionRepository
+let inMemoryChampionRepository: InMemoryChampionRepository
+let inMemoryChampionImageRepository: InMemoryChampionImageRepository
 let fakeMessageEmitter: FakeMessageEmitter
 
 let sut: CreateChampionUseCase
 
 describe('create champion use case', () => {
   beforeEach(() => {
-    inMemoryChampionsRepository = new InMemoryChampionRepository()
+    inMemoryChampionRepository = new InMemoryChampionRepository()
+    inMemoryChampionImageRepository = new InMemoryChampionImageRepository()
     fakeMessageEmitter = new FakeMessageEmitter()
 
     sut = new CreateChampionUseCase(
-      inMemoryChampionsRepository,
+      inMemoryChampionRepository,
+      inMemoryChampionImageRepository,
       fakeMessageEmitter,
     )
   })
@@ -25,7 +29,7 @@ describe('create champion use case', () => {
   it('should not create a champion if it already exists', async () => {
     const champion = makeChampion()
 
-    inMemoryChampionsRepository.create(champion)
+    inMemoryChampionRepository.create(champion)
 
     const result = await sut.execute({
       name: champion.name,
@@ -33,6 +37,11 @@ describe('create champion use case', () => {
       riotPointsPrice: 50,
       releasedAt: new Date(),
       correlationId: new CorrelationID({ name: CreateChampionUseCase.name }),
+      images: {
+        portrait: 'any-image-url',
+        splash: 'any-image-url',
+        loading: 'any-image-url',
+      },
     })
 
     expect(result.isLeft())
@@ -48,6 +57,11 @@ describe('create champion use case', () => {
       riotPointsPrice: 50,
       releasedAt: new Date(),
       correlationId: new CorrelationID({ name: CreateChampionUseCase.name }),
+      images: {
+        portrait: 'any-image-url',
+        splash: 'any-image-url',
+        loading: 'any-image-url',
+      },
     })
 
     expect(result.isRight()).toBe(true)

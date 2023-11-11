@@ -1,14 +1,13 @@
 import { Either, left, right } from '@/core/either'
 import { ChampionRepository } from '../repositories/champion-repository'
 import { ChampionAlreadyExistsError } from './errors/champion-already-exists-error'
-import { Champion } from '@/domain/enterprise/entities/champion'
+import { Champion, RarityTier } from '@/domain/enterprise/entities/champion'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 interface AddChampionParams {
   championId: string
   name: string
-  blueEssencePrice: number
-  riotPointsPrice: number
+  rarityTier: RarityTier
   releasedAt: Date
 }
 
@@ -20,8 +19,7 @@ export class AddChampionUseCase {
   async execute({
     championId,
     name,
-    blueEssencePrice,
-    riotPointsPrice,
+    rarityTier,
     releasedAt,
   }: AddChampionParams): Promise<AddChampionResult> {
     const championExists =
@@ -33,8 +31,7 @@ export class AddChampionUseCase {
 
     const champion = Champion.create({
       name,
-      blueEssencePrice,
-      riotPointsPrice,
+      rarityTier,
       releasedAt,
       championId: new UniqueEntityID(championId),
     })

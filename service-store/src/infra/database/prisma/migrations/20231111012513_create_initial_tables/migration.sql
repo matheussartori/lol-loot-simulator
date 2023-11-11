@@ -7,6 +7,12 @@ CREATE TYPE "TransactionStatus" AS ENUM ('PENDING', 'VALIDATED_INVENTORY', 'VALI
 -- CreateEnum
 CREATE TYPE "TransactionCurrency" AS ENUM ('BLUE_ESSENCE', 'RIOT_POINTS');
 
+-- CreateEnum
+CREATE TYPE "ChampionImageType" AS ENUM ('PORTRAIT', 'LOADING', 'SPLASH');
+
+-- CreateEnum
+CREATE TYPE "RarityTier" AS ENUM ('STANDARD', 'EPIC', 'LEGENDARY', 'MYTHIC', 'ULTIMATE', 'EXCLUSIVE');
+
 -- CreateTable
 CREATE TABLE "champions" (
     "id" TEXT NOT NULL,
@@ -14,6 +20,7 @@ CREATE TABLE "champions" (
     "name" TEXT NOT NULL,
     "blue_essence_price" INTEGER NOT NULL,
     "riot_points_price" INTEGER NOT NULL,
+    "rarity_tier" "RarityTier" NOT NULL,
     "released_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "champions_pkey" PRIMARY KEY ("id")

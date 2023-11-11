@@ -7,6 +7,7 @@ export class PrismaChampionMapper {
     return Champion.create(
       {
         name: raw.name,
+        rarityTier: raw.rarityTier,
         releasedAt: raw.releasedAt,
       },
       new UniqueEntityID(raw.id),
@@ -17,6 +18,7 @@ export class PrismaChampionMapper {
     return {
       id: champion.id.toString(),
       name: champion.name,
+      rarityTier: champion.rarityTier,
       releasedAt: champion.releasedAt,
     }
   }

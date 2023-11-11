@@ -2,6 +2,7 @@ import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common'
 import { ClientKafka } from '@nestjs/microservices'
 import { MessageEmitter } from '@/domain/messaging/message-emitter'
 import { EnvService } from '@/infra/env/env.service'
+import { randomUUID } from 'node:crypto'
 
 @Injectable()
 export class KafkaService
@@ -11,14 +12,8 @@ export class KafkaService
   constructor(config: EnvService) {
     super({
       client: {
-        clientId: 'account',
+        clientId: `account-producer-${randomUUID()}`,
         brokers: [config.get('KAFKA_BROKERS')],
-      },
-      consumer: {
-        groupId: 'account-consumer',
-      },
-      subscribe: {
-        fromBeginning: true,
       },
     })
   }

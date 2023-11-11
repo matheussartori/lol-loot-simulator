@@ -8,13 +8,27 @@ datasource db {
 }
 
 model Champion {
-  id         String   @id @default(uuid())
-  name       String   @unique
-  releasedAt DateTime @map("released_at")
+  id         String     @id @default(uuid())
+  name       String     @unique
+  rarityTier RarityTier
+  releasedAt DateTime   @map("released_at")
 
-  skins Skin[]
+  skins  Skin[]
+  images ChampionImage[]
 
   @@map("champions")
+}
+
+model ChampionImage {
+  id         String            @id @default(uuid())
+  championId String
+  type       ChampionImageType
+  url        String
+  createdAt  DateTime?         @default(now())
+
+  champion Champion @relation(fields: [championId], references: [id])
+
+  @@map("champion_images")
 }
 
 model Skin {
@@ -38,4 +52,19 @@ model Chroma {
   skin Skin @relation(fields: [skinId], references: [id])
 
   @@map("chromas")
+}
+
+enum ChampionImageType {
+  PORTRAIT
+  LOADING
+  SPLASH
+}
+
+enum RarityTier {
+  STANDARD
+  EPIC
+  LEGENDARY
+  MYTHIC
+  ULTIMATE
+  EXCLUSIVE
 }
