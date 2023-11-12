@@ -968,4 +968,714 @@ export const champions: Champion[] = [
       loading: '/champions/lulu/default_loading.webp'
     }
   },
+  {
+    name: 'Hecarim',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('April 18, 2012'),
+    images: {
+      portrait: '/champions/hecarim/default_portrait.webp',
+      splash: '/champions/hecarim/default_splash.webp',
+      loading: '/champions/hecarim/default_loading.webp'
+    }
+  },
+  {
+    name: 'Varus',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('May 8, 2012'),
+    images: {
+      portrait: '/champions/varus/default_portrait.webp',
+      splash: '/champions/varus/default_splash.webp',
+      loading: '/champions/varus/default_loading.webp'
+    }
+  },
+  {
+    name: 'Darius',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('May 23, 2012'),
+    images: {
+      portrait: '/champions/darius/default_portrait.webp',
+      splash: '/champions/darius/default_splash.webp',
+      loading: '/champions/darius/default_loading.webp'
+    }
+  },
+  {
+    name: 'Draven',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('June 6, 2012'),
+    images: {
+      portrait: '/champions/draven/default_portrait.webp',
+      splash: '/champions/draven/default_splash.webp',
+      loading: '/champions/draven/default_loading.webp'
+    }
+  },
+  {
+    name: 'Jayce',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('July 7, 2012'),
+    images: {
+      portrait: '/champions/jayce/default_portrait.webp',
+      splash: '/champions/jayce/default_splash.webp',
+      loading: '/champions/jayce/default_loading.webp'
+    }
+  },
+  {
+    name: 'Zyra',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('July 24, 2012'),
+    images: {
+      portrait: '/champions/zyra/default_portrait.webp',
+      splash: '/champions/zyra/default_splash.webp',
+      loading: '/champions/zyra/default_loading.webp'
+    }
+  },
+  {
+    name: 'Diana',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('August 7, 2012'),
+    images: {
+      portrait: '/champions/diana/default_portrait.webp',
+      splash: '/champions/diana/default_splash.webp',
+      loading: '/champions/diana/default_loading.webp'
+    }
+  },
+  {
+    name: 'Rengar',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('August 21, 2012'),
+    images: {
+      portrait: '/champions/rengar/default_portrait.webp',
+      splash: '/champions/rengar/default_splash.webp',
+      loading: '/champions/rengar/default_loading.webp'
+    }
+  },
+  {
+    name: 'Syndra',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('September 13, 2012'),
+    images: {
+      portrait: '/champions/syndra/default_portrait.webp',
+      splash: '/champions/syndra/default_splash.webp',
+      loading: '/champions/syndra/default_loading.webp'
+    }
+  },
+  {
+    name: 'Kha\'Zix',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('September 27, 2012'),
+    images: {
+      portrait: '/champions/khazix/default_portrait.webp',
+      splash: '/champions/khazix/default_splash.webp',
+      loading: '/champions/khazix/default_loading.webp'
+    }
+  },
+  {
+    name: 'Elise',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('October 26, 2012'),
+    images: {
+      portrait: '/champions/elise/default_portrait.webp',
+      splash: '/champions/elise/default_splash.webp',
+      loading: '/champions/elise/default_loading.webp'
+    }
+  },
+  {
+    name: 'Zed',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('November 13, 2012'),
+    images: {
+      portrait: '/champions/zed/default_portrait.webp',
+      splash: '/champions/zed/default_splash.webp',
+      loading: '/champions/zed/default_loading.webp'
+    }
+  },
+  {
+    name: 'Nami',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('December 7, 2012'),
+    images: {
+      portrait: '/champions/nami/default_portrait.webp',
+      splash: '/champions/nami/default_splash.webp',
+      loading: '/champions/nami/default_loading.webp'
+    }
+  },
+  {
+    name: 'Vi',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('December 19, 2012'),
+    images: {
+      portrait: '/champions/vi/default_portrait.webp',
+      splash: '/champions/vi/default_splash.webp',
+      loading: '/champions/vi/default_loading.webp'
+    }
+  },
+  {
+    name: 'Thresh',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('January 23, 2013'),
+    images: {
+      portrait: '/champions/thresh/default_portrait.webp',
+      splash: '/champions/thresh/default_splash.webp',
+      loading: '/champions/thresh/default_loading.webp'
+    }
+  },
+  {
+    name: 'Quinn',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('March 1, 2013'),
+    images: {
+      portrait: '/champions/quinn/default_portrait.webp',
+      splash: '/champions/quinn/default_splash.webp',
+      loading: '/champions/quinn/default_loading.webp'
+    }
+  },
+  {
+    name: 'Zac',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('March 29, 2013'),
+    images: {
+      portrait: '/champions/zac/default_portrait.webp',
+      splash: '/champions/zac/default_splash.webp',
+      loading: '/champions/zac/default_loading.webp'
+    }
+  },
+  {
+    name: 'Lissandra',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('April 30, 2013'),
+    images: {
+      portrait: '/champions/lissandra/default_portrait.webp',
+      splash: '/champions/lissandra/default_splash.webp',
+      loading: '/champions/lissandra/default_loading.webp'
+    }
+  },
+  {
+    name: 'Aatrox',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('June 13, 2013'),
+    images: {
+      portrait: '/champions/aatrox/default_portrait.webp',
+      splash: '/champions/aatrox/default_splash.webp',
+      loading: '/champions/aatrox/default_loading.webp'
+    }
+  },
+  {
+    name: 'Lucian',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('August 22, 2013'),
+    images: {
+      portrait: '/champions/lucian/default_portrait.webp',
+      splash: '/champions/lucian/default_splash.webp',
+      loading: '/champions/lucian/default_loading.webp'
+    }
+  },
+  {
+    name: 'Jinx',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('October 10, 2013'),
+    images: {
+      portrait: '/champions/jinx/default_portrait.webp',
+      splash: '/champions/jinx/default_splash.webp',
+      loading: '/champions/jinx/default_loading.webp'
+    }
+  },
+  {
+    name: 'Yasuo',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('December 13, 2013'),
+    images: {
+      portrait: '/champions/yasuo/default_portrait.webp',
+      splash: '/champions/yasuo/default_splash.webp',
+      loading: '/champions/yasuo/default_loading.webp'
+    }
+  },
+  {
+    name: 'Vel\'Koz',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('February 27, 2014'),
+    images: {
+      portrait: '/champions/velkoz/default_portrait.webp',
+      splash: '/champions/velkoz/default_splash.webp',
+      loading: '/champions/velkoz/default_loading.webp'
+    }
+  },
+  {
+    name: 'Braum',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('May 12, 2014'),
+    images: {
+      portrait: '/champions/braum/default_portrait.webp',
+      splash: '/champions/braum/default_splash.webp',
+      loading: '/champions/braum/default_loading.webp'
+    }
+  },
+  {
+    name: 'Gnar',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('August 14, 2014'),
+    images: {
+      portrait: '/champions/gnar/default_portrait.webp',
+      splash: '/champions/gnar/default_splash.webp',
+      loading: '/champions/gnar/default_loading.webp'
+    }
+  },
+  {
+    name: 'Azir',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('September 16, 2014'),
+    images: {
+      portrait: '/champions/azir/default_portrait.webp',
+      splash: '/champions/azir/default_splash.webp',
+      loading: '/champions/azir/default_loading.webp'
+    }
+  },
+  {
+    name: 'Azir',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('September 16, 2014'),
+    images: {
+      portrait: '/champions/azir/default_portrait.webp',
+      splash: '/champions/azir/default_splash.webp',
+      loading: '/champions/azir/default_loading.webp'
+    }
+  },
+  {
+    name: 'Kalista',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('November 20, 2014'),
+    images: {
+      portrait: '/champions/kalista/default_portrait.webp',
+      splash: '/champions/kalista/default_splash.webp',
+      loading: '/champions/kalista/default_loading.webp'
+    }
+  },
+  {
+    name: 'Rek\'Sai',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('December 11, 2014'),
+    images: {
+      portrait: '/champions/reksai/default_portrait.webp',
+      splash: '/champions/reksai/default_splash.webp',
+      loading: '/champions/reksai/default_loading.webp'
+    }
+  },
+  {
+    name: 'Bard',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('March 12, 2015'),
+    images: {
+      portrait: '/champions/bard/default_portrait.webp',
+      splash: '/champions/bard/default_splash.webp',
+      loading: '/champions/bard/default_loading.webp'
+    }
+  },
+  {
+    name: 'Ekko',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('May 29, 2015'),
+    images: {
+      portrait: '/champions/ekko/default_portrait.webp',
+      splash: '/champions/ekko/default_splash.webp',
+      loading: '/champions/ekko/default_loading.webp'
+    }
+  },
+  {
+    name: 'Tahm Kench',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('July 9, 2015'),
+    images: {
+      portrait: '/champions/tahm_kench/default_portrait.webp',
+      splash: '/champions/tahm_kench/default_splash.webp',
+      loading: '/champions/tahm_kench/default_loading.webp'
+    }
+  },
+  {
+    name: 'Kindred',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('October 14, 2015'),
+    images: {
+      portrait: '/champions/kindred/default_portrait.webp',
+      splash: '/champions/kindred/default_splash.webp',
+      loading: '/champions/kindred/default_loading.webp'
+    }
+  },
+  {
+    name: 'Illaoi',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('November 24, 2015'),
+    images: {
+      portrait: '/champions/illaoi/default_portrait.webp',
+      splash: '/champions/illaoi/default_splash.webp',
+      loading: '/champions/illaoi/default_loading.webp'
+    }
+  },
+  {
+    name: 'Jhin',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('February 1, 2016'),
+    images: {
+      portrait: '/champions/jhin/default_portrait.webp',
+      splash: '/champions/jhin/default_splash.webp',
+      loading: '/champions/jhin/default_loading.webp'
+    }
+  },
+  {
+    name: 'Aurelion Sol',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('March 24, 2016'),
+    images: {
+      portrait: '/champions/aurelion_sol/default_portrait.webp',
+      splash: '/champions/aurelion_sol/default_splash.webp',
+      loading: '/champions/aurelion_sol/default_loading.webp'
+    }
+  },
+  {
+    name: 'Taliyah',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('May 18, 2016'),
+    images: {
+      portrait: '/champions/taliyah/default_portrait.webp',
+      splash: '/champions/taliyah/default_splash.webp',
+      loading: '/champions/taliyah/default_loading.webp'
+    }
+  },
+  {
+    name: 'Kled',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('August 10, 2016'),
+    images: {
+      portrait: '/champions/kled/default_portrait.webp',
+      splash: '/champions/kled/default_splash.webp',
+      loading: '/champions/kled/default_loading.webp'
+    }
+  },
+  {
+    name: 'Ivern',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('October 5, 2016'),
+    images: {
+      portrait: '/champions/ivern/default_portrait.webp',
+      splash: '/champions/ivern/default_splash.webp',
+      loading: '/champions/ivern/default_loading.webp'
+    }
+  },
+  {
+    name: 'Camille',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('December 7, 2016'),
+    images: {
+      portrait: '/champions/camille/default_portrait.webp',
+      splash: '/champions/camille/default_splash.webp',
+      loading: '/champions/camille/default_loading.webp'
+    }
+  },
+  {
+    name: 'Rakan',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('April 19, 2017'),
+    images: {
+      portrait: '/champions/rakan/default_portrait.webp',
+      splash: '/champions/rakan/default_splash.webp',
+      loading: '/champions/rakan/default_loading.webp'
+    }
+  },
+  {
+    name: 'Xayah',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('April 19, 2017'),
+    images: {
+      portrait: '/champions/xayah/default_portrait.webp',
+      splash: '/champions/xayah/default_splash.webp',
+      loading: '/champions/xayah/default_loading.webp'
+    }
+  },
+  {
+    name: 'Kayn',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('July 12, 2017'),
+    images: {
+      portrait: '/champions/kayn/default_portrait.webp',
+      splash: '/champions/kayn/default_splash.webp',
+      loading: '/champions/kayn/default_loading.webp'
+    }
+  },
+  {
+    name: 'Ornn',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('August 23, 2017'),
+    images: {
+      portrait: '/champions/ornn/default_portrait.webp',
+      splash: '/champions/ornn/default_splash.webp',
+      loading: '/champions/ornn/default_loading.webp'
+    }
+  },
+  {
+    name: 'Zoe',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('November 21, 2017'),
+    images: {
+      portrait: '/champions/zoe/default_portrait.webp',
+      splash: '/champions/zoe/default_splash.webp',
+      loading: '/champions/zoe/default_loading.webp'
+    }
+  },
+  {
+    name: 'Kai\'Sa',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('March 7, 2018'),
+    images: {
+      portrait: '/champions/kaisa/default_portrait.webp',
+      splash: '/champions/kaisa/default_splash.webp',
+      loading: '/champions/kaisa/default_loading.webp'
+    }
+  },
+  {
+    name: 'Pyke',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('May 31, 2018'),
+    images: {
+      portrait: '/champions/pyke/default_portrait.webp',
+      splash: '/champions/pyke/default_splash.webp',
+      loading: '/champions/pyke/default_loading.webp'
+    }
+  },
+  {
+    name: 'Neeko',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('December 5, 2018'),
+    images: {
+      portrait: '/champions/neeko/default_portrait.webp',
+      splash: '/champions/neeko/default_splash.webp',
+      loading: '/champions/neeko/default_loading.webp'
+    }
+  },
+  {
+    name: 'Sylas',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('January 25, 2019'),
+    images: {
+      portrait: '/champions/sylas/default_portrait.webp',
+      splash: '/champions/sylas/default_splash.webp',
+      loading: '/champions/sylas/default_loading.webp'
+    }
+  },
+  {
+    name: 'Yuumi',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('May 14, 2019'),
+    images: {
+      portrait: '/champions/yuumi/default_portrait.webp',
+      splash: '/champions/yuumi/default_splash.webp',
+      loading: '/champions/yuumi/default_loading.webp'
+    }
+  },
+  {
+    name: 'Qiyana',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('May 14, 2019'),
+    images: {
+      portrait: '/champions/qiyana/default_portrait.webp',
+      splash: '/champions/qiyana/default_splash.webp',
+      loading: '/champions/qiyana/default_loading.webp'
+    }
+  },
+  {
+    name: 'Senna',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('November 10, 2019'),
+    images: {
+      portrait: '/champions/senna/default_portrait.webp',
+      splash: '/champions/senna/default_splash.webp',
+      loading: '/champions/senna/default_loading.webp'
+    }
+  },
+  {
+    name: 'Aphelios',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('December 11, 2019'),
+    images: {
+      portrait: '/champions/aphelios/default_portrait.webp',
+      splash: '/champions/aphelios/default_splash.webp',
+      loading: '/champions/aphelios/default_loading.webp'
+    }
+  },
+  {
+    name: 'Sett',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('January 14, 2020'),
+    images: {
+      portrait: '/champions/sett/default_portrait.webp',
+      splash: '/champions/sett/default_splash.webp',
+      loading: '/champions/sett/default_loading.webp'
+    }
+  },
+  {
+    name: 'Lillia',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('July 22, 2020'),
+    images: {
+      portrait: '/champions/lillia/default_portrait.webp',
+      splash: '/champions/lillia/default_splash.webp',
+      loading: '/champions/lillia/default_loading.webp'
+    }
+  },
+  {
+    name: 'Yone',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('August 6, 2020'),
+    images: {
+      portrait: '/champions/yone/default_portrait.webp',
+      splash: '/champions/yone/default_splash.webp',
+      loading: '/champions/yone/default_loading.webp'
+    }
+  },
+  {
+    name: 'Samira',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('September 21, 2020'),
+    images: {
+      portrait: '/champions/samira/default_portrait.webp',
+      splash: '/champions/samira/default_splash.webp',
+      loading: '/champions/samira/default_loading.webp'
+    }
+  },
+  {
+    name: 'Seraphine',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('October 29, 2020'),
+    images: {
+      portrait: '/champions/seraphine/default_portrait.webp',
+      splash: '/champions/seraphine/default_splash.webp',
+      loading: '/champions/seraphine/default_loading.webp'
+    }
+  },
+  {
+    name: 'Rell',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('December 10, 2020'),
+    images: {
+      portrait: '/champions/rell/default_portrait.webp',
+      splash: '/champions/rell/default_splash.webp',
+      loading: '/champions/rell/default_loading.webp'
+    }
+  },
+  {
+    name: 'Viego',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('January 21, 2021'),
+    images: {
+      portrait: '/champions/viego/default_portrait.webp',
+      splash: '/champions/viego/default_splash.webp',
+      loading: '/champions/viego/default_loading.webp'
+    }
+  },
+  {
+    name: 'Gwen',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('April 15, 2021'),
+    images: {
+      portrait: '/champions/gwen/default_portrait.webp',
+      splash: '/champions/gwen/default_splash.webp',
+      loading: '/champions/gwen/default_loading.webp'
+    }
+  },
+  {
+    name: 'Akshan',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('July 22, 2021'),
+    images: {
+      portrait: '/champions/akshan/default_portrait.webp',
+      splash: '/champions/akshan/default_splash.webp',
+      loading: '/champions/akshan/default_loading.webp'
+    }
+  },
+  {
+    name: 'Vex',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('September 23, 2021'),
+    images: {
+      portrait: '/champions/vex/default_portrait.webp',
+      splash: '/champions/vex/default_splash.webp',
+      loading: '/champions/vex/default_loading.webp'
+    }
+  },
+  {
+    name: 'Zeri',
+    rarityTier: 'ULTIMATE',
+    releasedAt: new Date('January 20, 2022'),
+    images: {
+      portrait: '/champions/zeri/default_portrait.webp',
+      splash: '/champions/zeri/default_splash.webp',
+      loading: '/champions/zeri/default_loading.webp'
+    }
+  },
+  {
+    name: 'Renata Glasc',
+    rarityTier: 'ULTIMATE',
+    releasedAt: new Date('February 17, 2022'),
+    images: {
+      portrait: '/champions/renata_glasc/default_portrait.webp',
+      splash: '/champions/renata_glasc/default_splash.webp',
+      loading: '/champions/renata_glasc/default_loading.webp'
+    }
+  },
+  {
+    name: 'Bel\'Veth',
+    rarityTier: 'ULTIMATE',
+    releasedAt: new Date('June 9, 2022'),
+    images: {
+      portrait: '/champions/belveth/default_portrait.webp',
+      splash: '/champions/belveth/default_splash.webp',
+      loading: '/champions/belveth/default_loading.webp'
+    }
+  },
+  {
+    name: 'Nilah',
+    rarityTier: 'ULTIMATE',
+    releasedAt: new Date('July 13, 2022'),
+    images: {
+      portrait: '/champions/nilah/default_portrait.webp',
+      splash: '/champions/nilah/default_splash.webp',
+      loading: '/champions/nilah/default_loading.webp'
+    }
+  },
+  {
+    name: 'K\'Sante',
+    rarityTier: 'ULTIMATE',
+    releasedAt: new Date('November 2, 2022'),
+    images: {
+      portrait: '/champions/ksante/default_portrait.webp',
+      splash: '/champions/ksante/default_splash.webp',
+      loading: '/champions/ksante/default_loading.webp'
+    }
+  },
+  {
+    name: 'Milio',
+    rarityTier: 'ULTIMATE',
+    releasedAt: new Date('March 23, 2023'),
+    images: {
+      portrait: '/champions/milio/default_portrait.webp',
+      splash: '/champions/milio/default_splash.webp',
+      loading: '/champions/milio/default_loading.webp'
+    }
+  },
+  {
+    name: 'Naafiri',
+    rarityTier: 'ULTIMATE',
+    releasedAt: new Date('July 19, 2023'),
+    images: {
+      portrait: '/champions/naafiri/default_portrait.webp',
+      splash: '/champions/naafiri/default_splash.webp',
+      loading: '/champions/naafiri/default_loading.webp'
+    }
+  },
+  {
+    name: 'Briar',
+    rarityTier: 'ULTIMATE',
+    releasedAt: new Date('September 14, 2023'),
+    images: {
+      portrait: '/champions/briar/default_portrait.webp',
+      splash: '/champions/briar/default_splash.webp',
+      loading: '/champions/briar/default_loading.webp'
+    }
+  },
 ]
