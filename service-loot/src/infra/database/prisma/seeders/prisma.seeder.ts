@@ -13,14 +13,16 @@ async function seedCapsules() {
   capsules.push(
     Capsule.create({
       name: 'Champion Capsule',
-      type: 'CHAMPION_CAPSULE',
+      minItemsPrize: 1,
+      maxItemsPrize: 3,
     }),
   )
 
   capsules.push(
     Capsule.create({
       name: 'Glorious Champion Capsule',
-      type: 'CHAMPION_CAPSULE',
+      minItemsPrize: 1,
+      maxItemsPrize: 3,
     }),
   )
 

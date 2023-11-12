@@ -4,8 +4,9 @@ import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
 export interface CapsuleAttributes {
   name: string
-  type: 'HEXTECH_CHEST' | 'CHAMPION_CAPSULE'
   requiresKey: boolean
+  minItemsPrize: number
+  maxItemsPrize: number
   createdAt: Date
   updatedAt: Date
 }
@@ -15,12 +16,16 @@ export class Capsule extends Entity<CapsuleAttributes> {
     return this.attributes.name
   }
 
-  get type() {
-    return this.attributes.type
-  }
-
   get requiresKey() {
     return this.attributes.requiresKey
+  }
+
+  get minItemsPrize() {
+    return this.attributes.minItemsPrize
+  }
+
+  get maxItemsPrize() {
+    return this.attributes.maxItemsPrize
   }
 
   get createdAt() {

@@ -3,3 +3,6 @@
 - Hecarim
 - Heimerdinger
 - Jinx
+- Lucian
+- Malphite
+- Nocturne
