@@ -588,4 +588,384 @@ export const champions: Champion[] = [
       loading: '/champions/galio/default_loading.webp'
     }
   },
+  {
+    name: 'Urgot',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('August 24, 2010'),
+    images: {
+      portrait: '/champions/urgot/default_portrait.webp',
+      splash: '/champions/urgot/default_splash.webp',
+      loading: '/champions/urgot/default_loading.webp'
+    }
+  },
+  {
+    name: 'Miss Fortune',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('September 8, 2010'),
+    images: {
+      portrait: '/champions/miss_fortune/default_portrait.webp',
+      splash: '/champions/miss_fortune/default_splash.webp',
+      loading: '/champions/miss_fortune/default_loading.webp'
+    }
+  },
+  {
+    name: 'Sona',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('September 21, 2010'),
+    images: {
+      portrait: '/champions/sona/default_portrait.webp',
+      splash: '/champions/sona/default_splash.webp',
+      loading: '/champions/sona/default_loading.webp'
+    }
+  },
+  {
+    name: 'Swain',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('October 5, 2010'),
+    images: {
+      portrait: '/champions/swain/default_portrait.webp',
+      splash: '/champions/swain/default_splash.webp',
+      loading: '/champions/swain/default_loading.webp'
+    }
+  },
+  {
+    name: 'Lux',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('October 19, 2010'),
+    images: {
+      portrait: '/champions/lux/default_portrait.webp',
+      splash: '/champions/lux/default_splash.webp',
+      loading: '/champions/lux/default_loading.webp'
+    }
+  },
+  {
+    name: 'LeBlanc',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('November 2, 2010'),
+    images: {
+      portrait: '/champions/leblanc/default_portrait.webp',
+      splash: '/champions/leblanc/default_splash.webp',
+      loading: '/champions/leblanc/default_loading.webp'
+    }
+  },
+  {
+    name: 'Irelia',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('November 16, 2010'),
+    images: {
+      portrait: '/champions/irelia/default_portrait.webp',
+      splash: '/champions/irelia/default_splash.webp',
+      loading: '/champions/irelia/default_loading.webp'
+    }
+  },
+  {
+    name: 'Trundle',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('December 1, 2010'),
+    images: {
+      portrait: '/champions/trundle/default_portrait.webp',
+      splash: '/champions/trundle/default_splash.webp',
+      loading: '/champions/trundle/default_loading.webp'
+    }
+  },
+  {
+    name: 'Cassiopeia',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('December 14, 2010'),
+    images: {
+      portrait: '/champions/cassiopeia/default_portrait.webp',
+      splash: '/champions/cassiopeia/default_splash.webp',
+      loading: '/champions/cassiopeia/default_loading.webp'
+    }
+  },
+  {
+    name: 'Caitlyn',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('January 4, 2011'),
+    images: {
+      portrait: '/champions/caitlyn/default_portrait.webp',
+      splash: '/champions/caitlyn/default_splash.webp',
+      loading: '/champions/caitlyn/default_loading.webp'
+    }
+  },
+  {
+    name: 'Renekton',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('January 18, 2011'),
+    images: {
+      portrait: '/champions/renekton/default_portrait.webp',
+      splash: '/champions/renekton/default_splash.webp',
+      loading: '/champions/renekton/default_loading.webp'
+    }
+  },
+  {
+    name: 'Karma',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('February 1, 2011'),
+    images: {
+      portrait: '/champions/karma/default_portrait.webp',
+      splash: '/champions/karma/default_splash.webp',
+      loading: '/champions/karma/default_loading.webp'
+    }
+  },
+  {
+    name: 'Maokai',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('February 16, 2011'),
+    images: {
+      portrait: '/champions/maokai/default_portrait.webp',
+      splash: '/champions/maokai/default_splash.webp',
+      loading: '/champions/maokai/default_loading.webp'
+    }
+  },
+  {
+    name: 'Jarvan IV',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('March 1, 2011'),
+    images: {
+      portrait: '/champions/jarvan_iv/default_portrait.webp',
+      splash: '/champions/jarvan_iv/default_splash.webp',
+      loading: '/champions/jarvan_iv/default_loading.webp'
+    }
+  },
+  {
+    name: 'Nocturne',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('March 15, 2011'),
+    images: {
+      portrait: '/champions/nocturne/default_portrait.webp',
+      splash: '/champions/nocturne/default_splash.webp',
+      loading: '/champions/nocturne/default_loading.webp'
+    }
+  },
+  {
+    name: 'Lee Sin',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('April 1, 2011'),
+    images: {
+      portrait: '/champions/lee_sin/default_portrait.webp',
+      splash: '/champions/lee_sin/default_splash.webp',
+      loading: '/champions/lee_sin/default_loading.webp'
+    }
+  },
+  {
+    name: 'Brand',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('April 12, 2011'),
+    images: {
+      portrait: '/champions/brand/default_portrait.webp',
+      splash: '/champions/brand/default_splash.webp',
+      loading: '/champions/brand/default_loading.webp'
+    }
+  },
+  {
+    name: 'Rumble',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('April 26, 2011'),
+    images: {
+      portrait: '/champions/rumble/default_portrait.webp',
+      splash: '/champions/rumble/default_splash.webp',
+      loading: '/champions/rumble/default_loading.webp'
+    }
+  },
+  {
+    name: 'Vayne',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('May 10, 2011'),
+    images: {
+      portrait: '/champions/vayne/default_portrait.webp',
+      splash: '/champions/vayne/default_splash.webp',
+      loading: '/champions/vayne/default_loading.webp'
+    }
+  },
+  {
+    name: 'Orianna',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('June 1, 2011'),
+    images: {
+      portrait: '/champions/orianna/default_portrait.webp',
+      splash: '/champions/orianna/default_splash.webp',
+      loading: '/champions/orianna/default_loading.webp'
+    }
+  },
+  {
+    name: 'Yorick',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('June 22, 2011'),
+    images: {
+      portrait: '/champions/yorick/default_portrait.webp',
+      splash: '/champions/yorick/default_splash.webp',
+      loading: '/champions/yorick/default_loading.webp'
+    }
+  },
+  {
+    name: 'Leona',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('July 13, 2011'),
+    images: {
+      portrait: '/champions/leona/default_portrait.webp',
+      splash: '/champions/leona/default_splash.webp',
+      loading: '/champions/leona/default_loading.webp'
+    }
+  },
+  {
+    name: 'Wukong',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('July 26, 2011'),
+    images: {
+      portrait: '/champions/wukong/default_portrait.webp',
+      splash: '/champions/wukong/default_splash.webp',
+      loading: '/champions/wukong/default_loading.webp'
+    }
+  },
+  {
+    name: 'Skarner',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('August 9, 2011'),
+    images: {
+      portrait: '/champions/skarner/default_portrait.webp',
+      splash: '/champions/skarner/default_splash.webp',
+      loading: '/champions/skarner/default_loading.webp'
+    }
+  },
+  {
+    name: 'Talon',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('August 24, 2011'),
+    images: {
+      portrait: '/champions/talon/default_portrait.webp',
+      splash: '/champions/talon/default_splash.webp',
+      loading: '/champions/talon/default_loading.webp'
+    }
+  },
+  {
+    name: 'Riven',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('September 14, 2011'),
+    images: {
+      portrait: '/champions/riven/default_portrait.webp',
+      splash: '/champions/riven/default_splash.webp',
+      loading: '/champions/riven/default_loading.webp'
+    }
+  },
+  {
+    name: 'Xerath',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('October 5, 2011'),
+    images: {
+      portrait: '/champions/xerath/default_portrait.webp',
+      splash: '/champions/xerath/default_splash.webp',
+      loading: '/champions/xerath/default_loading.webp'
+    }
+  },
+  {
+    name: 'Graves',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('October 19, 2011'),
+    images: {
+      portrait: '/champions/graves/default_portrait.webp',
+      splash: '/champions/graves/default_splash.webp',
+      loading: '/champions/graves/default_loading.webp'
+    }
+  },
+  {
+    name: 'Shyvana',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('November 1, 2011'),
+    images: {
+      portrait: '/champions/shyvana/default_portrait.webp',
+      splash: '/champions/shyvana/default_splash.webp',
+      loading: '/champions/shyvana/default_loading.webp'
+    }
+  },
+  {
+    name: 'Fizz',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('November 15, 2011'),
+    images: {
+      portrait: '/champions/fizz/default_portrait.webp',
+      splash: '/champions/fizz/default_splash.webp',
+      loading: '/champions/fizz/default_loading.webp'
+    }
+  },
+  {
+    name: 'Volibear',
+    rarityTier: 'EPIC',
+    releasedAt: new Date('November 29, 2011'),
+    images: {
+      portrait: '/champions/volibear/default_portrait.webp',
+      splash: '/champions/volibear/default_splash.webp',
+      loading: '/champions/volibear/default_loading.webp'
+    }
+  },
+  {
+    name: 'Ahri',
+    rarityTier: 'LEGENDARY',
+    releasedAt: new Date('December 14, 2011'),
+    images: {
+      portrait: '/champions/ahri/default_portrait.webp',
+      splash: '/champions/ahri/default_splash.webp',
+      loading: '/champions/ahri/default_loading.webp'
+    }
+  },
+  {
+    name: 'Viktor',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('December 29, 2011'),
+    images: {
+      portrait: '/champions/viktor/default_portrait.webp',
+      splash: '/champions/viktor/default_splash.webp',
+      loading: '/champions/viktor/default_loading.webp'
+    }
+  },
+  {
+    name: 'Sejuani',
+    rarityTier: 'STANDARD',
+    releasedAt: new Date('January 17, 2012'),
+    images: {
+      portrait: '/champions/sejuani/default_portrait.webp',
+      splash: '/champions/sejuani/default_splash.webp',
+      loading: '/champions/sejuani/default_loading.webp'
+    }
+  },
+  {
+    name: 'Ziggs',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('February 1, 2012'),
+    images: {
+      portrait: '/champions/ziggs/default_portrait.webp',
+      splash: '/champions/ziggs/default_splash.webp',
+      loading: '/champions/ziggs/default_loading.webp'
+    }
+  },
+  {
+    name: 'Nautilus',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('February 14, 2012'),
+    images: {
+      portrait: '/champions/nautilus/default_portrait.webp',
+      splash: '/champions/nautilus/default_splash.webp',
+      loading: '/champions/nautilus/default_loading.webp'
+    }
+  },
+  {
+    name: 'Fiora',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('February 29, 2012'),
+    images: {
+      portrait: '/champions/fiora/default_portrait.webp',
+      splash: '/champions/fiora/default_splash.webp',
+      loading: '/champions/fiora/default_loading.webp'
+    }
+  },
+  {
+    name: 'Lulu',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('March 20, 2012'),
+    images: {
+      portrait: '/champions/lulu/default_portrait.webp',
+      splash: '/champions/lulu/default_splash.webp',
+      loading: '/champions/lulu/default_loading.webp'
+    }
+  },
 ]
