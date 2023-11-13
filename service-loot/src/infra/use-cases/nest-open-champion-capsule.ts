@@ -1,4 +1,4 @@
-import { OpenChampionCapsuleUseCase } from '@/domain/application/use-cases/open-champion-capsule'
+import { OpenCapsuleUseCase } from '@/domain/application/use-cases/open-capsule'
 import { Injectable } from '@nestjs/common'
 import { UserCapsuleRepository } from '../../domain/application/repositories/user-capsule-repository'
 import { CapsuleRepository } from '../../domain/application/repositories/capsule-repository'
@@ -6,7 +6,7 @@ import { ItemRepository } from '../../domain/application/repositories/item-repos
 import { UserItemRepository } from '../../domain/application/repositories/user-item-repository'
 
 @Injectable()
-export class NestOpenChampionCapsuleUseCase extends OpenChampionCapsuleUseCase {
+export class NestOpenChampionCapsuleUseCase extends OpenCapsuleUseCase {
   constructor(
     userCapsuleRepository: UserCapsuleRepository,
     capsuleRepository: CapsuleRepository,

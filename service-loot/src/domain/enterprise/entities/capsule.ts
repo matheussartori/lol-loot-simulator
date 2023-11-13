@@ -4,6 +4,7 @@ import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
 export interface CapsuleAttributes {
   name: string
+  slug: string
   requiresKey: boolean
   minItemsPrize: number
   maxItemsPrize: number
@@ -14,6 +15,10 @@ export interface CapsuleAttributes {
 export class Capsule extends Entity<CapsuleAttributes> {
   get name() {
     return this.attributes.name
+  }
+
+  get slug() {
+    return this.attributes.slug
   }
 
   get requiresKey() {
@@ -34,6 +39,16 @@ export class Capsule extends Entity<CapsuleAttributes> {
 
   get updatedAt() {
     return this.attributes.updatedAt
+  }
+
+  rollRewardedItemsQuantity() {
+    const rewardedItemsQuantity =
+      Math.floor(
+        Math.random() *
+          (this.attributes.maxItemsPrize - this.attributes.minItemsPrize + 1),
+      ) + this.attributes.minItemsPrize
+
+    return rewardedItemsQuantity
   }
 
   static create(

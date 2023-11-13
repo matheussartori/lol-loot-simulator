@@ -15,7 +15,10 @@ export function makeCapsule(
   const capsule = Capsule.create(
     {
       name: faker.word.words(2),
-      type: faker.helpers.arrayElement(['HEXTECH_CHEST', 'CHAMPION_CAPSULE']),
+      minItemsPrize: faker.number.int({ min: 1, max: 2 }),
+      maxItemsPrize: faker.number.int({ min: 3, max: 4 }),
+      requiresKey: faker.datatype.boolean(),
+      slug: faker.lorem.slug({ min: 1, max: 3 }),
       createdAt: faker.date.past(),
       updatedAt: faker.date.recent(),
       ...override,

@@ -25,6 +25,7 @@ model User {
 model Capsule {
   id            String    @id @default(uuid())
   name          String
+  slug          String    @unique
   requiresKey   Boolean   @map("requires_key")
   minItemsPrize Int
   maxItemsPrize Int
@@ -120,5 +121,5 @@ enum RarityTier {
 }
 
 enum UserItemType {
-  CHAMPION_FRAGMENT
+  CHAMPION_SHARD
 }

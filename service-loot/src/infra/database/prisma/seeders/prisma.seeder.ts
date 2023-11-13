@@ -21,8 +21,8 @@ async function seedCapsules() {
   capsules.push(
     Capsule.create({
       name: 'Glorious Champion Capsule',
-      minItemsPrize: 1,
-      maxItemsPrize: 3,
+      minItemsPrize: 3,
+      maxItemsPrize: 4,
     }),
   )
 

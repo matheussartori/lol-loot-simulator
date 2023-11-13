@@ -9,7 +9,7 @@ import {
   NotFoundException,
   ForbiddenException,
 } from '@nestjs/common'
-import { OpenChampionCapsuleUseCase } from '@/domain/application/use-cases/open-champion-capsule'
+import { OpenCapsuleUseCase } from '@/domain/application/use-cases/open-capsule'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import { CapsuleNotFoundError } from '@/domain/application/use-cases/errors/capsule-not-found-error'
@@ -30,7 +30,7 @@ const bodyValidationPipe = new ZodValidationPipe(openChampionCapsuleBodySchema)
 
 @Controller('/capsules/champion_capsule/open')
 export class OpenChampionCapsuleController {
-  constructor(private openChampionCapsule: OpenChampionCapsuleUseCase) {}
+  constructor(private openChampionCapsule: OpenCapsuleUseCase) {}
 
   @Post()
   async handle(

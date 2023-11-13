@@ -1,5 +1,5 @@
 import { InMemoryUserCapsuleRepository } from 'test/repositories/in-memory-user-capsule-repository'
-import { OpenChampionCapsuleUseCase } from './open-champion-capsule'
+import { OpenCapsuleUseCase } from './open-capsule'
 import { InMemoryCapsuleRepository } from 'test/repositories/in-memory-capsule-repository'
 import { InMemoryItemRepository } from 'test/repositories/in-memory-item-repository'
 import { InMemoryUserItemRepository } from 'test/repositories/in-memory-user-item-repository'
@@ -17,7 +17,7 @@ let inMemoryCapsuleRepository: InMemoryCapsuleRepository
 let inMemoryItemRepository: InMemoryItemRepository
 let inMemoryUserItemRepository: InMemoryUserItemRepository
 
-let sut: OpenChampionCapsuleUseCase
+let sut: OpenCapsuleUseCase
 
 describe('open champion capsule use case', () => {
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('open champion capsule use case', () => {
     inMemoryItemRepository = new InMemoryItemRepository()
     inMemoryUserItemRepository = new InMemoryUserItemRepository()
 
-    sut = new OpenChampionCapsuleUseCase(
+    sut = new OpenCapsuleUseCase(
       inMemoryUserCapsuleRepository,
       inMemoryCapsuleRepository,
       inMemoryItemRepository,

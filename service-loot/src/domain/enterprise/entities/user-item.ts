@@ -2,7 +2,7 @@ import { Optional } from '@/core/types/optional'
 import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
 
-export type UserItemType = 'CHAMPION_FRAGMENT'
+export type UserItemType = 'CHAMPION_SHARD'
 
 export interface UserItemAttributes {
   userId: UniqueEntityID
