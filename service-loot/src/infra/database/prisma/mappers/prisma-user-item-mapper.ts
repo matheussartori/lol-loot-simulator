@@ -8,7 +8,6 @@ export class PrismaUserItemMapper {
       {
         userId: new UniqueEntityID(raw.userId),
         itemId: new UniqueEntityID(raw.itemId),
-        type: raw.type,
         userCapsuleId: raw.userCapsuleId
           ? new UniqueEntityID(raw.userCapsuleId)
           : null,
@@ -23,7 +22,6 @@ export class PrismaUserItemMapper {
       id: userItem.id.toString(),
       userId: userItem.userId.toString(),
       itemId: userItem.itemId.toString(),
-      type: userItem.type,
       userCapsuleId: userItem.userCapsuleId
         ? userItem.userCapsuleId.toString()
         : null,

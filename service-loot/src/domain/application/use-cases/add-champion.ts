@@ -1,8 +1,9 @@
 import { Either, left, right } from '@/core/either'
 import { ItemRepository } from '@/domain/application/repositories/item-repository'
 import { ItemAlreadyExistsError } from '@/domain/application/use-cases/errors/item-already-exists-error'
-import { Item, RarityTier } from '@/domain/enterprise/entities/item'
+import { Item } from '@/domain/enterprise/entities/item'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { RarityTier } from '@/domain/enterprise/entities/rarity'
 
 interface AddChampionUseCaseParams {
   itemId: string

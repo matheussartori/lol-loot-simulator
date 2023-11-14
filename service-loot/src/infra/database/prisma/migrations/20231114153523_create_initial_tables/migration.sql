@@ -4,9 +4,6 @@ CREATE TYPE "ItemType" AS ENUM ('CHAMPION', 'SKIN', 'CHROMA');
 -- CreateEnum
 CREATE TYPE "RarityTier" AS ENUM ('STANDARD', 'EPIC', 'LEGENDARY', 'MYTHIC', 'ULTIMATE', 'EXCLUSIVE');
 
--- CreateEnum
-CREATE TYPE "UserItemType" AS ENUM ('CHAMPION_FRAGMENT');
-
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
@@ -24,6 +21,7 @@ CREATE TABLE "users" (
 CREATE TABLE "capsules" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
     "requires_key" BOOLEAN NOT NULL,
     "minItemsPrize" INTEGER NOT NULL,
     "maxItemsPrize" INTEGER NOT NULL,
@@ -40,6 +38,7 @@ CREATE TABLE "capsule_odds" (
     "rarity_tier" "RarityTier" NOT NULL,
     "odd" DOUBLE PRECISION NOT NULL,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "capsule_odds_pkey" PRIMARY KEY ("id")
 );
@@ -84,7 +83,6 @@ CREATE TABLE "user_items" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "item_id" TEXT NOT NULL,
-    "type" "UserItemType" NOT NULL,
     "user_capsule_id" TEXT,
     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
@@ -96,6 +94,9 @@ CREATE UNIQUE INDEX "users_user_id_key" ON "users"("user_id");
 
 -- CreateIndex
 CREATE INDEX "users_user_id_idx" ON "users"("user_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "capsules_slug_key" ON "capsules"("slug");
 
 -- CreateIndex
 CREATE INDEX "user_capsules_user_id_idx" ON "user_capsules"("user_id");

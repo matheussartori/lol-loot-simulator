@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common'
 import { MessagePattern, Payload } from '@nestjs/microservices'
 import { AddChampionUseCase } from '@/domain/application/use-cases/add-champion'
-import { RarityTier } from '@/domain/enterprise/entities/item'
+import { RarityTier } from '@/domain/enterprise/entities/rarity'
 
 interface AddChampionMessage {
   champion: {
