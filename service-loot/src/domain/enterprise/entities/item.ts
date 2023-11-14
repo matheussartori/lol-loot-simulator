@@ -1,16 +1,9 @@
 import { Optional } from '@/core/types/optional'
 import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
+import { RarityTier } from '@/domain/enterprise/entities/rarity'
 
 export type ItemType = 'CHAMPION' | 'SKIN' | 'CHROMA'
-
-export type RarityTier =
-  | 'STANDARD'
-  | 'EPIC'
-  | 'LEGENDARY'
-  | 'MYTHIC'
-  | 'ULTIMATE'
-  | 'EXCLUSIVE'
 
 export interface ItemAttributes {
   itemId: UniqueEntityID

@@ -10,6 +10,10 @@ import { CapsuleRepository } from '@/domain/application/repositories/capsule-rep
 import { PrismaCapsuleRepository } from './prisma/repositories/prisma-capsule-repository'
 import { UserItemRepository } from '@/domain/application/repositories/user-item-repository'
 import { PrismaUserItemRepository } from './prisma/repositories/prisma-user-item-repository'
+import { CapsuleItemRepository } from '@/domain/application/repositories/capsule-item-repository'
+import { PrismaCapsuleItemRepository } from '@/infra/database/prisma/repositories/prisma-capsule-item-repository'
+import { CapsuleOddRepository } from '@/domain/application/repositories/capsule-odd-repository'
+import { PrismaCapsuleOddRepository } from '@/infra/database/prisma/repositories/prisma-capsule-odd-repository'
 
 @Module({
   providers: [
@@ -34,6 +38,14 @@ import { PrismaUserItemRepository } from './prisma/repositories/prisma-user-item
       provide: UserItemRepository,
       useClass: PrismaUserItemRepository,
     },
+    {
+      provide: CapsuleItemRepository,
+      useClass: PrismaCapsuleItemRepository,
+    },
+    {
+      provide: CapsuleOddRepository,
+      useClass: PrismaCapsuleOddRepository,
+    },
   ],
   exports: [
     PrismaService,
@@ -42,6 +54,8 @@ import { PrismaUserItemRepository } from './prisma/repositories/prisma-user-item
     UserCapsuleRepository,
     CapsuleRepository,
     UserItemRepository,
+    CapsuleItemRepository,
+    CapsuleOddRepository,
   ],
 })
 export class DatabaseModule {}

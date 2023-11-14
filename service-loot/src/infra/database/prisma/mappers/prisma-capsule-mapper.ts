@@ -7,7 +7,9 @@ export class PrismaCapsuleMapper {
     return Capsule.create(
       {
         name: raw.name,
-        type: raw.type,
+        slug: raw.slug,
+        minItemsPrize: raw.minItemsPrize,
+        maxItemsPrize: raw.maxItemsPrize,
         requiresKey: raw.requiresKey,
         createdAt: raw.createdAt ?? new Date(),
         updatedAt: raw.updatedAt ?? new Date(),
@@ -20,7 +22,9 @@ export class PrismaCapsuleMapper {
     return {
       id: capsule.id.toString(),
       name: capsule.name,
-      type: capsule.type,
+      slug: capsule.slug,
+      minItemsPrize: capsule.minItemsPrize,
+      maxItemsPrize: capsule.maxItemsPrize,
       requiresKey: capsule.requiresKey,
       createdAt: capsule.createdAt ?? new Date(),
       updatedAt: capsule.updatedAt ?? new Date(),

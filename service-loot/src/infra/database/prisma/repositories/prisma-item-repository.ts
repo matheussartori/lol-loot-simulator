@@ -1,8 +1,9 @@
 import { ItemRepository } from '@/domain/application/repositories/item-repository'
 import { PrismaService } from '@/infra/database/prisma/prisma.service'
-import { Item, ItemType, RarityTier } from '@/domain/enterprise/entities/item'
+import { Item, ItemType } from '@/domain/enterprise/entities/item'
 import { PrismaItemMapper } from '@/infra/database/prisma/mappers/prisma-item-mapper'
 import { Injectable } from '@nestjs/common'
+import { RarityTier } from '@/domain/enterprise/entities/rarity'
 
 @Injectable()
 export class PrismaItemRepository implements ItemRepository {

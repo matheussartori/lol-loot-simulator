@@ -14,7 +14,7 @@ model User {
   mythicEssence Int       @map("mythic_essence")
   keys          Int       @map("keys")
   createdAt     DateTime? @default(now()) @map("created_at")
-  updatedAt     DateTime? @default(now()) @map("updated_at")
+  updatedAt     DateTime? @default(now()) @updatedAt @map("updated_at")
 
   userItems UserItem[]
 
@@ -30,7 +30,7 @@ model Capsule {
   minItemsPrize Int
   maxItemsPrize Int
   createdAt     DateTime? @default(now()) @map("created_at")
-  updatedAt     DateTime? @default(now()) @map("updated_at")
+  updatedAt     DateTime? @default(now()) @updatedAt @map("updated_at")
 
   rewards CapsuleItem[]
   odds    CapsuleOdd[]
@@ -44,6 +44,7 @@ model CapsuleOdd {
   rarityTier RarityTier @map("rarity_tier")
   odd        Float
   createdAt  DateTime?  @default(now()) @map("created_at")
+  updatedAt  DateTime?  @default(now()) @updatedAt @map("updated_at")
 
   capsule Capsule @relation(fields: [capsuleId], references: [id])
 
@@ -70,7 +71,7 @@ model Item {
   type       ItemType
   rarityTier RarityTier @map("rarity_tier")
   createdAt  DateTime?  @default(now()) @map("created_at")
-  updatedAt  DateTime?  @default(now()) @map("updated_at")
+  updatedAt  DateTime?  @default(now()) @updatedAt @map("updated_at")
 
   capsuleItems CapsuleItem[]
 
@@ -83,7 +84,7 @@ model CapsuleItem {
   capsuleId String    @map("capsule_id")
   itemId    String    @map("item_id")
   createdAt DateTime? @default(now()) @map("created_at")
-  updatedAt DateTime? @default(now()) @map("updated_at")
+  updatedAt DateTime? @default(now()) @updatedAt @map("updated_at")
 
   capsule Capsule @relation(fields: [capsuleId], references: [id])
   item    Item    @relation(fields: [itemId], references: [id])
@@ -92,12 +93,11 @@ model CapsuleItem {
 }
 
 model UserItem {
-  id            String       @id @default(uuid())
-  userId        String       @map("user_id")
-  itemId        String       @map("item_id")
-  type          UserItemType
-  userCapsuleId String?      @map("user_capsule_id")
-  createdAt     DateTime?    @default(now()) @map("created_at")
+  id            String    @id @default(uuid())
+  userId        String    @map("user_id")
+  itemId        String    @map("item_id")
+  userCapsuleId String?   @map("user_capsule_id")
+  createdAt     DateTime? @default(now()) @map("created_at")
 
   userCapsule UserCapsule? @relation(fields: [userCapsuleId], references: [id])
   user        User         @relation(fields: [userId], references: [userId])
@@ -118,8 +118,4 @@ enum RarityTier {
   MYTHIC
   ULTIMATE
   EXCLUSIVE
-}
-
-enum UserItemType {
-  CHAMPION_SHARD
 }

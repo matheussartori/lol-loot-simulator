@@ -1,6 +1,7 @@
 import { Optional } from '@/core/types/optional'
 import { Entity } from 'src/core/entities/entity'
 import { UniqueEntityID } from 'src/core/entities/unique-entity-id'
+import { CapsuleOdd } from '@/domain/enterprise/entities/capsule-odd'
 
 export interface CapsuleAttributes {
   name: string
@@ -49,6 +50,24 @@ export class Capsule extends Entity<CapsuleAttributes> {
       ) + this.attributes.minItemsPrize
 
     return rewardedItemsQuantity
+  }
+
+  rollRarity(capsuleOdds: CapsuleOdd[]) {
+    const totalOdd = capsuleOdds.reduce((acc, odd) => acc + odd.odd, 0)
+
+    const random = Math.random() * totalOdd
+
+    let cumulativeOdd = 0
+
+    for (const capsuleOdd of capsuleOdds) {
+      cumulativeOdd += capsuleOdd.odd
+
+      if (random < cumulativeOdd) {
+        return capsuleOdd.rarityTier
+      }
+    }
+
+    return 'STANDARD'
   }
 
   static create(

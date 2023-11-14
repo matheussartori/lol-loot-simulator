@@ -7,6 +7,7 @@ import { PrismaCapsuleMapper } from '../mappers/prisma-capsule-mapper'
 @Injectable()
 export class PrismaCapsuleRepository implements CapsuleRepository {
   constructor(private prisma: PrismaService) {}
+
   async findById(capsuleId: string): Promise<Capsule | null> {
     const capsule = await this.prisma.capsule.findUnique({
       where: {

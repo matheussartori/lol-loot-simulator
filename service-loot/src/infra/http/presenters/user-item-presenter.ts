@@ -5,7 +5,6 @@ export class UserItemPresenter {
     return {
       id: userItem.id.toString(),
       itemId: userItem.itemId.toString(),
-      type: userItem.type,
       userCapsuleId: userItem.userCapsuleId
         ? userItem.userCapsuleId.toString()
         : null,

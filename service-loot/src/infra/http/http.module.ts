@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common'
 import { DatabaseModule } from '../database/database.module'
-import { OpenChampionCapsuleController } from './controllers/open-champion-capsule.controller'
+import { OpenCapsuleController } from './controllers/open-capsule.controller'
 import { OpenCapsuleUseCase } from '@/domain/application/use-cases/open-capsule'
-import { NestOpenChampionCapsuleUseCase } from '../use-cases/nest-open-champion-capsule'
 import { FetchUserItemsController } from './controllers/fetch-user-items.controller'
 import { FetchUserItemsUseCase } from '@/domain/application/use-cases/fetch-user-items'
 import { NestFetchUserItemsUseCase } from '../use-cases/nest-fetch-user-items'
+import { NestOpenCapsuleUseCase } from '@/infra/use-cases/nest-open-capsule'
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [OpenChampionCapsuleController, FetchUserItemsController],
+  controllers: [OpenCapsuleController, FetchUserItemsController],
   providers: [
     {
       provide: OpenCapsuleUseCase,
-      useClass: NestOpenChampionCapsuleUseCase,
+      useClass: NestOpenCapsuleUseCase,
     },
     {
       provide: FetchUserItemsUseCase,

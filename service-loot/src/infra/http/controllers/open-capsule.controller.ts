@@ -14,28 +14,26 @@ import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import { CapsuleNotFoundError } from '@/domain/application/use-cases/errors/capsule-not-found-error'
 import { ForbiddenCapsuleError } from '@/domain/application/use-cases/errors/forbidden-capsule-error'
-import { WrongCapsuleTypeError } from '@/domain/application/use-cases/errors/wrong-capsule-type-error'
 import { UserItemPresenter } from '../presenters/user-item-presenter'
 import { CapsuleAlreadyOpenedError } from '@/domain/application/use-cases/errors/capsule-already-opened'
+import { CapsuleWithNoRewardFoundError } from '@/domain/application/use-cases/errors/capsule-with-no-reward-found-error'
 
-const openChampionCapsuleBodySchema = z.object({
+const openCapsuleBodySchema = z.object({
   userCapsuleId: z.string().uuid(),
 })
 
-type OpenChampionCapsuleBodySchema = z.infer<
-  typeof openChampionCapsuleBodySchema
->
+type OpenCapsuleBodySchema = z.infer<typeof openCapsuleBodySchema>
 
-const bodyValidationPipe = new ZodValidationPipe(openChampionCapsuleBodySchema)
+const bodyValidationPipe = new ZodValidationPipe(openCapsuleBodySchema)
 
-@Controller('/capsules/champion_capsule/open')
-export class OpenChampionCapsuleController {
+@Controller('/capsules/open')
+export class OpenCapsuleController {
   constructor(private openChampionCapsule: OpenCapsuleUseCase) {}
 
   @Post()
   async handle(
     @CurrentUser() user: UserPayload,
-    @Body(bodyValidationPipe) body: OpenChampionCapsuleBodySchema,
+    @Body(bodyValidationPipe) body: OpenCapsuleBodySchema,
   ) {
     const result = await this.openChampionCapsule.execute({
       userCapsuleId: body.userCapsuleId,
@@ -50,7 +48,7 @@ export class OpenChampionCapsuleController {
           throw new NotFoundException(error.message)
         case ForbiddenCapsuleError:
           throw new ForbiddenException(error.message)
-        case WrongCapsuleTypeError:
+        case CapsuleWithNoRewardFoundError:
         case CapsuleAlreadyOpenedError:
           throw new ConflictException(error.message)
         default:

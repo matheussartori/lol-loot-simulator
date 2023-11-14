@@ -7,15 +7,21 @@ import { CapsuleNotFoundError } from './errors/capsule-not-found-error'
 import { makeUserCapsule } from 'test/factories/make-user-capsule'
 import { ForbiddenCapsuleError } from './errors/forbidden-capsule-error'
 import { makeCapsule } from 'test/factories/make-capsule'
-import { WrongCapsuleTypeError } from './errors/wrong-capsule-type-error'
 import { makeItem } from 'test/factories/make-item'
 import { CapsuleAlreadyOpenedError } from './errors/capsule-already-opened'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { InMemoryCapsuleItemRepository } from '../../../../test/repositories/in-memory-capsule-item-repository'
+import { InMemoryCapsuleOddRepository } from '../../../../test/repositories/in-memory-capsule-odd-repository'
+import { CapsuleWithNoRewardFoundError } from '@/domain/application/use-cases/errors/capsule-with-no-reward-found-error'
+import { makeCapsuleItem } from '../../../../test/factories/make-capsule-item'
+import { makeCapsuleOdd } from '../../../../test/factories/make-capsule-odd'
 
 let inMemoryUserCapsuleRepository: InMemoryUserCapsuleRepository
 let inMemoryCapsuleRepository: InMemoryCapsuleRepository
 let inMemoryItemRepository: InMemoryItemRepository
+let inMemoryCapsuleItemRepository: InMemoryCapsuleItemRepository
 let inMemoryUserItemRepository: InMemoryUserItemRepository
+let inMemoryCapsuleOddRepository: InMemoryCapsuleOddRepository
 
 let sut: OpenCapsuleUseCase
 
@@ -24,13 +30,19 @@ describe('open champion capsule use case', () => {
     inMemoryUserCapsuleRepository = new InMemoryUserCapsuleRepository()
     inMemoryCapsuleRepository = new InMemoryCapsuleRepository()
     inMemoryItemRepository = new InMemoryItemRepository()
+    inMemoryCapsuleItemRepository = new InMemoryCapsuleItemRepository(
+      inMemoryCapsuleRepository,
+      inMemoryItemRepository,
+    )
     inMemoryUserItemRepository = new InMemoryUserItemRepository()
+    inMemoryCapsuleOddRepository = new InMemoryCapsuleOddRepository()
 
     sut = new OpenCapsuleUseCase(
       inMemoryUserCapsuleRepository,
       inMemoryCapsuleRepository,
-      inMemoryItemRepository,
+      inMemoryCapsuleItemRepository,
       inMemoryUserItemRepository,
+      inMemoryCapsuleOddRepository,
     )
   })
 
@@ -46,7 +58,7 @@ describe('open champion capsule use case', () => {
 
   it('should not open a capsule if it does not belong to the user', async () => {
     const userCapsule = makeUserCapsule()
-    inMemoryUserCapsuleRepository.create(userCapsule)
+    await inMemoryUserCapsuleRepository.create(userCapsule)
 
     const result = await sut.execute({
       userCapsuleId: userCapsule.id.toString(),
@@ -62,7 +74,7 @@ describe('open champion capsule use case', () => {
       openedAt: new Date(),
       userId: new UniqueEntityID('any-user-id'),
     })
-    inMemoryUserCapsuleRepository.create(userCapsule)
+    await inMemoryUserCapsuleRepository.create(userCapsule)
 
     const result = await sut.execute({
       userCapsuleId: userCapsule.id.toString(),
@@ -75,7 +87,7 @@ describe('open champion capsule use case', () => {
 
   it('should not open a capsule if the capsule itself does not exists', async () => {
     const userCapsule = makeUserCapsule()
-    inMemoryUserCapsuleRepository.create(userCapsule)
+    await inMemoryUserCapsuleRepository.create(userCapsule)
 
     const result = await sut.execute({
       userCapsuleId: userCapsule.id.toString(),
@@ -86,15 +98,13 @@ describe('open champion capsule use case', () => {
     expect(result.value).toBeInstanceOf(CapsuleNotFoundError)
   })
 
-  it('should not open a capsule if the type is not CHAMPION_CAPSULE', async () => {
-    const capsule = makeCapsule({
-      type: 'HEXTECH_CHEST',
-    })
-    inMemoryCapsuleRepository.create(capsule)
+  it('should return an error if no rewards are configured for the capsule', async () => {
+    const capsule = makeCapsule()
+    await inMemoryCapsuleRepository.create(capsule)
     const userCapsule = makeUserCapsule({
       capsuleId: capsule.id,
     })
-    inMemoryUserCapsuleRepository.create(userCapsule)
+    await inMemoryUserCapsuleRepository.create(userCapsule)
 
     const result = await sut.execute({
       userCapsuleId: userCapsule.id.toString(),
@@ -102,44 +112,73 @@ describe('open champion capsule use case', () => {
     })
 
     expect(result.isLeft()).toBe(true)
-    expect(result.value).toBeInstanceOf(WrongCapsuleTypeError)
+    expect(result.value).toBeInstanceOf(CapsuleWithNoRewardFoundError)
   })
 
-  it('should return an empty array if no champions are found', async () => {
+  it('should be able to lower a rarity if a higher rarity is not available', async () => {
     const capsule = makeCapsule({
-      type: 'CHAMPION_CAPSULE',
+      minItemsPrize: 1,
+      maxItemsPrize: 1,
     })
-    inMemoryCapsuleRepository.create(capsule)
+    await inMemoryCapsuleRepository.create(capsule)
     const userCapsule = makeUserCapsule({
       capsuleId: capsule.id,
     })
-    inMemoryUserCapsuleRepository.create(userCapsule)
-
-    const result = await sut.execute({
-      userCapsuleId: userCapsule.id.toString(),
-      userId: userCapsule.userId.toString(),
-    })
-
-    expect(result.isRight()).toBe(true)
-    if (result.isRight()) {
-      expect(result.value.earnedItems).toHaveLength(0)
-    }
-  })
-
-  it('should return an array of champions on success', async () => {
+    await inMemoryUserCapsuleRepository.create(userCapsule)
     const item = makeItem({
-      type: 'CHAMPION',
       rarityTier: 'STANDARD',
     })
-    inMemoryItemRepository.create(item)
-    const capsule = makeCapsule({
-      type: 'CHAMPION_CAPSULE',
+    await inMemoryItemRepository.create(item)
+    const capsuleItem = makeCapsuleItem({
+      capsuleId: capsule.id,
+      itemId: item.itemId,
     })
-    inMemoryCapsuleRepository.create(capsule)
+    await inMemoryCapsuleItemRepository.create(capsuleItem)
+    const standardOdd = makeCapsuleOdd({
+      capsuleId: capsule.id,
+      rarityTier: 'STANDARD',
+      odd: 0,
+    })
+    const epicOdd = makeCapsuleOdd({
+      capsuleId: capsule.id,
+      rarityTier: 'EPIC',
+      odd: 100,
+    })
+    inMemoryCapsuleOddRepository.items.push(standardOdd, epicOdd)
+
+    const result = await sut.execute({
+      userCapsuleId: userCapsule.id.toString(),
+      userId: userCapsule.userId.toString(),
+    })
+
+    expect(result.isRight()).toBe(true)
+  })
+
+  it('should be able to open a capsule', async () => {
+    const capsule = makeCapsule({
+      minItemsPrize: 4,
+      maxItemsPrize: 4,
+    })
+    await inMemoryCapsuleRepository.create(capsule)
     const userCapsule = makeUserCapsule({
       capsuleId: capsule.id,
     })
-    inMemoryUserCapsuleRepository.create(userCapsule)
+    await inMemoryUserCapsuleRepository.create(userCapsule)
+    const item = makeItem({
+      rarityTier: 'STANDARD',
+    })
+    await inMemoryItemRepository.create(item)
+    const capsuleItem = makeCapsuleItem({
+      capsuleId: capsule.id,
+      itemId: item.itemId,
+    })
+    await inMemoryCapsuleItemRepository.create(capsuleItem)
+    const standardOdd = makeCapsuleOdd({
+      capsuleId: capsule.id,
+      rarityTier: 'STANDARD',
+      odd: 100,
+    })
+    inMemoryCapsuleOddRepository.items.push(standardOdd)
 
     const result = await sut.execute({
       userCapsuleId: userCapsule.id.toString(),
@@ -148,8 +187,7 @@ describe('open champion capsule use case', () => {
 
     expect(result.isRight()).toBe(true)
     if (result.isRight()) {
-      expect(result.value.earnedItems).toHaveLength(1)
-      expect(inMemoryUserCapsuleRepository.items[0].openedAt).toBeTruthy()
+      expect(result.value.earnedItems).toHaveLength(4)
     }
   })
 })
