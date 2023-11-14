@@ -31,7 +31,7 @@ export function makeCapsuleItem(
 export class CapsuleItemFactory {
   constructor(private prisma: PrismaService) {}
 
-  async makePrismaCapsule(
+  async makePrismaCapsuleItem(
     data: Partial<CapsuleItemAttributes> = {},
   ): Promise<CapsuleItem> {
     const capsuleItem = makeCapsuleItem(data)

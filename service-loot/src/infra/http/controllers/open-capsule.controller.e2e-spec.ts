@@ -25,7 +25,14 @@ describe('open champion capsule e2e', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule, DatabaseModule],
-      providers: [CapsuleFactory, UserCapsuleFactory, ItemFactory, UserFactory],
+      providers: [
+        CapsuleFactory,
+        UserCapsuleFactory,
+        ItemFactory,
+        UserFactory,
+        CapsuleItemFactory,
+        CapsuleOddFactory,
+      ],
     }).compile()
 
     app = moduleRef.createNestApplication()
@@ -54,11 +61,11 @@ describe('open champion capsule e2e', () => {
       type: 'CHAMPION',
       rarityTier: 'STANDARD',
     })
-    await capsuleItemFactory.makePrismaCapsule({
+    await capsuleItemFactory.makePrismaCapsuleItem({
       capsuleId: capsule.id,
       itemId: item.itemId,
     })
-    await capsuleOddFactory.makePrismaCapsule({
+    await capsuleOddFactory.makePrismaOddCapsule({
       capsuleId: capsule.id,
       rarityTier: 'STANDARD',
       odd: 100,

@@ -39,7 +39,7 @@ export function makeCapsuleOdd(
 export class CapsuleOddFactory {
   constructor(private prisma: PrismaService) {}
 
-  async makePrismaCapsule(
+  async makePrismaOddCapsule(
     data: Partial<CapsuleOddAttributes> = {},
   ): Promise<CapsuleOdd> {
     const capsuleOdd = makeCapsuleOdd(data)

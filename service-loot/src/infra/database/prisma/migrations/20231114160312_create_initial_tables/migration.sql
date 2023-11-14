@@ -114,7 +114,7 @@ ALTER TABLE "capsule_odds" ADD CONSTRAINT "capsule_odds_capsule_id_fkey" FOREIGN
 ALTER TABLE "capsule_items" ADD CONSTRAINT "capsule_items_capsule_id_fkey" FOREIGN KEY ("capsule_id") REFERENCES "capsules"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "capsule_items" ADD CONSTRAINT "capsule_items_item_id_fkey" FOREIGN KEY ("item_id") REFERENCES "items"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "capsule_items" ADD CONSTRAINT "capsule_items_item_id_fkey" FOREIGN KEY ("item_id") REFERENCES "items"("item_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "user_items" ADD CONSTRAINT "user_items_user_capsule_id_fkey" FOREIGN KEY ("user_capsule_id") REFERENCES "user_capsules"("id") ON DELETE SET NULL ON UPDATE CASCADE;

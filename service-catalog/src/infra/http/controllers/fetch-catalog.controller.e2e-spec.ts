@@ -27,8 +27,6 @@ describe('fetch catalog controller e2e', () => {
 
     const response = await request(app.getHttpServer()).get('/catalog')
 
-    console.log(response.body)
-
     expect(response.statusCode).toBe(200)
     expect(response.body.champions).toHaveLength(1)
   })

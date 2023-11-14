@@ -87,7 +87,7 @@ model CapsuleItem {
   updatedAt DateTime? @default(now()) @updatedAt @map("updated_at")
 
   capsule Capsule @relation(fields: [capsuleId], references: [id])
-  item    Item    @relation(fields: [itemId], references: [id])
+  item    Item    @relation(fields: [itemId], references: [itemId])
 
   @@map("capsule_items")
 }
