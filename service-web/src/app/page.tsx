@@ -9,8 +9,8 @@ export default function Home () {
     <main className="flex items-stretch h-[100vh]">
       <div className="flex flex-col items-center justify-center w-[100%] max-w-[500px]">
         <Text>Login</Text>
-        <Input />
-        <Input type="password" />
+        <Input id="username" placeholder="Username" />
+        <Input id="password" type="password" placeholder="Password" />
         <Button className="bg-red-500 p-3 rounded-lg">
           <ArrowRight className="text-white" size={26} />
         </Button>
