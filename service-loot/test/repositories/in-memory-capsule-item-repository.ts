@@ -1,8 +1,9 @@
 import { CapsuleItemRepository } from '@/domain/application/repositories/capsule-item-repository'
 import { CapsuleItem } from '@/domain/enterprise/entities/capsule-item'
-import { Item, RarityTier } from '@/domain/enterprise/entities/item'
+import { Item } from '@/domain/enterprise/entities/item'
 import { InMemoryCapsuleRepository } from './in-memory-capsule-repository'
 import { InMemoryItemRepository } from './in-memory-item-repository'
+import { RarityTier } from '@/domain/enterprise/entities/rarity'
 
 export class InMemoryCapsuleItemRepository implements CapsuleItemRepository {
   public items: CapsuleItem[] = []

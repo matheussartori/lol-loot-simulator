@@ -3,7 +3,7 @@
 </h3>
 
 <blockquote align="center">
-  League of Legends Loot Simulator is an microsservice application that allows you to open chests, use the market and trade items with other users. It's based on the "Loot" feature inside the League of Legends game. This application is not related to the real League of Legends inventory or Riot Games itself.
+  League of Legends Loot Simulator is a microservice application that allows you to open chests, use the market and trade items with other users. It's based on the "Loot" feature inside the League of Legends game. This application is not related to the real League of Legends inventory or Riot Games itself.
 </blockquote>
 <br>
 
@@ -20,7 +20,7 @@
 
 ## Services
 
-This application is composed with multiple services. They were splitted into microservices not just to make it easier to maintain and to scale, but also because of learning purposes.
+This application is composed with multiple services. They were split into microservices mainly because of learning purposes.
 
 <table>
   <thead>
@@ -49,6 +49,10 @@ This application is composed with multiple services. They were splitted into mic
     <tr>
       <td><code><a href="./service-store">service-store</a></code></td>
       <td>Buy champions and other items.</td>
+    </tr>
+    <tr>
+      <td><code><a href="./service-web">service-web</a></code></td>
+      <td>Front-end web application to interact with the services.</td>
     </tr>
   </tbody>
 </table>

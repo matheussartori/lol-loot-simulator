@@ -1678,4 +1678,14 @@ export const champions: Champion[] = [
       loading: '/champions/briar/default_loading.webp'
     }
   },
+  {
+    name: 'Hwei',
+    rarityTier: 'MYTHIC',
+    releasedAt: new Date('September 14, 2023'),
+    images: {
+      portrait: '/champions/hwei/default_portrait.webp',
+      splash: '/champions/hwei/default_splash.webp',
+      loading: '/champions/hwei/default_loading.webp'
+    }
+  },
 ]

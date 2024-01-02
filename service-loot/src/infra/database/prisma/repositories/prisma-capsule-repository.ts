@@ -22,6 +22,20 @@ export class PrismaCapsuleRepository implements CapsuleRepository {
     return PrismaCapsuleMapper.toDomain(capsule)
   }
 
+  async findBySlug(slug: string): Promise<Capsule | null> {
+    const capsule = await this.prisma.capsule.findUnique({
+      where: {
+        slug,
+      },
+    })
+
+    if (!capsule) {
+      return null
+    }
+
+    return PrismaCapsuleMapper.toDomain(capsule)
+  }
+
   async create(capsule: Capsule): Promise<void> {
     const data = PrismaCapsuleMapper.toPrisma(capsule)
 

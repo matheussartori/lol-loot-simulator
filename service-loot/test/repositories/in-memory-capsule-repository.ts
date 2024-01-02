@@ -16,6 +16,18 @@ export class InMemoryCapsuleRepository implements CapsuleRepository {
     return capsule
   }
 
+  async findBySlug(slug: string): Promise<Capsule | null> {
+    const capsule = this.items.find(
+      (capsule) => capsule.slug === slug,
+    )
+
+    if (!capsule) {
+      return null
+    }
+
+    return capsule
+  }
+
   async create(capsule: Capsule): Promise<void> {
     this.items.push(capsule)
   }
