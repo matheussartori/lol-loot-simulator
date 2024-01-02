@@ -1680,7 +1680,7 @@ export const champions: Champion[] = [
   },
   {
     name: 'Hwei',
-    rarityTier: 'MYTHIC',
+    rarityTier: 'EXCLUSIVE',
     releasedAt: new Date('September 14, 2023'),
     images: {
       portrait: '/champions/hwei/default_portrait.webp',
