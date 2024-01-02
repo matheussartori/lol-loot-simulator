@@ -1,11 +1,11 @@
-import {ReactNode} from "react";
+import { type HTMLAttributes, type ReactNode } from 'react'
 
-export interface TextProps {
+export interface TextProps extends HTMLAttributes<HTMLParagraphElement> {
   children: ReactNode
 }
 
-export function Text({ children }: TextProps) {
+export function Text ({ children, ...props }: TextProps) {
   return (
-    <p>{children}</p>
+    <p {...props}>{children}</p>
   )
 }
