@@ -4,4 +4,4 @@ import { makeAccountApiUrl } from '../http/api-url-factory'
 import { makeAxiosHttpClient } from '../http/axios-http-client-factory'
 
 export const makeRemoteAuthentication = (): Authentication =>
-  new RemoteAuthentication(makeAccountApiUrl('/login'), makeAxiosHttpClient())
+  new RemoteAuthentication(makeAccountApiUrl('/sessions'), makeAxiosHttpClient())

@@ -10,6 +10,8 @@ async function bootstrap() {
   const configService = app.get(EnvService)
   const port = configService.get('PORT')
 
+  app.enableCors()
+
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.KAFKA,
     options: {

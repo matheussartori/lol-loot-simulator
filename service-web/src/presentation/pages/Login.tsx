@@ -4,19 +4,22 @@ import { Button } from '@/presentation/components/Button'
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 import { type Authentication } from '@/domain/use-cases/authentication'
-import { type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 
 interface LoginProps {
   authentication: Authentication
 }
 
-export function Login ({ authentication }: LoginProps) {
+export function Login ({ authentication }: LoginProps): JSX.Element {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
   async function handleLoginSubmit (event: FormEvent) {
     event.preventDefault()
 
     await authentication.auth({
-      username: 'admin',
-      password: 'admin'
+      username,
+      password
     })
   }
 
@@ -26,8 +29,8 @@ export function Login ({ authentication }: LoginProps) {
 
         <form onSubmit={handleLoginSubmit}>
           <Text>Login</Text>
-          <Input id="username" placeholder="Username" autoComplete="off" />
-          <Input id="password" type="password" placeholder="Password" />
+          <Input id="username" placeholder="Username" autoComplete="off" onChange={e => setUsername(e.target.value)} />
+          <Input id="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
           <Button className="bg-red-500 p-3 rounded-lg">
             <ArrowRight className="text-white" size={26} />
           </Button>

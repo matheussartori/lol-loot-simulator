@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
-import './globals.css'
+import '@/presentation/styles/globals.css'
+import { type ReactNode } from 'react'
 
-const inter = Roboto({ subsets: ['latin'], weight: '400' })
+const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
 export const metadata: Metadata = {
   title: 'League of Legends Loot Simulator',
@@ -12,11 +13,11 @@ export const metadata: Metadata = {
 export default function RootLayout ({
   children
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={roboto.className}>{children}</body>
     </html>
   )
 }
