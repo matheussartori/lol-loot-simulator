@@ -1,4 +1,3 @@
-import React from 'react'
 import { makeRemoteAuthentication } from '../use-cases/remote-authentication-factory'
 import { Login } from '@/presentation/pages/Login'
 

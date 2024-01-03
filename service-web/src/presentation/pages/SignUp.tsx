@@ -41,7 +41,7 @@ export function SignUp ({ addAccount }: SignUpProps): JSX.Element {
           <Text className="text-gray-400 font-bold text-xs uppercase mt-4 hover:text-black">Already have an account?</Text>
         </Link>
       </div>
-      <div className="flex flex-1 bg-[url('/login.jpg')] bg-no-repeat bg-top"></div>
+      <div className="flex flex-1 bg-[url('/signup.jpg')] bg-no-repeat bg-top"></div>
     </main>
   )
 }
