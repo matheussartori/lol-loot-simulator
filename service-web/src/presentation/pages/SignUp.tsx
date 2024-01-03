@@ -1,5 +1,5 @@
 import { type AddAccount } from '@/domain/use-cases/add-account'
-import { type FormEvent } from 'react'
+import { type FormEvent, useState } from 'react'
 import { Input } from '@/presentation/components/Input'
 import { Text } from '@/presentation/components/Text'
 import { Button } from '@/presentation/components/Button'
@@ -11,12 +11,15 @@ interface SignUpProps {
 }
 
 export function SignUp ({ addAccount }: SignUpProps): JSX.Element {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
   async function handleAddAccountSubmit (event: FormEvent) {
     event.preventDefault()
 
     await addAccount.add({
-      username: 'admin',
-      password: 'admin'
+      username,
+      password
     })
   }
 
@@ -25,15 +28,17 @@ export function SignUp ({ addAccount }: SignUpProps): JSX.Element {
       <div className="flex flex-col items-center justify-center w-[100%] max-w-[500px]">
 
         <form onSubmit={handleAddAccountSubmit}>
-          <Text>SignUp</Text>
-          <Input id="username" placeholder="Username" autoComplete="off" />
-          <Input id="password" type="password" placeholder="Password" />
-          <Button className="bg-red-500 p-3 rounded-lg">
-            <ArrowRight className="text-white" size={26} />
-          </Button>
+          <Text className="font-bold text-xl text-center mb-8">Sign up</Text>
+          <Input id="username" placeholder="Username" autoComplete="off" onChange={e => setUsername(e.target.value)} />
+          <Input id="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+          <div className="flex w-[100%] justify-center">
+            <Button className="bg-red-600 p-4 rounded-xl">
+              <ArrowRight className="text-white" size={28} />
+            </Button>
+          </div>
         </form>
         <Link href="/">
-          <Text className="text-gray-400 font-bold text-xs uppercase mt-4">Already have an account?</Text>
+          <Text className="text-gray-400 font-bold text-xs uppercase mt-4 hover:text-black">Already have an account?</Text>
         </Link>
       </div>
       <div className="flex flex-1 bg-[url('/login.jpg')] bg-no-repeat bg-top"></div>
