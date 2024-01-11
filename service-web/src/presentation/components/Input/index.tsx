@@ -1,10 +1,14 @@
-import { type InputHTMLAttributes } from 'react'
+import { forwardRef, type InputHTMLAttributes } from 'react'
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-export function Input ({ className, ...props }: InputProps) {
+const Input = forwardRef<HTMLInputElement, InputProps>(({ className, ...props }: InputProps, ref) => {
   return (
     <fieldset className="mb-2">
-      <input type="text" className={`bg-gray-100 rounded-md p-4 ${className}`} {...props} />
+      <input ref={ref} type="text" className={`bg-gray-100 rounded-md p-4 ${className}`} {...props} />
     </fieldset>
   )
-}
+})
+
+Input.displayName = 'Input'
+
+export { Input }
