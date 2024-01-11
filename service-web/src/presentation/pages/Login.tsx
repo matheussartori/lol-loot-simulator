@@ -5,6 +5,8 @@ import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 import { type Authentication } from '@/domain/use-cases/authentication'
 import { useState, type FormEvent } from 'react'
+import { useAppDispatch } from '../data/store'
+import { setAccessToken } from '../data/slices/userSlice'
 
 interface LoginProps {
   authentication: Authentication
@@ -13,14 +15,17 @@ interface LoginProps {
 export function Login ({ authentication }: LoginProps): JSX.Element {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useAppDispatch()
 
   async function handleLoginSubmit (event: FormEvent) {
     event.preventDefault()
 
-    await authentication.auth({
+    const response = await authentication.auth({
       username,
       password
     })
+
+    dispatch(setAccessToken(response.accessToken))
   }
 
   return (

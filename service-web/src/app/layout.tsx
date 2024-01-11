@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import '@/presentation/styles/globals.css'
 import { type ReactNode } from 'react'
+import { Provider } from './StoreProvider'
 
 const roboto = Roboto({ subsets: ['latin'], weight: '400' })
 
@@ -17,7 +18,9 @@ export default function RootLayout ({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <Provider>
+        <body className={roboto.className}>{children}</body>
+      </Provider>
     </html>
   )
 }
