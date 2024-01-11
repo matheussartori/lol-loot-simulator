@@ -7,6 +7,7 @@ import { type Authentication } from '@/domain/use-cases/authentication'
 import { useState, type FormEvent } from 'react'
 import { useAppDispatch } from '../data/store'
 import { setAccessToken } from '../data/slices/userSlice'
+import { useRouter } from 'next/navigation'
 
 interface LoginProps {
   authentication: Authentication
@@ -16,16 +17,23 @@ export function Login ({ authentication }: LoginProps): JSX.Element {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useAppDispatch()
+  const router = useRouter()
 
   async function handleLoginSubmit (event: FormEvent) {
     event.preventDefault()
 
-    const response = await authentication.auth({
-      username,
-      password
-    })
+    try {
+      const response = await authentication.auth({
+        username,
+        password
+      })
 
-    dispatch(setAccessToken(response.accessToken))
+      dispatch(setAccessToken(response.accessToken))
+
+      router.push('/dashboard')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
