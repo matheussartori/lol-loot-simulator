@@ -4,7 +4,8 @@ const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/presentation/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/presentation/pages/**/*.{js,ts,jsx,tsx,mdx}'
+    './src/presentation/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -15,12 +16,16 @@ const config: Config = {
       },
       colors: {
         azure: {
-          500: '#07121c'
+          700: '#0e2430',
+          900: '#07121c'
         },
         gold: {
           50: '#e6d9b9',
           100: '#c0b68d',
           500: '#745c2d'
+        },
+        charcoal: {
+          500: '#3e4244'
         }
       }
     }
