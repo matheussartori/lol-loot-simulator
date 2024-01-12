@@ -1,16 +1,22 @@
 import { InMemoryUserItemRepository } from 'test/repositories/in-memory-user-item-repository'
 import { FetchUserItemsUseCase } from './fetch-user-items'
 import { makeUserItem } from 'test/factories/make-user-item'
+import { InMemoryUserCapsuleRepository } from 'test/repositories/in-memory-user-capsule-repository'
 
 let inMemoryUserItemRepository: InMemoryUserItemRepository
+let inMemoryUserCapsuleRepository: InMemoryUserCapsuleRepository
 
 let sut: FetchUserItemsUseCase
 
 describe('fetch user items use case', () => {
   beforeEach(() => {
     inMemoryUserItemRepository = new InMemoryUserItemRepository()
+    inMemoryUserCapsuleRepository = new InMemoryUserCapsuleRepository()
 
-    sut = new FetchUserItemsUseCase(inMemoryUserItemRepository)
+    sut = new FetchUserItemsUseCase(
+      inMemoryUserItemRepository,
+      inMemoryUserCapsuleRepository,
+    )
   })
 
   it('should return an empty array if no user items are found', async () => {

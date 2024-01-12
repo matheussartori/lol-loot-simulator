@@ -8,6 +8,17 @@ import { PrismaUserCapsuleMapper } from '../mappers/prisma-user-capsule-mapper'
 export class PrismaUserCapsuleRepository implements UserCapsuleRepository {
   constructor(private prisma: PrismaService) {}
 
+  async findUnopenedByUserId(userId: string): Promise<UserCapsule[]> {
+    const userCapsules = await this.prisma.userCapsule.findMany({
+      where: {
+        userId,
+        openedAt: null,
+      },
+    })
+
+    return userCapsules.map(PrismaUserCapsuleMapper.toDomain)
+  }
+
   async findById(userCapsuleId: string): Promise<UserCapsule | null> {
     const userCapsule = await this.prisma.userCapsule.findUnique({
       where: {

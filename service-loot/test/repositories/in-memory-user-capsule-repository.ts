@@ -4,6 +4,14 @@ import { UserCapsule } from '@/domain/enterprise/entities/user-capsule'
 export class InMemoryUserCapsuleRepository implements UserCapsuleRepository {
   public items: UserCapsule[] = []
 
+  async findUnopenedByUserId(userId: string): Promise<UserCapsule[]> {
+    const userCapsules = this.items.filter(
+      (item) => item.userId.toString() === userId && item.openedAt === null,
+    )
+
+    return userCapsules
+  }
+
   async findById(userCapsuleId: string): Promise<UserCapsule | null> {
     const userCapsule = this.items.find(
       (item) => item.id.toString() === userCapsuleId,

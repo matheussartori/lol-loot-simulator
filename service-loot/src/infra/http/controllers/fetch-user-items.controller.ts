@@ -3,6 +3,7 @@ import { UserPayload } from '@/infra/auth/jwt.stategy'
 import { Controller, BadRequestException, Get } from '@nestjs/common'
 import { UserItemPresenter } from '../presenters/user-item-presenter'
 import { FetchUserItemsUseCase } from '@/domain/application/use-cases/fetch-user-items'
+import { UserCapsulePresenter } from '../presenters/user-capsule-presenter'
 
 @Controller('/user_items')
 export class FetchUserItemsController {
@@ -18,10 +19,11 @@ export class FetchUserItemsController {
       throw new BadRequestException()
     }
 
-    const userItems = result.value.userItems
+    const { userItems, userCapsules } = result.value
 
     return {
       userItems: userItems.map(UserItemPresenter.toHTTP),
+      userCapsules: userCapsules.map(UserCapsulePresenter.toHTTP),
     }
   }
 }
