@@ -32,8 +32,9 @@ model Capsule {
   createdAt     DateTime? @default(now()) @map("created_at")
   updatedAt     DateTime? @default(now()) @updatedAt @map("updated_at")
 
-  rewards CapsuleItem[]
-  odds    CapsuleOdd[]
+  rewards      CapsuleItem[]
+  odds         CapsuleOdd[]
+  userCapsules UserCapsule[]
 
   @@map("capsules")
 }
@@ -59,6 +60,7 @@ model UserCapsule {
   createdAt DateTime? @default(now()) @map("created_at")
 
   belongsToUserItems UserItem[]
+  capsule            Capsule    @relation(fields: [capsuleId], references: [id])
 
   @@index([userId])
   @@map("user_capsules")
