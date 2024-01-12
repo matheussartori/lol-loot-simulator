@@ -10,6 +10,9 @@ export class PrismaUserCapsuleRepository implements UserCapsuleRepository {
 
   async findUnopenedByUserId(userId: string): Promise<UserCapsule[]> {
     const userCapsules = await this.prisma.userCapsule.findMany({
+      include: {
+        capsule: true
+      },
       where: {
         userId,
         openedAt: null,
